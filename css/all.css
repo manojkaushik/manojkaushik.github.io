@@ -497,14 +497,15 @@ transition: all 0.5s ease-in-out;
 /*contact*/
 .clear{clear: both;}
 .images_holder{
-	float: left;
-	margin:5px 130px 0 0;
-	width: 370px;
+  float: left;
+  margin: 32px 113px 26px 30px;
+  width: 320px;
 }
 .images_holder img{
 	width: 100%;
 	height: auto;
 	display: inline;
+  border-radius: 50%;
 }
 .box_contact{
 	overflow:hidden;
@@ -529,7 +530,7 @@ transition: all 0.5s ease-in-out;
     width:100%;
     overflow:hidden;
     display:table-footer-group;
-    background:#fff;
+    background:#50af6f;
 }
 .footer-content {
 	max-width: 1170px;

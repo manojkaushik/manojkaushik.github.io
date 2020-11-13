@@ -540,7 +540,7 @@ transition: all 0.5s ease-in-out;
 .footer-content .social{
 	overflow:hidden;
 	margin: 0 auto 2px;
-	width: 300px;
+	width: fit-content;
 }
 .footer-content .social li{
 	float:left;

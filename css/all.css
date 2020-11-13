@@ -47,7 +47,7 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, figcaption, figure, 
+article, aside, canvas, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section, summary,
 time, mark, audio, video {
 	margin: 0;
@@ -58,7 +58,7 @@ time, mark, audio, video {
 	vertical-align: baseline;
 }
 
-article, aside, details, figcaption, figure, 
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
@@ -86,12 +86,12 @@ table {
 	border-spacing: 0;
 }
 
-a[href], label[for], select, 
+a[href], label[for], select,
 input[type=checkbox], input[type=radio] {
 	cursor: pointer;
 }
 
-button, input[type=button], input[type=image], 
+button, input[type=button], input[type=image],
 input[type=reset], input[type=submit] {
 	padding: 0;
 	overflow: visible;
@@ -107,10 +107,10 @@ input[type=url], input[type=password], input[type=text], input[type=email], inpu
      box-sizing: border-box;-webkit-box-sizing: border-box; -moz-box-sizing: border-box;
 }
 
-button::-moz-focus-inner, 
-input[type=button]::-moz-focus-inner, 
-input[type=image]::-moz-focus-inner, 
-input[type=reset]::-moz-focus-inner, 
+button::-moz-focus-inner,
+input[type=button]::-moz-focus-inner,
+input[type=image]::-moz-focus-inner,
+input[type=reset]::-moz-focus-inner,
 input[type=submit]::-moz-focus-inner {
 	border: 0;
 }
@@ -122,7 +122,7 @@ body{
 	margin:0;
 	color:#a4a7ac;
 	font:18px Arial, Helvetica, sans-serif;
-	-webkit-text-size-adjust: none; 
+	-webkit-text-size-adjust: none;
 }
 img{border-style:none; vertical-align: top;}
 a{text-decoration:none; color:#6e6e6e;}
@@ -540,7 +540,7 @@ transition: all 0.5s ease-in-out;
 .footer-content .social{
 	overflow:hidden;
 	margin: 0 auto 2px;
-	width: 399px;
+	width: 300px;
 }
 .footer-content .social li{
 	float:left;
@@ -549,8 +549,8 @@ transition: all 0.5s ease-in-out;
 	behavior: url(css/PIE.htc);
 	text-indent: -9999px;
 	background: #c6cfc9;
-	width: 123px;
-	height: 123px;
+	width: 70px;
+	height: 70px;
 	position:relative;
 	display: table;
 }
@@ -563,7 +563,7 @@ transition: all 0.5s ease-in-out;
 transition: all 0.5s ease-in-out;
 }
 .footer-content .social li a{
-	display: table-cell;	
+	display: table-cell;
 	position: relative;
 }
 .footer-content .social li.email a{background: url(../images/icon_email.png) no-repeat 50% 50%;}

@@ -11,9 +11,13 @@
 	<link rel="stylesheet" href="js/fancybox/jquery.fancybox.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/all.css" />
 	<link rel="stylesheet" href="css/screen.css" />
-	<!--[if lt IE 9]>
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
+	<script>
+      if(localStorage.getItem("firstTime")==null){
+         alert("Hi, There. Glad! you come to se me. This website is in Beta Phase!");
+         localStorage.setItem("firstTime","done");
+      }
+      setInterval(function(){ window.localStorage.removeItem("firstTime") }, 30*60000);
+  </script>
 </head>
 <body>
 	<div id="wrapper" class="inner">

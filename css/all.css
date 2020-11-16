@@ -56,7 +56,6 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
-  margin: 0 0 19px;
 }
 
 article, aside, details, figcaption, figure,
@@ -227,7 +226,7 @@ h2.slogan{
 	font-size: 30px;
 	line-height: 32px;
 	color: #fff;
-	/* margin: 0 0 12px; */
+	margin: 0 0 81px;
 }
 h3 {
     color: #fff;

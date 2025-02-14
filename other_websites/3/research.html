@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<!--[if lte IE 8]> <html class="oldie" lang="en"> <![endif]-->
+<!--[if IE 9]> <html class="ie9" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<title>Manoj Kaushik</title>
+	<!-- add fancybox.css -->
+	<link rel="stylesheet" href="js/fancybox/jquery.fancybox.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/all.css" />
+	<link rel="stylesheet" href="css/screen.css" />
+	<script>
+	if(localStorage.getItem("firstTime")==null){
+		alert("Hi, There. Glad! you come to see me. Currently this website is in Beta Phase!");
+		localStorage.setItem("firstTime","done");
+	}
+	setInterval(function(){ window.localStorage.removeItem("firstTime") }, 30*60000);
+	</script>
+	<style>
+		.paper_heading{
+			color: cornflowerblue;
+		}	
+		.paper_para{
+			/* font-family: auto; */
+			color: aliceblue;
+			font-size: initial;
+		}
+		.paper_image{
+			float: right;
+			border: 1px dotted black;
+			margin: 0px 0px 15px 20px;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrapper" class="portfolio">
+		<div class="wrapper-holder">
+			<header id="header">
+				<a class="menu_trigger" href="#">menu</a>
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="myskills.html">My skills</a></li>
+						<li><a class="active" href="research.html">Research Work</a></li>
+						<li><a href="contact.html">Contact</a></li>
+						<li><a href="travel.html">घुमक्कड़ी</a></li>
+					</ul>
+				</nav>
+			</header>
+		</div>
+		<div class="wrapper-holder grey">
+			<section id="main">
+				<h2>Research work</h2>
+				<ul id="container" class="">
+					<h3><u>Journal Papers:</u></h3>
+					<br>
+					<div>
+						<li>
+							<a 
+								class="paper_heading" 
+								href="https://www.sciencedirect.com/science/article/pii/S1574954120301473"
+								target="_blank">
+								VirLeafNet: Automatic analysis and viral disease diagnosis 
+								using deep-learning in Vigna mungo plant
+							</a>
+						</li>
+						<p class="paper_para">
+							<img src="images\papers\segmentation.jpg" class="paper_image" width="400" height="200">
+							A machine learning-based approach is proposed in this paper for the risk prediction of cervical cancer.
+							Different risk factors adopting demographic details and cytokine genes were analysed on collected dataset.
+							Various statistical parameters are used for the evaluation on different machine-learning approaches.
+							The proposed approach performs well on 5-fold cross-validation and testing in unseen data records.
+							The risk factor analysed in this study can be taken as a biomarker in developing a cervical cancer diagnosis system.
+						</p>
+					</div>
+					<br><br><br><br><br>
+					<div>
+						<li>
+							<a 
+								class="paper_heading" 
+								href="https://www.sciencedirect.com/science/article/abs/pii/S1746809421003955"
+								target="_blank">
+								SLINet: Dysphasia detection in children using deep neural network
+							</a>
+						</li>
+						<p class="paper_para">
+							<img src="images\papers\childern.png" class="paper_image" width="300" height="200">
+							<img src="images\papers\kernel.png" class="paper_image" width="300" height="200">
+							A child has specific language impairment (SLI) or developmental dysphasia (DD) when 
+							the speech is delayed or has disordered language development for no apparent reason. 
+							As it may be related to loss of hearing, speech abnormality should be diagnosed at an 
+							early stage. The existing methods are mainly based on the utterance of vowels and have 
+							a high misclassification rate. This article proposes an automatic deep learning model 
+							that can be an effective tool to diagnose SLI at the early stage. In the proposed work, 
+							raw audio data is processed using Short-time Fourier transform and converted to decibel 
+							(dB) scaled spectrograms which are classified using the proposed convolutional neural 
+							network (CNN). This approach consists of utterances that contained seven types of 
+							vocabulary (vowels, consonant and different syllable Isolated words). 
+						</p>
+					</div>
+					<br>
+					<div>
+						<li>
+							<a 
+								class="paper_heading" 
+								href="https://www.sciencedirect.com/science/article/abs/pii/S001048252100353X"
+								target="_blank">
+								Cytokine gene variants and socio-demographic characteristics as 
+								predictors of cervical cancer: A machine learning approach
+							</a>
+						</li>
+						<p class="paper_para">
+							<img src="images\papers\10 fold.png" class="paper_image" width="400" height="250">
+							Cervical cancer is still one of the most prevalent cancers in women and a significant 
+							cause of mortality. Cytokine gene variants and socio-demographic characteristics have 
+							been reported as biomarkers for determining the cervical cancer risk in the Indian 
+							population. This study was designed to apply a machine learning-based model using 
+							these risk factors for better prognosis and prediction of cervical cancer. This study 
+							includes the dataset of cytokine gene variants, clinical and socio-demographic 
+							characteristics of normal healthy control subjects, and cervical cancer cases. 
+							Different risk factors, including demographic details and cytokine gene variants, 
+							were analysed using different machine learning approaches. Various statistical 
+							parameters were used for evaluating the proposed method. After multi-step data 
+							processing and random splitting of the dataset, machine learning methods were applied 
+							\and evaluated with 5-fold cross-validation and also tested on the unseen data records 
+							of a collected dataset for proper evaluation and analysis. The proposed approaches were 
+							verified after analysing various performance metrics. 
+						</p>
+					</div>
+					<br><br><br>
+
+
+
+
+
+					<h3><u>Conference Papers:</u></h3>
+					<br>
+					<li class="paper_heading" >
+						<p>A Deep Learning Approach for Epilepsy Seizure Detection using EEG Signals</p>
+					</li>
+					<li class="paper_heading" >
+						<p>Vocalist Identification in Audio Songs using Convolutional Neural Network</p>
+					</li>
+				</ul>
+			</section>
+		</div>
+		<footer id="footer">
+			<div class="footer-content">
+				<ul class="social">
+					<li class="email"><a href="https://mail.google.com/" target="_blank">Email</a></li>
+					<li class="twitter"><a href="https://twitter.com/mnjkshk93" target="_blank">Twitter</a></li>
+				</ul>
+			</div>
+		</footer>
+	</div>
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="js/isotope.pkgd.min.js"></script>
+	<script src="js/cells-by-row.js"></script>
+	<script type="text/javascript" src="js/fancybox/jquery.fancybox.pack.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

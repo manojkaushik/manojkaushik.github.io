@@ -1,4 +1,14 @@
-# manojkaushik.github.io
+# Minimal Theme
 
-This is a personal portfolio, I work in my spare time for fun.
-you can access the webpage by the link [manojkaushik.github.io](https://manojkaushik.github.io/)
+[Demo the Theme](http://orderedlist.github.com/minimal/)
+
+This is the raw HTML and styles that are used for the *minimal* theme on [GitHub Pages](http://pages.github.com/).
+
+Syntax highlighting is provided on GitHub Pages by [Pygments](http://pygments.org).
+
+# License
+
+This work is licensed under a [Creative Commons Attribution-ShareAlike 3.0 Unported License](http://creativecommons.org/licenses/by-sa/3.0/).
+
+
+

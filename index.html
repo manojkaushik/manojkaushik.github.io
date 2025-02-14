@@ -1,108 +1,660 @@
-<!DOCTYPE html>
-<!--[if lte IE 8]> <html class="oldie" lang="en"> <![endif]-->
-<!--[if IE 9]> <html class="ie9" lang="en"> <![endif]-->
-<!--[if gt IE 9]><!--> <html lang="en"> <!--<![endif]-->
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="format-detection" content="telephone=no">
-	<title>Manoj Kaushik</title>
-	<link rel="stylesheet" href="js/fancybox/jquery.fancybox.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="css/all.css" />
-	<link rel="stylesheet" href="css/screen.css" />
-	<script>
-	if(localStorage.getItem("firstTime")==null){
-		alert("Hi, There. Glad! you come to see me. Currently this website is in Beta Phase!");
-		localStorage.setItem("firstTime","done");
-	}
-	setInterval(function(){ window.localStorage.removeItem("firstTime") }, 30*60000);
-	</script>
-</head>
-<body>
-	<div id="wrapper">
-		<div class="wrapper-holder">
-			<header id="header">
-				<a class="menu_trigger" href="#">menu</a>
-				<nav id="nav">
-					<ul>
-						<li><a class="active" href="index.html">Home</a></li>
-						<li><a href="myskills.html">My skills</a></li>
-						<li><a href="research.html">Research Work</a></li>
-						<li><a href="contact.html">Contact</a></li>
-						<li><a href="travel.html">घुमक्कड़ी</a></li>
-					</ul>
-				</nav>
-				<h1 class="logo">Manoj Kaushik</h1>
-				<h2 class="slogan">Developer and AI Researcher</h2>
-			</header>
-		</div>
-		<div class="wrapper-holder grey">
-			<section id="main">
-				<h2>Milestones</h2>
-				<div class="box_timeline_holder">
-					<div class="box_timeline">
-						<ul>
-							<li>
-								<div class="date">
-									<span>2015</span>
-								</div>
-								<h3>Networking Internship</h3>
-								<p>Completed the Networking Internship From NetCamp Jaipur</p>
-							</li>
-							<li>
-								<div class="date">
-									<span>02/2017</span>
-								</div>
-								<h3>C++ Course and Problem Solving</h3>
-								<p>Completed the C++ Course from IIT BombayX</p>
-							</li>
-							<li>
-								<div class="date">
-									<span>2017</span>
-								</div>
-								<h3>Data Analytics Certificate</h3>
-								<p>One week challange certificate from GradeUp And IIIT Bangalore</p>
-							</li>
-							<li>
-								<div class="date">
-									<span>2018</span>
-								</div>
-								<a href="https://drive.google.com/file/d/1QObcK0URjucp3FxzjzO9A0i1KonBbYTj/view?pli=1" target="_blank"><h3>Best Team Award</h3></a>
-								<p>ICAR-IGFRI Best Team Award for Developing a Mobile App</p>
-							</li>
-							<li>
-								<div class="date">
-									<span>2019</span>
-								</div>
-								<h3>FrontEnd Froject</h3>
-								<p>FreeCodeCamp Certificate of Project Completion</p>
-							</li>
-							<li>
-								<div class="date">
-									<span>2020</span>
-								</div>
-								<h3>SCI Indexed Paper</h3>
-								<p>Co-author in a SCI Indexed Paper with Impact Factor 2.5</p>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</section>
-		</div>
-		<footer id="footer">
-			<div class="footer-content">
-				<ul class="social">
-					<li class="email"><a href="https://mail.google.com/" target="_blank">Email</a></li>
-					<li class="twitter"><a href="https://twitter.com/mnjkshk93" target="_blank">Twitter</a></li>
-				</ul>
-			</div>
-		</footer>
-	</div>
-	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-	<script src="js/isotope.pkgd.min.js"></script>
-	<script src="js/cells-by-row.js"></script>
-	<script type="text/javascript" src="js/fancybox/jquery.fancybox.pack.js"></script>
-	<script type="text/javascript" src="js/main.js"></script>
+<!doctype html>
+<html lang="en">
+  <head>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-99569818-5"></script>
+      <script>
+          window.dataLayer = window.dataLayer || [];
+
+          function gtag() {
+              dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+
+          gtag('config', 'UA-99569818-5');
+      </script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Manoj Kaushik">
+    <meta name="description"
+        content="I am a Ph.D. scholar at Indian Institute of Space Science and Technology Thiruvananthapuram, Department of Space. My primary work focuses on precision agriculture with AI. The work often includes use of satellite, airborne, UAVs, and in-situ Multispectral and hyperspectral data.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://manojkaushik.github.io/">
+    <meta property="og:title" content="Manoj Kaushik">
+    <meta property="og:description"
+        content="I am a Ph.D. scholar at Indian Institute of Space Science and Technology Thiruvananthapuram, Department of Space. 
+        My primary work focuses on precision agriculture with AI. The work often includes use of satellite, airborne, UAVs, and 
+        in-situ Multispectral and hyperspectral data.">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://manojkaushik.github.io/">
+    <meta property="twitter:title" content="Manoj Kaushik">
+    <meta property="twitter:description"
+    content="I am a Ph.D. scholar at Indian Institute of Space Science and Technology Thiruvananthapuram, Department of Space. 
+    My primary work focuses on precision agriculture with AI. The work often includes use of satellite, airborne, UAVs, and in-situ Multispectral and hyperspectral data.">    
+    <meta property="og:image" content="https://manojkaushik.github.io/images/profile.jpeg?format=1500w">
+    <meta property="twitter:image" content="https://manojkaushik.github.io/images/profile.jpeg?format=1500w">
+    <meta itemprop="thumbnailUrl" content="https://manojkaushik.github.io/images/profile.jpeg?format=1500w"/>
+    <link rel="image_src" href="https://manojkaushik.github.io/images/profile.jpeg?format=1500w" />
+    <meta itemprop="image" content="https://manojkaushik.github.io/images/profile.jpeg?format=1500w"/>
+    <meta name="theme-color" content="#444444">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/nicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/icons/favicon-16x16.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Gentium+Basic:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <script src="js/scramble.js"></script>      
+    <title>Manoj Kaushik</title>
+  </head>
+
+
+  <body>
+    <div class="container pt-5 allstuffp">
+        <div class="row allstuff">  <!-- row pt-5 allstuff -->
+            <div class="col-md-3">
+                <div class="fixed-posi">
+                <h5 style="font-weight: 400;color:#111;font-size: 1.1rem; margin-top: 0.1rem;"> Hi, I am </h5>
+                <h2 class="name">Manoj<br>Kaushik<span style="color: #a08036">.</span></h2>
+                <img lsrc="images/profile-3.jpg" class="profilepic"> <!-- rounded-circle -->
+                <div>
+                </div>
+                <div class="menur"><a class="menulink" target="_blank" href="assets/ManojCV_Aug'24.pdf"><i class="ai ai-cv headtag"></i><span class="tagsep"></span>curriculum vitae</a></div>
+                <div class=""><a class="menulink" target="_blank" href="https://scholar.google.com/citations?user=OL46QaUAAAAJ&hl=en"><i class="ai ai-google-scholar headtag"></i><span class="tagsep"></span>google scholar</a></div>
+                <div class="">
+                <a class="menulink" href="#">
+                    <i class="fas fa-envelope headtag"></i><span class="tagsep"></span>
+                    <font id="emaillink" style="display:inline;">
+                        <noscript><i>Please enable Javascript to view</i></noscript>
+                    </font>
+                    <script>
+                        emailLinkScramble = new scrambledString(document.getElementById('emaillink'),
+                                        'emailLinkScramble', 'manojkaushik93@gmail.com',
+                                        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23], 'email address');
+                    </script>
+                </a>
+                </div>
+                <div class=""><a class="menulink" target="_blank" href="https://github.com/manojkaushik"><i class="fab fa-github headtag"></i><span class="tagsep"></span>github profile</a></div>
+                <div class=""><a class="menulink" target="_blank" href="https://www.linkedin.com/in/mnjkshk/"><i class="fab fa-linkedin headtag"></i><span class="tagsep"></span>linkedin</a></div>
+                <div class=""><a class="menulink" target="_blank" href="https://twitter.com/mnjkshk93"><i class="fab fa-twitter headtag"></i><span class="tagsep"></span>twitter</a></div>
+                </div>
+            </div>
+            <div class="col-md-9 pt-5 about text-justify">
+                <div class="mainpara">
+                <p class="subpara">
+                    I am a Ph.D. scholar at Indian Institute of Space Science and Technology, Department of Space, Thiruvananthapuram, Kerala. 
+                    My primary research work focuses on precision agriculture with AI. The work includes use of satellite, airborne, UAVs, and in-situ Hyperspectral and Multispectral data.
+                </p>
+                <p class="subpara">
+                    Some of my recent projects are:
+                    <ul>
+                    <li> Hyperspectral differentiation in organic vs. conventional cultivated crops 🌱 in multiple coexisted complex landscapes.</li>
+                    <li> Synthetic hyperspectral data generation for reference data.</li>
+                    <li> Automated mapping of vegetable crop farms in high-resolution drone multispectral imagery using ensemble machine learning modeling.</li>
+                    <li> Mapping of soil organic content using hyperspectral satellite 🛰 data. </li>
+                    <li> Deep Learning systems for time series cloud detection ☁️ using multi-sensor satellite imagery in collaboration with ISRO-NRSC Hyderabad.</li>
+                    <li> IoT and AI-enabled drone systems for crop and soil monitoring, a joint project of MietY (Gov. of India) and MMMUT-Gorakhpur.</li>
+                    </ul>
+                </p>
+                <p class="subpara">
+                 I was born and raised in Uttar Pradesh, India, where I completed both my bachelor's and master's degrees. I pursued my undergraduate studies in Information Technology at Kamla Nehru Institute of Technology (KNIT), Sultanpur, followed by a postgraduate degree in Computer Science and Engineering with a specialization in Machine Learning at the Centre for Advanced Studies, Dr. A.P.J. Abdul Kalam Technical University (AKTU), Lucknow. For more details, please refer to my <a class="in-text" href="assets/ManojCV_Aug'24.pdf" target="_blank">CV</a>.
+                </p>
+                </div>
+                
+                <div class="header-1 pt-5">PUBLICATIONS</div>
+                <div class="pt-4">
+                    <h5>Journals</h5>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="talk my-2 pl-2">
+                            <span class="papertitle"><a href="#">Hyperspectral Discrimination of Vegetable Crops Grown Under Organic and Conventional Cultivation Practices: A Machine Learning Approach</a></span><br>
+                            <span class="thisauthor">Manoj Kaushik</span>, Rama Rao Nidamanuri, Aparna B
+                            <div class="d-flex">
+                                <span class="conf"><b>Scientific Reports @ 2025</b>
+                                </span> 
+                                <span class="ml-auto">
+                                <a class="tag" href="" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Paper Link">Link</a>
+                                <!-- <span class="tagsep">●</span> -->
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="talk my-2 pl-2">
+                            <span class="papertitle"><a href="#">Cardi-Net: A deep neural network for classification of cardiac disease using phonocardiogram signal</a></span><br>
+                            JS Khan, <span class="thisauthor">Manoj Kaushik</span>, A Chaurasia, MK Dutta, R Burget
+                            <div class="d-flex">
+                                <span class="conf"><b>Computer Methods and Programs in Biomedicine @ 2022</b>
+                                </span> 
+                                <span class="ml-auto">
+                                <a class="tag" href="https://www.sciencedirect.com/science/article/abs/pii/S0169260722001134" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Paper Link">Link</a>
+                                <!-- <span class="tagsep">●</span> -->
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="talk my-2 pl-2">
+                            <span class="papertitle"><a href="#">Cytokine gene variants and socio-demographic characteristics as predictors of cervical cancer: A machine learning approach</a></span><br>
+                            <span class="thisauthor">Manoj Kaushik</span>, Rakesh Chandra Joshi, Atar Singh Kushwah, Maneesh Kumar Gupta, Monisha Banerjee, Radim Burget, Malay Kishore Dutta
+                            <div class="d-flex">
+                                <span class="conf"><b>Computers in Biology and Medicine @ 2021</b>
+                                </span> 
+                                <span class="ml-auto">
+                                <a class="tag" href="https://www.sciencedirect.com/science/article/abs/pii/S001048252100353X" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Paper Link">Link</a>
+                                <!-- <span class="tagsep">●</span> -->
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="talk my-2 pl-2">
+                            <span class="papertitle"><a href="#">SLINet: Dysphasia detection in children using deep neural network</a></span><br>
+                            <span class="thisauthor">Manoj Kaushik</span>, N Baghel, R Burget, CM Travieso, MK Dutta
+                            <div class="d-flex">
+                                <span class="conf"><b>Biomedical Signal Processing and Control @ 2021</b>
+                                </span> 
+                                <span class="ml-auto">
+                                <a class="tag" href="https://www.sciencedirect.com/science/article/abs/pii/S1746809421003955" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Paper Link">Link</a>
+                                <!-- <span class="tagsep">●</span> -->
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="talk my-2 pl-2">
+                            <span class="papertitle"><a href="#">VirLeafNet: Automatic analysis and viral disease diagnosis using deep-learning in Vigna mungo plant</a></span><br>
+                            RC Joshi <span class="thisauthor">Manoj Kaushik</span>, MK Dutta, A Srivastava, N Choudhary
+                            <div class="d-flex">
+                                <span class="conf"><b>Ecological Informatics @ 2021</b>
+                                </span> 
+                                <span class="ml-auto">
+                                <a class="tag" href="https://www.sciencedirect.com/science/article/abs/pii/S1574954120301473" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Paper Link">Link</a>
+                                <!-- <span class="tagsep">●</span> -->
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="pt-4">
+                    <h5>Conference</h5>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="talk my-2 pl-2">
+                            <span class="papertitle"><a href="#">Cloudsegnet: A deep learning based segmentation method for cloud detection in multispectral satellite imagery</a></span><br>
+                            <span class="thisauthor">Manoj Kaushik</span>, Anagha S Sarma, Rama Rao Nidamanuri
+                            <div class="d-flex">
+                                <span class="conf"><b>IEEE IGARSS @ 2023</b>
+                                </span> 
+                                <span class="ml-auto">
+                                <a class="tag" href="https://ieeexplore.ieee.org/abstract/document/10282395" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Paper Link">Link</a>
+                                <span class="tagsep">●</span>
+                                <a class="tag" href="https://www.iist.ac.in/sites/default/files/library/posters/SC22D012.pdf" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Poster Link">Poster</a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="talk my-2 pl-2">
+                            <span class="papertitle"><a href="#">Hyperspectral Detection of Fusarium Wilt in Tomato Plants Using Machine Learning-Based Approaches</a></span><br>
+                            H Chaitra, Manohar Kumar CVSS, <span class="thisauthor">Manoj Kaushik</span>, RG Sharathchandra, Rama Rao Nidamanuri
+                            <div class="d-flex">
+                                <span class="conf"><b>IEEE IGARSS @ 2023</b>
+                                </span> 
+                                <span class="ml-auto">
+                                <a class="tag" href="https://ieeexplore.ieee.org/abstract/document/10282890" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Paper Link">Link</a>
+                                <!-- <span class="tagsep">●</span> -->
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="talk my-2 pl-2">
+                            <span class="papertitle"><a href="#">Spectral discrimination of vegetable crops using in situ hyperspectral data and reference to organic vegetables</a></span><br>
+                            <span class="thisauthor">Manoj Kaushik</span>, Rama Rao Nidamanuri, B Aparna, AM Ramiya
+                            <div class="d-flex">
+                                <span class="conf"><b>IEEE MIGARS @ 2023</b>
+                                </span> 
+                                <span class="ml-auto">
+                                <a class="tag" href="https://ieeexplore.ieee.org/abstract/document/10064553" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Paper Link">Link</a>
+                                <span class="tagsep">●</span>
+                                <a class="tag" href="https://www.researchgate.net/profile/Manoj-Kaushik/publication/369310920_Spectral_discrimination_of_vegetable_crops_using_in_situ_hyperspectral_data_and_reference_to_organic_vegetables/links/64ee3dfae90b104cea21ef57/Spectral-discrimination-of-vegetable-crops-using-in-situ-hyperspectral-data-and-reference-to-organic-vegetables.pdf" target="_blank" data-toggle="tooltip" data-placement="bottom" title="PDF Link">PDF</a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="talk my-2 pl-2">
+                            <span class="papertitle"><a href="#">A deep learning approach for epilepsy seizure detection using EEG signals</a></span><br>
+                            <span class="thisauthor">Manoj Kaushik</span>, Divyanshu Singh, Malay Kishore Dutta, Carlos Manuel Travieso González
+                            <div class="d-flex">
+                                <span class="conf"><b>Tecnología en Marcha @ 2022</b>
+                                </span> 
+                                <span class="ml-auto">
+                                <a class="tag" href="https://dialnet.unirioja.es/servlet/articulo?codigo=8828180" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Paper Link">Link</a>
+                                <span class="tagsep">●</span>
+                                <a class="tag" href="https://dialnet.unirioja.es/descarga/articulo/8828180.pdf" target="_blank" data-toggle="tooltip" data-placement="bottom" title="PDF Link">PDF</a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="talk my-2 pl-2">
+                            <span class="papertitle"><a href="#">Identifying Mood in Music Using Deep Learning</a></span><br>
+                            Shikha Rani, <span class="thisauthor">Manoj Kaushik</span>, Vrinda Yadav
+                            <div class="d-flex">
+                                <span class="conf"><b>ICRTAC-AIT @ 2020</b>
+                                </span> 
+                                <span class="ml-auto">
+                                <a class="tag" href="https://link.springer.com/chapter/10.1007/978-981-16-6448-9_55" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Paper Link">Link</a>
+                                <!-- <span class="tagsep">●</span> -->
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="talk my-2 pl-2">
+                            <span class="papertitle"><a href="#">Vocalist identification in audio songs using convolutional neural network</a></span><br>
+                            <span class="thisauthor">Manoj Kaushik</span>,  Shikha Rani, Vrinda Yadav
+                            <div class="d-flex">
+                                <span class="conf"><b>ICRTAC-AIT @ 2020</b>
+                                </span> 
+                                <span class="ml-auto">
+                                <a class="tag" href="https://link.springer.com/chapter/10.1007/978-981-33-6881-1_9" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Paper Link">Link</a>
+                                <span class="tagsep">●</span>
+                                <a class="tag" href="https://www.researchgate.net/profile/Manoj-Kaushik/publication/351996702_Vocalist_Identification_in_Audio_Songs_Using_Convolutional_Neural_Network/links/623edd6d8068956f3c4ca6e6/Vocalist-Identification-in-Audio-Songs-Using-Convolutional-Neural-Network.pdf" target="_blank" data-toggle="tooltip" data-placement="bottom" title="PDF Link">PDF</a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="header-1 pt-5">Teaching</div>
+                <div class="pb-1">
+                    <div class="talk my-2 pl-2">
+                        <span class="papertitle"><a href="" target="_blank">Teaching Assistant - Probability & Statistics</a></span><br>
+                        <div class="d-flex">
+                            <span class="conf"><b>IIST Thiruvananthapuram</b> - Classroom @ 2024</span><br>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <!-- Logos of the Institutions -->
+                <div class="row text-center py-5">
+                    <div class="mx-auto mt-2">
+                        <img class="img-fluid instilogo p-1" lsrc="images/IIST.png">
+                        <div class="institution">IIST</div>
+                        <div class="years">Jan 2022 onwards</div>
+                    </div>
+                    <div class="mx-auto mt-2">
+                        <img class="img-fluid instilogo p-1" lsrc="images/NRSC.jpeg">
+                        <div class="institution">NRSC</div>
+                        <div class="years">2022-2024</div>
+                    </div>
+                    <div class="mx-auto mt-2">
+                        <img class="img-fluid instilogo p-2" lsrc="images/KaleidEO.png">
+                        <div class="institution">kaleidEO</div>
+                        <div class="years">Jan 2024 - April 2024</div>
+                    </div>
+                    <div class="mx-auto mt-2">
+                        <img class="img-fluid instilogo p-1" lsrc="images/MMM.jpeg">
+                        <div class="institution">MMMUT</div>
+                        <div class="years">2021</div>
+                    </div>
+                    <div class="mx-auto mt-2">
+                        <img class="img-fluid instilogo p-3" lsrc="images/Thotnr.jpeg">
+                        <div class="institution">Thotnr</div>
+                        <div class="years">2021</div>
+                    </div> 
+                    <div class="mx-auto mt-2">
+                        <img class="img-fluid instilogo p-3" lsrc="images/CAS.jpg">
+                        <div class="institution">CAS AKTU</div>
+                        <div class="years">2019-2021</div>
+                    </div>
+                    <div class="mx-auto mt-2">
+                        <img class="img-fluid instilogo p-2" lsrc="images/ICAR.jpeg">
+                        <div class="institution">ICAR</div>
+                        <div class="years">2018</div>
+                    </div>
+                    <div class="mx-auto mt-2">
+                        <img class="img-fluid instilogo p-3" lsrc="images/edureka.jpeg">
+                        <div class="institution">Edureka</div>
+                        <div class="years">2017</div>
+                    </div>
+                    <div class="mx-auto mt-2">
+                        <img class="img-fluid instilogo p-1" lsrc="images/KNIT.jpeg">
+                        <div class="institution">KNIT Sultanpur</div>
+                        <div class="years">2012 - 2016</div>
+                    </div>    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <a href="https://clustrmaps.com/site/1acp7" title="Visit tracker"><img
+            src="//www.clustrmaps.com/map_v2.png?d=Lp1fKpQdhN7-bQXqX5Bbr0BfZO_zEKrR4kGKORfpAWk&cl=ffffff"
+            style="display: none;"></a>
 </body>
+  <style>
+      body {
+          font-family: 'Roboto', sans-serif;
+          /* font-family: 'Source Sans Pro', sans-serif; */
+          font-weight: 300;
+          color:#5b5e6d;
+          /* font-size: 17px; */
+          font-size: 1rem;
+          /* background-color:#fbfbfb; */
+          background-color: #fffffa;
+          /* background-image: url('images/subtle-old.jpg');; */
+          /* background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%23ffe0cf' stroke-width='1'%3E%3Cpath d='M769 229L1037 260.9M927 880L731 737 520 660 309 538 40 599 295 764 126.5 879.5 40 599-197 493 102 382-31 229 126.5 79.5-69-63'/%3E%3Cpath d='M-31 229L237 261 390 382 603 493 308.5 537.5 101.5 381.5M370 905L295 764'/%3E%3Cpath d='M520 660L578 842 731 737 840 599 603 493 520 660 295 764 309 538 390 382 539 269 769 229 577.5 41.5 370 105 295 -36 126.5 79.5 237 261 102 382 40 599 -69 737 127 880'/%3E%3Cpath d='M520-140L578.5 42.5 731-63M603 493L539 269 237 261 370 105M902 382L539 269M390 382L102 382'/%3E%3Cpath d='M-222 42L126.5 79.5 370 105 539 269 577.5 41.5 927 80 769 229 902 382 603 493 731 737M295-36L577.5 41.5M578 842L295 764M40-201L127 80M102 382L-261 269'/%3E%3C/g%3E%3Cg fill='%23ffffff'%3E%3Ccircle cx='769' cy='229' r='5'/%3E%3Ccircle cx='539' cy='269' r='5'/%3E%3Ccircle cx='603' cy='493' r='5'/%3E%3Ccircle cx='731' cy='737' r='5'/%3E%3Ccircle cx='520' cy='660' r='5'/%3E%3Ccircle cx='309' cy='538' r='5'/%3E%3Ccircle cx='295' cy='764' r='5'/%3E%3Ccircle cx='40' cy='599' r='5'/%3E%3Ccircle cx='102' cy='382' r='5'/%3E%3Ccircle cx='127' cy='80' r='5'/%3E%3Ccircle cx='370' cy='105' r='5'/%3E%3Ccircle cx='578' cy='42' r='5'/%3E%3Ccircle cx='237' cy='261' r='5'/%3E%3Ccircle cx='390' cy='382' r='5'/%3E%3C/g%3E%3C/svg%3E"); */
+        }
+
+        /* ol { padding-left: 1rem, padding-top: } */
+
+      .name {
+          font-size: 3rem;
+          color: #333;
+          font-family: 'Gentium Basic', serif;
+          font-weight: 700;
+      }
+      
+      .mainpara {
+          margin-top: 3rem;
+          margin-bottom: 2rem;
+          color: #5b5e6d;
+      }
+
+      
+
+      .sideimg {
+          width: 110%;
+          border: 1px solid #ccc;
+      }
+      /* .in-text {
+          font-weight: 400;
+      } */
+      .institution {
+          font-size: 12px;
+          color: #444;
+      }
+      .years {
+          font-size: 11px;
+          color: #888;
+      }
+
+      .instilogo {
+          height: 50px;
+          /* filter: sepia(10%); */
+          /* opacity: 0.9; */
+      }
+
+      a {
+          color: #444;
+          /* text-decoration: underline; */
+          /* color: #5028a1; */
+          /* font-weight: 400; */
+      }
+
+      .subpara > a {
+          font-weight: 400;
+      }
+
+      a:hover {
+        /* font-weight: 400; */
+        /* text-decoration: none;
+        transition-duration: 0.3s;
+        transition-timing-function: linear; */
+        text-decoration: underline dotted;
+        color: #444;
+        transition: 0.5s;
+        /* color: #444; */
+      }
+
+      .about {
+          padding-left: 5.6rem;
+          font-size: 1rem;
+      }
+
+      .header-1 {
+          font-size: 1.6rem;
+          /* color: #444; */
+          color: #a08036;
+      }
+
+      
+
+      .thisauthor {
+          /* color: #111; */
+          text-decoration: underline;
+      }
+      .noter {
+          font-size: 9pt;
+      }
+      .tagsep {
+          padding: 3px;
+          color: #444;
+          font-size: 0.8rem;
+      }
+      .tag {
+          padding-right:2px;
+          font-weight: 400;
+          font-size: 0.85rem;
+          color: #a08036;
+      }
+
+      /* .headtag:hover {
+          color: #5028a1;
+      } */
+
+      .confshort {
+          font-weight: 300;
+      }
+
+      .conf {
+          display: inline-block;
+          padding-bottom: 4px;
+      }
+
+      .paper {
+          /* border-left: 1px solid #ddd; */
+          /* border-radius: 10px; */
+      }
+      .talk {
+          border-left: 2px solid #ddd;
+          /* color: #444; */
+          /* font-size: 0.95rem; */
+          /* border-radius: 10px; */
+      }
+
+      .talk {
+          font-size: 0.98rem;
+      }
+
+      .papertitle {
+          /* color: #111; */
+          font-weight: 400;
+          font-size: 1rem;
+      }
+
+      /* .talk:not(.papertitle) {
+          font-size: 0.5rem
+      } */
+
+      .menulink {
+          color: #5b5e6d;
+          font-size: 1.1rem;
+          padding: 2px;
+          /* height: 200px; */
+        /* background-color: green;
+        background-image: linear-gradient(to right, rgba(0,0,0,0) 20%, orange 20%); Standard syntax (must be last) */
+          /* text-decoration: underline;
+          text-decoration-color: #5028a1; */
+      }
+
+      .menulink:hover{
+        color: #444;
+        transition: 0.5s;
+
+           /* background: linear-gradient(to left, #5028a1 50%, white 50%) right;
+        background-size: 200%;
+        transition: .4s ease-out; */
+      }
+      
+      .menulink:hover .headtag {
+          color: #444;
+          transition: 0.5s;
+
+         
+
+      }
+
+      .headtag {
+          color: #a08036;
+          font-size: 1rem;
+      }
+      .ai {
+          font-size: 1.2rem;
+      }
+
+      .profilepic {
+      width:170px;
+      margin-top: 2.5rem;
+      margin-bottom: 3rem;
+      
+      /* border-radius:7%; */
+      }
+
+      .more-link {
+          color: #999;
+          font-size: 0.9rem;
+      }
+      
+      #nlptag, #hcitag {
+          cursor: pointer;
+      }
+      
+      [aria-expanded="false"] > .expanded,
+      [aria-expanded="true"] > .collapsed {
+        display: none;
+        }
+
+      @media (min-width: 768px) {
+        .fixed-posi {
+            /* width: 50%;
+            margin-left: 50%;
+            min-height:100%; */
+            position:fixed;
+      }
+
+      }
+
+      @media only screen and (max-width: 768px) {
+      .allstuff {
+          padding-top:0px !important;
+      }
+
+      .allstuffp {
+          padding-top:0px !important;
+      }
+
+      .profilepic {
+            width:150px;
+            padding-top:0px !important;
+            padding-bottom: 0px !important;
+      }
+
+      .menur {
+          padding-top:18px !important;
+      }
+
+      .sideimg {
+          display: none;
+      }
+
+      .paper {
+          border-left: 1px solid #ddd;
+          /* border-radius: 10px; */
+      }
+
+      .about {
+          padding-left: 1rem;
+          font-size: 1rem;
+      }
+
+      }
+
+
+      
+      
+  </style>
+
+  <script>
+      if (window.matchMedia('(max-width: 767px)').matches) {
+            $(".sideimg").remove();
+        }
+      $(function () {
+            $.each(document.images, function () {
+                var this_image = this;
+                var src = $(this_image).attr('src') || '';
+                if (!src.length > 0) {
+                    //this_image.src = options.loading; // show loading
+                    var lsrc = $(this_image).attr('lsrc') || '';
+                    if (lsrc.length > 0) {
+                        var img = new Image();
+                        img.src = lsrc;
+                        $(img).on('load', function () {
+                            this_image.src = this.src;
+                        });
+                    }
+                }
+            });
+        });
+
+        $('#nlptag').click(function () {
+            $('#nlpfull').fadeIn();
+            $(this).css('cursor','default');
+        })
+
+        $('#hcitag').click(function () {
+            $('#hcifull').fadeIn();
+            $(this).css('cursor','default');
+        })
+
+
+  </script>
 </html>

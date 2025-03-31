@@ -1,0 +1,374 @@
+/* Ensure the body and html take full height */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+
+/* Use Flexbox to structure the layout */
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header styling */
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 1em 0;
+  text-align: center;
+  width: 100%;
+}
+
+/* Main content area */
+section {
+  flex: 1; /* This ensures the section takes up remaining space */
+  padding: 1em;
+}
+
+/* Footer styling */
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 1em 0;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+}
+
+/* Navigation styling */
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin: 0 1em;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Back button styling */
+.back-button {
+  display: inline-block;
+  margin: 1em 0;
+  padding: 0.5em 1em;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  width: 100px; /* Ensure consistent width for both buttons */
+}
+
+.back-button:hover {
+  background-color: #555;
+}
+
+/* General grid layout for folders and photos */
+.folder-container,
+.photo-container {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(150px, 1fr)
+  ); /* Responsive grid */
+  gap: 10px;
+  padding: 10px;
+}
+
+/* Style for folder and photo items */
+.folder-item,
+.photo-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.folder-item:hover,
+.photo-item:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Folder container styling */
+.folder-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em; /* Space between items */
+  padding: 1em;
+  max-width: 1200px;
+  margin: 0 auto; /* Center the grid horizontally */
+  justify-content: center; /* Center items horizontally */
+}
+
+.folder-item,
+.photo-item {
+  width: 200px;
+  height: 200px;
+  background-color: #ddd;
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+  margin: 10px;
+}
+
+.folder-item:hover,
+.photo-item:hover {
+  background-color: #bbb;
+}
+
+.folder-item img,
+.photo-item img {
+  width: 80%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.photo-item {
+  margin: 5px; /* Reduce the margin around each photo */
+  display: inline-block;
+  width: 200px; /* Fixed width for the photo container */
+  height: 150px; /* Fixed height for the photo container */
+  text-align: center;
+  background-color: #ddd; /* Background color for the container */
+  border: 1px solid #ccc; /* Optional: Add a border */
+  border-radius: 8px; /* Optional: Add rounded corners */
+  overflow: hidden; /* Ensure the image doesn't overflow the container */
+  position: relative; /* For better alignment */
+}
+
+/* Styling for the photo itself */
+.photo-item img {
+  width: 100%; /* Ensure the image takes up the full width of the container */
+  height: 100%; /* Ensure the image takes up the full height of the container */
+  object-fit: cover; /* Crop the image to fill the container while maintaining aspect ratio */
+  object-position: center; /* Center the image within the container */
+  border-radius: 8px; /* Match the container's rounded corners */
+}
+
+.photo {
+  width: 100%; /* Ensure the photo takes up the full width of its container */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 4px; /* Optional: Add rounded corners */
+  margin: 0; /* Remove any default margins */
+  padding: 0; /* Remove any default padding */
+}
+
+.photo {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.folder-item p {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Lightbox container styling */
+.lightbox {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it appears above other elements */
+}
+
+/* Lightbox image styling */
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px; /* Optional: Add rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Optional: Add a shadow */
+}
+
+/* Close button styling */
+.lightbox .close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  color: #fff;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-weight: bold;
+}
+
+/* Arrow button styling */
+.lightbox .arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 36px;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+  user-select: none;
+}
+
+.lightbox .left-arrow {
+  left: 20px;
+}
+
+lightbox .arrow:hover {
+  color: #ccc; /* Change color on hover */
+}
+
+/* Style for the focused item */
+.focused {
+  outline: 2px solid #007bff; /* Highlight the focused item with a blue border */
+  border-radius: 4px; /* Optional: Add rounded corners */
+  background-color: #e6f7ff; /* Optional: Add a light background color for better visibility */
+  transition: background-color 0.3s, outline 0.3s; /* Smooth transition for focus changes */
+}
+
+/* Lightbox styles for mobile */
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.lightbox .arrow {
+  font-size: 24px; /* Smaller arrows for mobile */
+}
+
+lightbox .close {
+  font-size: 20px; /* Smaller close button for mobile */
+}
+
+/* Responsive adjustments for tablets and smaller screens */
+@media (max-width: 768px) {
+  .folder-container,
+  .photo-container {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(120px, 1fr)
+    ); /* Adjust grid for smaller screens */
+  }
+
+  .folder-item,
+  .photo-item {
+    padding: 8px;
+  }
+
+  .lightbox .arrow {
+    font-size: 20px;
+  }
+}
+
+/* Responsive adjustments for mobile screens */
+@media (max-width: 480px) {
+  .folder-container,
+  .photo-container {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(100px, 1fr)
+    ); /* Adjust grid for mobile */
+  }
+
+  .folder-item,
+  .photo-item {
+    padding: 5px;
+  }
+
+  .lightbox .arrow {
+    font-size: 18px;
+  }
+}
+
+/* Folder item styling */
+.folder-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.folder-item:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Folder icon styling */
+.folder-icon {
+  width: 50px; /* Adjust the size of the folder icon */
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+/* Photo styling */
+.photo {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover; /* Ensure the photo fits within its container */
+}
+
+/* Navigation bar styling */
+.navigation-bar {
+  display: flex;
+  align-items: center;
+  background-color: #000; /* Black background */
+  color: #fff; /* White text */
+  padding: 10px;
+  gap: 10px; /* Space between back button and folder path */
+}
+
+/* Folder path styling */
+.folder-path {
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff; /* White text */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Remove folder path styling */
+#folder-path,
+.path-link {
+  display: none; /* Hide folder path elements */
+}

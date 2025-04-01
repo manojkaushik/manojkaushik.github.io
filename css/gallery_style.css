@@ -228,22 +228,26 @@ nav ul li a {
   font-weight: bold;
 }
 
-/* Arrow button styling */
+/* Lightbox navigation arrows */
 .lightbox .arrow {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 36px;
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Adjust for vertical centering */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
   color: #fff;
-  background: none;
   border: none;
+  font-size: 2em;
+  padding: 0.5em;
   cursor: pointer;
-  z-index: 1001;
-  user-select: none;
+  z-index: 1000;
 }
 
 .lightbox .left-arrow {
-  left: 20px;
+  left: 10px; /* Position the left arrow */
+}
+
+.lightbox .right-arrow {
+  right: 10px; /* Position the right arrow */
 }
 
 lightbox .arrow:hover {

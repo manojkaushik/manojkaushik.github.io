@@ -16,9 +16,13 @@ const folderData = {
   Conferences: [
     { name: "2023_MIGARSS_Hyderabad", type: "folder" },
     { name: "2023_IGARSS_USA", type: "folder" },
-    { name: "2024_InGARSS_Goa", type: "folder" },
+    { name: "2024_InGARSS_Goa", type: "folder" }, // Ensure this matches the path
     { name: "2025_IGARSS_Australia", type: "folder" },
   ],
+  "Conferences/2024_InGARSS_Goa": generatePhotos(2), // Correct the path here
+  "Conferences/2023_MIGARSS_Hyderabad": generatePhotos(2),
+  "Conferences/2023_IGARSS_USA": generatePhotos(2),
+  "Conferences/2025_IGARSS_Australia": generatePhotos(2),
   Events: [
     { name: "2022 04(April) Geoinnovation", type: "folder" },
     { name: "2022 09(Sept) Onam Celebration", type: "folder" },
@@ -60,10 +64,6 @@ const folderData = {
     { name: "Thiruvananthapuram", type: "folder" },
     { name: "Varanasi", type: "folder" },
   ],
-  "Conferences/IGARSS_Australia_2025": generatePhotos(2),
-  "Conferences/IGARSS_USA_2023": generatePhotos(2),
-  "Conferences/InGARSS_Goa_2024": generatePhotos(2),
-  "Conferences/MIGARSS_Hyderabad_2023": generatePhotos(2),
   "Field Trips/2022 10(Oct) Tumkur University": generatePhotos(10),
   "Field Trips/2023 10(Oct) Kolar": generatePhotos(58),
   "Field Trips/Date(2)_place": generatePhotos(2),
@@ -107,45 +107,50 @@ let folderHistory = []; // To keep track of folder navigation
 
 function renderContent(path, containerId) {
   const container = document.getElementById(containerId);
+
+  if (!container) {
+    console.error(`Container with ID "${containerId}" not found!`);
+    return;
+  }
+
+  console.log(`Rendering content for path: "${path}"`); // Debugging log
+  console.log("Folder data for path:", folderData[path]); // Debugging log
   container.innerHTML = ""; // Clear existing content
 
   const items = folderData[path] || [];
+  if (!items.length) {
+    console.warn(`No items found for path: "${path}"`); // Debugging log
+    container.innerHTML = "<p>No folders or photos found.</p>";
+    return;
+  }
+
   items.forEach((item) => {
     const itemElement = document.createElement("div");
-    itemElement.classList.add(
-      item.type === "folder" ? "folder-item" : "photo-item"
-    );
+    itemElement.classList.add(item.type === "folder" ? "folder-item" : "photo-item");
 
     if (item.type === "folder") {
       const folderIcon = document.createElement("img");
-      folderIcon.src = "images/icons/folder-icon.png"; // Path to the folder icon
+      folderIcon.src = "images/icons/folder-icon.png";
       folderIcon.alt = `${item.name} Icon`;
-      folderIcon.classList.add("folder-icon"); // Add a class for styling
-      folderIcon.onerror = () => {
-        folderIcon.src = "images/icons/default-folder-icon.png"; // Fallback folder icon
-      };
+      folderIcon.onerror = () => (folderIcon.src = "images/icons/default-folder-icon.png");
 
       const folderName = document.createElement("p");
       folderName.textContent = item.name;
 
       itemElement.appendChild(folderIcon);
       itemElement.appendChild(folderName);
-
       itemElement.addEventListener("click", () => {
-        folderHistory.push(currentPath); // Save current path
-        currentPath = path ? `${path}/${item.name}` : item.name; // Dynamically construct the path
+        folderHistory.push(currentPath);
+        currentPath = path ? `${path}/${item.name}` : item.name;
+        console.log("Navigating to folder:", currentPath); // Debugging log
         renderContent(currentPath, containerId);
-        document.getElementById("back-button").style.display = "block"; // Show back button
-        document.getElementById("home-button").style.display = "none"; // Hide home button
+        updateBreadcrumb();
       });
     } else if (item.type === "photo") {
       const photo = document.createElement("img");
-      photo.src = `gallery/${path}/${item.name}`; // Dynamically construct the photo path
+      photo.src = `gallery/${path}/${item.name}`;
       photo.alt = item.name;
-      photo.classList.add("photo");
-      photo.onerror = () => {
-        photo.src = "images/icons/default-photo.png"; // Fallback photo
-      };
+      photo.onerror = () => (photo.src = "images/icons/default-photo.png");
 
       itemElement.appendChild(photo);
     }
@@ -153,8 +158,7 @@ function renderContent(path, containerId) {
     container.appendChild(itemElement);
   });
 
-  // Initialize the lightbox functionality for the newly added images
-  initializeLightbox();
+  updateBreadcrumb();
 }
 
 // Back button functionality
@@ -165,8 +169,8 @@ function goBack() {
 
     if (folderHistory.length === 0) {
       document.getElementById("back-button").style.display = "none"; // Hide back button if at root
-      document.getElementById("home-button").style.display = "block"; // Show home button
     }
+    updateBreadcrumb(); // Update breadcrumb
   }
 }
 
@@ -277,6 +281,12 @@ function initializeLightbox() {
 // Enable keyboard navigation for the photo and folder grid
 function enableKeyboardNavigation(containerId) {
   const container = document.getElementById(containerId);
+
+  if (!container) {
+    console.warn(`Container with ID "${containerId}" not found!`); // Log a warning if the container doesn't exist
+    return;
+  }
+
   const items = Array.from(
     container.querySelectorAll(".folder-item, .photo-item")
   ); // Get all folder and photo items
@@ -386,3 +396,83 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   renderContent("", "folder-container");
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderContent("", "folder-container"); // Render the root folder
+
+  // Enable navigation for folder-container
+  enableKeyboardNavigation("folder-container");
+  enableTouchNavigation("folder-container");
+
+  // Check if photo-container exists before enabling navigation
+  const photoContainer = document.getElementById("photo-container");
+  if (photoContainer) {
+    enableKeyboardNavigation("photo-container");
+    enableTouchNavigation("photo-container");
+  }
+});
+
+// Update breadcrumb navigation
+function updateBreadcrumb() {
+  const breadcrumbContainer = document.getElementById("breadcrumb");
+
+  if (!breadcrumbContainer) {
+    console.error("Breadcrumb container not found!");
+    return;
+  }
+
+  // Clear existing breadcrumb
+  breadcrumbContainer.innerHTML = "";
+
+  // If at the root folder, hide the breadcrumb and return
+  if (currentPath === "") {
+    breadcrumbContainer.style.display = "none";
+    return;
+  }
+
+  // Show the breadcrumb if not at the root folder
+  breadcrumbContainer.style.display = "flex";
+
+  const pathParts = currentPath.split("/").filter((part) => part !== "");
+  let accumulatedPath = "";
+
+  // Add "Gallery" link
+  const galleryLink = document.createElement("a");
+  galleryLink.textContent = "Gallery";
+  galleryLink.href = "#";
+  galleryLink.addEventListener("click", () => {
+    currentPath = "";
+    folderHistory = [];
+    renderContent(currentPath, "folder-container");
+    updateBreadcrumb();
+  });
+  breadcrumbContainer.appendChild(galleryLink);
+
+  // Add ">" separator and folder links
+  pathParts.forEach((part, index) => {
+    accumulatedPath += (index > 0 ? "/" : "") + part;
+
+    const separator = document.createElement("span");
+    separator.textContent = " > ";
+    breadcrumbContainer.appendChild(separator);
+
+    const folderLink = document.createElement("a");
+    folderLink.textContent = part;
+    folderLink.href = "#";
+    folderLink.addEventListener("click", () => {
+      currentPath = accumulatedPath;
+      folderHistory = folderHistory.slice(0, index); // Adjust history
+      renderContent(currentPath, "folder-container");
+      updateBreadcrumb();
+    });
+    breadcrumbContainer.appendChild(folderLink);
+  });
+
+  // Show or hide the Back button
+  const backButton = document.getElementById("back-button");
+  if (folderHistory.length > 0) {
+    backButton.style.display = "inline-block";
+  } else {
+    backButton.style.display = "none";
+  }
+}

@@ -29,21 +29,25 @@
       <h2>Gallery</h2>
     </header>
     <section>
-      <!-- Back button or Home button -->
-      <button id="back-button" class="back-button" style="display: none">
-        &#8592;
-        <!-- Unicode for left arrow -->
-      </button>
-      <a
-        href="index.html"
-        id="home-button"
-        class="back-button"
-        style="display: block"
-      >
-        Home
-      </a>
+      <!-- Navigation bar -->
+      <div class="navigation-bar">
+        <!-- Home button -->
+        <a href="index.html" id="home-button" class="home-button">Home</a>
+
+        <!-- Breadcrumb navigation -->
+        <div id="breadcrumb" class="breadcrumb"></div>
+
+        <!-- Back button -->
+        <button id="back-button" class="back-button" style="display: none">
+          &#8592; <!-- Unicode for left arrow -->
+        </button>
+      </div>
+
       <div class="folder-container" id="folder-container">
         <!-- Folders will be dynamically added here -->
+      </div>
+      <div id="photo-container" class="photo-container">
+        <!-- Photos will be dynamically added here -->
       </div>
     </section>
     <footer>

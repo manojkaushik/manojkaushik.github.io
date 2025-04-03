@@ -353,12 +353,61 @@ lightbox .close {
 
 /* Navigation bar styling */
 .navigation-bar {
-  display: flex;
-  align-items: center;
-  background-color: #000; /* Black background */
-  color: #fff; /* White text */
-  padding: 10px;
-  gap: 10px; /* Space between back button and folder path */
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Vertically align items */
+  justify-content: space-between; /* Space between Home button, breadcrumb, and Back button */
+  width: 100%; /* Ensure the navigation bar spans the full width */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+}
+
+/* Home button styling */
+.home-button {
+  text-decoration: none;
+  color: #007bff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Breadcrumb navigation styling */
+.breadcrumb {
+  display: flex; /* Use flexbox for alignment */
+  justify-content: center; /* Center the breadcrumb horizontally */
+  align-items: center; /* Vertically align items */
+  font-size: 16px;
+  color: #333;
+  text-align: center;
+  gap: 5px; /* Add spacing between breadcrumb items */
+}
+
+/* Back button styling */
+.back-button {
+  background: none;
+  border: none;
+  color: #007bff;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.back-button:hover {
+  text-decoration: underline;
+}
+
+/* Breadcrumb link styling */
+.breadcrumb a {
+  text-decoration: none;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb span {
+  color: #555;
 }
 
 /* Folder path styling */

@@ -114,7 +114,6 @@ function renderContent(path, containerId) {
   }
 
   console.log(`Rendering content for path: "${path}"`); // Debugging log
-  console.log("Folder data for path:", folderData[path]); // Debugging log
   container.innerHTML = ""; // Clear existing content
 
   const items = folderData[path] || [];
@@ -159,6 +158,10 @@ function renderContent(path, containerId) {
   });
 
   updateBreadcrumb();
+
+  // Dispatch a custom event to notify that content has been rendered
+  const contentRenderedEvent = new Event("contentRendered");
+  document.dispatchEvent(contentRenderedEvent);
 }
 
 // Back button functionality
@@ -201,16 +204,17 @@ function initializeLightbox() {
   closeButton.innerHTML = "&times;"; // Close icon
   lightbox.appendChild(closeButton);
 
-  // Add left and right navigation arrows
-  const leftArrow = document.createElement("button");
-  leftArrow.classList.add("arrow", "left-arrow");
-  leftArrow.innerHTML = "&#10094;"; // Left arrow symbol
-  lightbox.appendChild(leftArrow);
+  // Add Previous button
+  const prevButton = document.createElement("button");
+  prevButton.classList.add("prev");
+  prevButton.textContent = "←"; // Previous arrow
+  lightbox.appendChild(prevButton);
 
-  const rightArrow = document.createElement("button");
-  rightArrow.classList.add("arrow", "right-arrow");
-  rightArrow.innerHTML = "&#10095;"; // Right arrow symbol
-  lightbox.appendChild(rightArrow);
+  // Add Next button
+  const nextButton = document.createElement("button");
+  nextButton.classList.add("next");
+  nextButton.textContent = "→"; // Next arrow
+  lightbox.appendChild(nextButton);
 
   // Append the lightbox to the body
   document.body.appendChild(lightbox);
@@ -240,15 +244,18 @@ function initializeLightbox() {
     }
   });
 
-  // Add event listeners for navigation arrows
-  leftArrow.addEventListener("click", () => {
-    updateLightboxImage(
-      (currentImageIndex - 1 + images.length) % images.length
-    );
+  // Add event listener for Previous button
+  prevButton.addEventListener("click", () => {
+    if (currentImageIndex > 0) {
+      updateLightboxImage((currentImageIndex - 1 + images.length) % images.length);
+    }
   });
 
-  rightArrow.addEventListener("click", () => {
-    updateLightboxImage((currentImageIndex + 1) % images.length);
+  // Add event listener for Next button
+  nextButton.addEventListener("click", () => {
+    if (currentImageIndex < images.length - 1) {
+      updateLightboxImage((currentImageIndex + 1) % images.length);
+    }
   });
 
   // Add keyboard navigation for lightbox
@@ -269,13 +276,21 @@ function initializeLightbox() {
     }
   });
 
-  // Add click event to all images
-  images = document.querySelectorAll(".photo-item img");
-  images.forEach((image, index) => {
-    image.addEventListener("click", () => {
-      updateLightboxImage(index); // Open the clicked image in the lightbox
+  // Function to attach click events to photo items
+  function attachPhotoClickEvents() {
+    images = Array.from(document.querySelectorAll(".photo-item img"));
+    images.forEach((image, index) => {
+      image.addEventListener("click", () => {
+        updateLightboxImage(index); // Open the clicked image in the lightbox
+      });
     });
-  });
+  }
+
+  // Attach click events to photos after rendering
+  attachPhotoClickEvents();
+
+  // Reattach photo click events whenever new content is rendered
+  document.addEventListener("contentRendered", attachPhotoClickEvents);
 }
 
 // Enable keyboard navigation for the photo and folder grid

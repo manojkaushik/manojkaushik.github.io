@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Dr. Chitresh</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+  <style>
+    body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+    .w3-row-padding img {margin-bottom: 12px}
+    /* Set the width of the sidebar to 120px */
+    .w3-sidebar {width: 120px; background: #023b56;}
+    /* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
+    #main {margin-left: 120px}
+    /* Remove margins from "page content" on small screens */
+    @media only screen and (max-width: 600px) {#main {margin-left: 0}}
+    .center {
+      margin: auto;
+      width: 50%;
+      padding: 10px;
+    }
+    .custom_color{
+      background-color: #8ddaf7;
+    }
+  </style>
+</head>
+
+<body class="custom_color">
+<!-- Icon Bar (Sidebar - hidden on small screens) -->
+<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+  <!-- Avatar image in top left corner -->
+  <img src="images/self/2.jpg" style="width:100%">
+  <a href="#" class="w3-bar-item w3-button w3-padding-large custom_color">
+    <i class="fa fa-home w3-xxlarge"></i>
+    <p>HOME</p>
+  </a>
+  <a href="#about" class="w3-bar-item w3-button w3-padding-large w3-text-blue">
+    <i class="fa fa-user w3-xxlarge"></i>
+    <p>ABOUT</p>
+  </a>
+  <a href="#research" class="w3-bar-item w3-button w3-padding-large w3-text-blue">
+    <i class="fas fa-dna w3-xxlarge"></i>
+    <p>Research Work</p>
+  </a>
+  <a href="#gallery" class="w3-bar-item w3-button w3-padding-large w3-text-blue">
+    <i class="fa fa-eye w3-xxlarge"></i>
+    <p>Gallery</p>
+  </a>
+  <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-text-blue">
+    <!-- <i class="fa fa-envelope w3-xxlarge"></i> -->
+    <p>CONTACT</p>
+  </a>
+</nav>
+
+<!-- Navbar on small screens (Hidden on medium and large screens) -->
+<div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
+  <div class="w3-bar custom_color w3-opacity w3-hover-opacity-off w3-center w3-small">
+    <a href="#" class="w3-bar-item w3-button" style="width:25% !important">HOME</a>
+    <a href="#about" class="w3-bar-item w3-button" style="width:25% !important">ABOUT</a>
+    <a href="#research" class="w3-bar-item w3-button" style="width:25% !important">Research Work</a>
+    <a href="#gallery" class="w3-bar-item w3-button" style="width:25% !important">Gallery</a>
+    <a href="#contact" class="w3-bar-item w3-button" style="width:25% !important">CONTACT</a>
+  </div>
+</div>
+
+<!-- Page Content -->
+<div class="w3-padding-large" id="main">
+  <!-- Header/Home -->
+  <header class="w3-container w3-padding-32 w3-center custom_color" id="home">
+    <h3 class="w3-jumbo"><span class="w3-hide-small"></span> Dr. Chitresh Kumar Sharma</h3>
+    <img src="images/self/11.png" alt="boy" class="w3-image" width="992" height="1108">
+    <p>M.Ch. Endocrine Surgery</p>
+  </header>
+
+  <!-- About Section -->
+  <div class="w3-content w3-justify w3-text-black w3-padding-64" id="about">
+    <h2 class="w3-text-black">About Me</h2>
+    <hr style="width:200px" class="w3-opacity" style="height:2px;border-width:0;color:gray;background-color:gray">
+    <p class="w3-text-black">Hi, I am Dr. Chitresh Kumar Sharma (M.B.B.S., M.S., M.Ch., F.MAS., F.A.C.S.) currently working 
+      as Associate Professor Surgical Oncology at AIIMS Bilaspur, Himachal Pradesh. Previously served 
+      at National Cancer Institute, AIIMS, Jhajjar as Assistant Professor.
+    </p>
+    
+    <button class="w3-button w3-light-grey w3-padding-large w3-section">
+      <i class="fa fa-download"></i> 
+      <a href = "Resume.pdf" target="_blank"> Download Resume</a>
+    </button>
+    
+    <h3 class="w3-padding-24 w3-text-black">Areas of specialisation & key skills</h3>
+    <li><b>Thyroid:</b> Thyroid Nodules, MNG, Retrosternal Goitre, Graves’ disease, Thyroid Cancers, Endoscopic Thyroidectomy</li>
+    <li><b>Parathyroid:</b> Hyperparathyroidism, Parathyroid Cancer, Endoscopic Parathyroidectomy.</li>
+    <li><b>Adrenal:</b> Myelolipoma, Pheochromocytoma, Cushing’s & Conn’s Adenoma, Adrenal Cancer, Laparoscopic & Retroperitoneoscopic Adrenalectomy</li>
+    <li><b>Pancreas:</b> Insulinoma, Gastrinoma, Glucagonoma, VIPomas and others</li>
+    <li><b>Breast:</b> Conservative Breast Surgeries, Oncoplastic procedures, Mastectomies, Sentinel Node biopsy, and TIVAD insertion</li>
+    <li><b>Neuroendocrine tumors:</b> Carcinoids, Paragangliomas, and Carotid Body Tumor</li>
+
+
+    <h3 class="w3-padding-24 w3-text-black">Work experience</h3>
+    <li><b>Associate Professor of Surgical Oncology</b> at AIIMS, Bilaspur (H.P.) from 9th Dec 2020 till now.</li>
+    <li><b>Assistant Professor of Surgical Oncology</b> at National Cancer Institute, AIIMS, New Delhi from 8th Feb 2018 to 8th Dec 2020.</li>
+    <li><b>Senior Research Associate</b> in Dept. of Surgical Disciplines at All India Institute of Medical Sciences, New Delhi from 29th Feb 2016 to 7th Feb 2018.</li>
+    <li>Completed <b>MCh Endocrine Surgery</b> in Dept. Of Endocrine and Breast Surgery at Sanjay Gandhi PG Institute of Medical Sciences, Lucknow in June 2015.</li>
+    <li>Clinical Observership in Head and Neck services at <b>Memorial Sloan Kettering Cancer Center, USA</b> from 3rd to 28th Nov 2014.</li>
+    <li>Completed <b>Fellowship in Minimal Access Surgery (F.MAS)</b> in Sept 2009 from Laparoscopic Hospital, New Delhi</li>
+    <li>Completed <b>MS General Surgery</b> in Dept. Of General Surgery at Institute of Medical Sciences, Banaras Hindu University, Varanasi.</li>
+    <li><b></b>Completed “One-year rotatory Internship Training” at Sir Sunderlal Hospital Institute of Medical Sciences, Varanasi, from 1st Jan 2005 to 31st Dec 2005, as per rulings of Medical Council of India in Department of Medicine, Surgery, Obstetrics & Gynecology including Family Welfare Planning, Elective training (Radiology and Skin & VD), Orthopedics, Eye, E.N.T, Psychiatry, Community Medicine and Pediatrics.</li>
+
+
+    <h3 class="w3-padding-24 w3-text-black">Education</h3>
+    <li>M.Ch (Endocrine Surgery) July 2012 to June 2015 Sanjay Gandhi Post Graduate Institute of Medical Sciences, Lucknow</li>
+    <li>Clinical Observer Nov 2014 Memorial Sloan Kettering Cancer Center, New York, USA</li>
+    <li>F.MAS (Minimal Access Surgery) Sept 2009 Laparoscopy Hospital, New Delhi (Endorsed by SAGES, USA)</li>
+    <li>M.S. (Gen Surgery) May 2006 to May 2009 Institute of Medical Sciences, Banaras Hindu University, Varanasi</li>
+    <li>MBBS July 2000 to Dec 2004 Institute of Medical Sciences, Banaras Hindu University, Varanasi</li>
+
+
+    <h3 class="w3-padding-24 w3-text-black">Lectures</h3>
+    <li>Talk on Mammography in virtual PG Master Class in Surgery held on 6th to 7th Feb 2021 at Department of Surgery, IMS, BHU</li>
+    <li>Presentation: Education, Training & Research in Developing World: International workshop and symposium on Best practices in Endocrine surgery on 5th Dec 2014</li>
+    <li>Case discussion with a review of literature: Occult Follicular Thyroid Carcinoma Presenting as Distant Metastases Nine Years prior to Definitive Management, at ATA trainee’s conference during 84th annual meeting of American Thyroid Association, San Diego, USA, 2014.</li>
+    <li>Poster presentation: Capsular Invasion At More Than Five Places Is A Significant Prognostic Factor Of Follicular Thyroid Carcinoma at 84th annual meeting of American Thyroid Association, San Diego, USA, 2014</li>
+    <li>Paper presentation: Correlation Of Various Prognostic Factors With Histological Features In Follicular Thyroid Carcinoma at IAES 15th annual meeting (IAESCON-2014) at Poovar, 20014</li>
+    <li>Demonstration: Safe use of TIVAD at CME on Safe Venous Assess and Chemotherapy in Cancer Patients at Dept of Endocrine and Breast Surgery on 18th 0ct 2014</li>
+    <li>Case discussion: Metastatic Breast Cancer at Breast course and ABSI workshop-2014 Feb 8th-9th at SGPGIMS, Lucknow.</li>
+    <li>Endocrine Radiology case discussion in 11th Post Graduate Course in Endocrine Surgery 2013 Nov 7-10th at SGPGIMS, Lucknow.</li>
+    <li>Role of IOPTH in management of PHPT in 11th Post Graduate Course in Endocrine Surgery 2013 Nov 7-10th at SGPGIMS, Lucknow.</li>
+    
+
+    <h3 class="w3-padding-24 w3-text-black">Awards & Fellowships</h3>
+    <li>Finalist in BMJ South Asia Award:2018 "Surgical Innovation category"</li>
+    <li>1st Prize winner of national-level quiz in endocrine surgery at Indian Association of Endocrine Surgeons 15th annual meeting (IAESCON-2014) at Poovar, 20014.</li>
+    <li>Dr. Chip Ridgway Travelling fellowship for attending ATA trainee’s conference during 84th annual meeting of American Thyroid Association, San Diego, USA, 2014.</li>
+    <li>ICMR international travel Grant for attending 84th annual meeting of American Thyroid Association, San Diego, USA, 2014.</li>
+    <li>Fellowship in Minimal Access Surgery (FMAS) accredited by SAGES, 14th Sept 2009.</li>
+
+    <h3 class="w3-padding-24 w3-text-black">Memberships</h3>
+    <li>American Thyroid Association (ATA)</li>
+    <li>American College of Surgeons (ACS)</li>
+    <li>World Association of Laparoscopic Surgeons (WALS)</li>
+    <li>Indian Association of Endocrine Surgeons (IAES)</li>
+    <li>Association of Surgeons of India (ASI)</li>
+    <li>Association of Breast Surgeons of India (ABSI)</li>
+    <li>Indian Society Of Thyroid Surgeons (ISTS)</li>
+    <li>Indian Medical Association (IMA)</li>
+    <br><br>
+
+    <!-- Grid for photos -->
+    <div class="w3-row-padding" style="margin:0 -16px">
+      <div class="w3-full">
+        <img src="images/gallery/13.jpeg" style="width:100%">
+      </div>
+    </div>
+  <!-- End About Section -->
+  </div>
+  
+  <!-- Portfolio Section -->
+  <div class="w3-padding-64 w3-content" id="research">
+    <h2 class="w3-text-black">Research work</h2>
+    <hr style="width:200px" class="w3-opacity">
+
+    <div class="w3-row-padding" style="margin:0 -16px">
+      <div class="w3-full">
+        <img src="images/1.png" style="width:100%">
+    </div>
+    <p class="w3-text-black center">Fluorescence guided breast conserving surgery</p>
+
+    <h3 class="w3-padding-24 w3-text-black">Research Projects</h3>
+    <li><b>CSIR project:</b> <i>“Fluorescence guided identification of tumor margins during breast conservation surgery”at Department of Surgical Disciplines, AIIMS, New Delhi.</i></li>
+    <li><b>Prospective project:</b> <i>“Quality of life (QoL) in patients with Graves’ disease: Pre and Post therapy”.</i></li>
+    <li><b>Retrospective project:</b> <i>“Long term Outcome of Follicular Thyroid Carcinoma (FTC) in Developing Countries: Correlation with Histological Subtypes and Other Factors”.</i></li>
+    <li><b>Submitted thesis on</b> <i>“Endoscopic versus Microscopic discectomy in lumbar disc prolapse: a prospective study” in July 2008, at Department of General Surgery, Institute of Medical Sciences, Banaras Hindu University, Varanasi.</i></li>
+    <br><br>
+
+    <h3 class="w3-padding-24 w3-text-black">Publications</h3>
+    <li>Lohani KR, Kumar C, Kataria K, Srivastava A, Ranjan P, Dhar A. Role of tranexamic acid in axillary lymph node dissection in breast cancer patients: Does it help in reducing lymphedema? Breast J. 2021 Mar 11. doi: 10.1111/tbj.14222.</li>
+    <li>Panda S, Mohamed A, Sikka K, Kanodia A, Sakthivel P, Thakar A, Bhatnagar S, Mohan A, Meena VP, Tiwari P, Sahoo B, Dar L, Vig S, Garg R, Kumar C. Otolaryngologic Manifestation and Long-Term Outcome in Mild COVID-19: Experience from a Tertiary Care Centre in India. Indian J Otolaryngol Head Neck Surg. 2020 Oct 14;73(1):1-6.</li>
+    <li>Kumar C, Lohani KR, Kataria K, Ranjan P, Dhar A, Srivastava A. Endoscopic thyroidectomy: Which one is the better technique for the beginners? J Minim Access Surg. 2020 Sep 12. </li>
+    <li>Kumar C, Ranjan P, Kataria K et al. Anurag’s Interfascial Mastectomy: a new Postulate in Breast Cancer Surgery. Indian J Surg (2021).</li>
+    <li>Simha A, Dhiman A, Kumar C. Regarding: "Recognition of primary hyperparathyroidism: Delayed time course from hypercalcemia to surgery". Surgery. 2020 Nov;168(5):976.</li>
+    <li>Prakash S, Damle NA, Kandasamy D, Gupta Y, Kumar C, Agarwal S, Yadav R, Boro H, Alam S, Yadav D. Parathyromatosis in a patient with parathyroid carcinoma and hypercalcemic crisis: Findings on MIBI scan and 4D CT Thyroid Research and Practice. 2020 17(2):89-93</li>
+    <li>Agarwal S, Kakkar A, Damle NA, Kumar C, Sarangi J, Subudhi K, Jain D, Sharma MC. SMARCB1 (INI1)-deficient thyroid carcinoma: A novel entity expanding the spectrum of tumors with INI1 loss. Pathol Res Pract. 2020 Apr;216(4):152830.</li>
+    <li>Mishra A, Ray MD, Bhoriwal S, Sharma J, Kumar C, Dhall K, Gowda MS, Kumar A. Management options for gynecological cancers in low-to middle-income countries amidst COVID-19 pandemic. Journal of Cancer Research and Practice. 2020 Jul;7(3):121.</li>
+    <li>Ray D, Ranjan A, Dubey H, De A, Kumar C. Ovarian Metastasis as Initial Presentation of Primary Thyroid Carcinoma: A Case Report and Review of Literature. Journal of case Reports. 2020;10(3):192-196.</li>
+    <li>Tanwar P, Kumar R, Kumar C, Hussain S. Impact of family medicine practice in combating Violence against Doctors. J Family Med Prim Care. 2019 Aug 28;8(8):2748-2749.</li>
+    <li>Kumar C, Jha CK, Bichoo RA, Yadav SK. Wide angled 'V' is the perfect disposition of a TIVAD catheter when right internal jugular vein is cannulated to gain central access. Gastroenterol Rep (Oxf). 2019 Jul 15;7(5):374-375.</li>
+    <li>Passah A, Damle NA, Arora S, Kumar R, Kumar C, Ramteke P, Bal C, Tripathi M. Follicular variant of papillary carcinoma thyroid occurring in struma ovarii. Thyroid Res Pract. 2019; 16(1):48-50</li>
+    <li>Prabhu M, Kumari G, Damle NA, Arora G, Kumar P, Kumar R, Tripathi M, Bal C, Khadgawat R, Kumar C, Agarwal S. Assessment of the role of early dynamic PET/CT with 18F-fluorocholine in detection of parathyroid lesions in patients with primary hyperparathyroidism. Nucl Med Commun. 2018 Dec;39(12):1190-1196.</li>
+    <li>Singh K, Khattar M, Kumar C. Disagreement: Should the duration of primary hyperparathyroidism impact guidelines for evaluation and treatment? Surgery. 2019 Nov;166(5):949-950.</li>
+    <li>Khadka S, Singh K, Kumar C. Comments on: Cost-effectiveness of immediate biopsy versus surveillance of intermediate-suspicion thyroid nodules. Surgery. 2019 Feb;165(2):486-496.</li>
+    <li>Saha S, Kumar A, Kumar C, Kataria K. Paraneoplastic cerebellar degeneration as a manifestation of metastatic recurrent carcinoma breast: rare scenario. BMJ Case Rep. 2018 Aug 27;2018:bcr2017222575.</li>
+    <li>Chopra P, Kumar C. Letter to editor: Thyroid lobectomy is not sufficient for T2 papillary thyroid cancers. Surgery. 2019 Feb;165(2):486-496.</li>
+    <li>Kumar C, Mishra A, Kumari N, Krishnani N, Chand G, Agarwal G, Agarwal A,Mishra SK. Importance of Number of Foci of Capsular Invasion in Follicular Thyroid Carcinoma. Indian J Surg Oncol. 2018 Mar;9(1):6-10.</li>
+    <li>Saha S, Kumar C, Srivastava A. Commentary on: Post-thyroidectomy hypocalcemia is related to parathyroid dysfunction even in patients with normal parathyroid hormone concentrations early after surgery. Surgery. 2016 Dec;160(6):1709-1710.</li>
+    <li>Kumar C, Voppuru SR, Jamaluddin MA. Comments on: Cosyntropin stimulation testing on postoperative day 1 allows for selective glucocorticoid replacement therapy after adrenalectomy for hypercortisolism: Results of a novel, multidisciplinary institutional protocol. Surgery. 2016 Jul;160(1):248-249.</li>
+    <li>Mishra A, Kumar C, Chand G, Agarwal G, Agarwal A, Verma AK, Mishra SK. Long-Term Outcome of Follicular Thyroid Carcinoma in Patients Undergoing Surgical Intervention for Skeletal Metastases. World J Surg. 2016 Mar;40(3):562-569</li>
+    <li>Kumar C, Saha S, Gour K. Comments on: Risk factors for central lymph node metastasis in papillary thyroid carcinoma: A National Cancer Data Base (NCDB) study. Surgery. 2016 May;159(5):1483-1484.</li>
+    <li>Rajan S, Kumar C. Letter to the Editor regarding association of vascular invasion with mortality in follicular thyroid carcinoma. Head Neck. 2016;38(1):158</li>
+    <li>Kumar C, Jha CK. Comment on: Is central lymph node dissection necessary for parathyroid carcinoma? Surgery. 2015;158(6):1745</li>
+    <li>Kumar C, Mishra A. Prospective Randomized Controlled Trial on the Use of Flexible Reinforced Laryngeal Mask Airway (LMA) during Total Thyroidectomy: Effects on Postoperative Laryngopharyngeal Symptoms: Reply. World J Surg. 2015;39(3):810</li>
+    <li>Meena RN, Kumar C, Khanna R, Sharma V. Endoscopic versus Microdiscectomny In Lumber Disc Prolapsed: A Prospective Study. IJDS 2010;2(3):116-124.</li>
+    <li>Agarwal D, Lahiri T K, Prasad S, Kumar C. Giant Cystic Teratoma of the Mediastinum: The Ind. Pract.2008;61(1):41-44</li>
+    </div>
+  </div>
+
+
+
+
+  <!-- Gallery Section -->
+  <div class="w3-padding-64 w3-content" id="gallery">
+    <h2 class="w3-text-black">Gallery</h2>
+    <hr style="width:200px" class="w3-opacity">
+    <div class="w3-row-padding" style="margin:0 -16px">
+      <div class="w3-half">
+        <img src="images/gallery/1.jpeg" style="width:100%"><p class="w3-text-black">Holi celebration inside the SGPGIMS, Lucknow campus</p>
+        <img src="images/gallery/3.jpeg" style="width:100%"><p class="w3-text-black">With Prof Martin Waltz, Dr Ritesh, Dr Om Prakash, Dr Chandan @ IAESCON 2014</p>
+        <img src="images/gallery/5.jpeg" style="width:100%"><p class="w3-text-black">Presenting a poster @ American Thyroid Association Annual Conference 2014</p>
+        <img src="images/gallery/7.jpeg" style="width:100%"><p class="w3-text-black">International faculties @ Pre-conference AsAESCON 2018, Robotic Thyroidectomy workshop, AIIMS New Delhi</p>
+        <img src="images/gallery/9.jpeg" style="width:100%"><p class="w3-text-black">With my teachers & seniors @ IAESCON 2018</p>
+        <img src="images/gallery/11.jpeg" style="width:100%"><p class="w3-text-black">Foundation stone of AIIMS Bilaspur laid by our PM Modi Ji</p>
+      </div>
+
+      <div class="w3-half">
+        <img src="images/gallery/2.jpeg" style="width:100%"><p class="w3-text-black">Convocation day with batchmates</p>
+        <img src="images/gallery/4.jpeg" style="width:100%"><p class="w3-text-black">Prof SK Mishra & Entire AsAES 2018 team, New Delhi</p><br>
+        <img src="images/gallery/6.jpeg" style="width:100%"><p class="w3-text-black">Prof Anurag and AIIMS team with international fellows @ SGPGI Breast course 2016</p>
+        <img src="images/gallery/8.jpeg" style="width:100%"><p class="w3-text-black">With Prof Anurag, Dr Chandan, Dr Ramya, Dr Kaustubha, Dr Kavindra @ IAESCON 2017</p>
+        <img src="images/gallery/10.jpeg" style="width:100%"><p class="w3-text-black">With my teachers & seniors @ IAESCON 2019</p>
+        <img src="images/gallery/12.jpeg" style="width:100%"><p class="w3-text-black">Inaugural ceremony with our co-faculties and President AIIMS Bilaspur</p>
+      </div>
+  </div>
+
+
+
+  <!-- Contact Section -->
+  <div class="w3-padding-64 w3-content w3-text-black" id="contact">
+    <h2 class="w3-text-black">Contact Me</h2>
+    <hr style="width:200px" class="w3-opacity">
+
+    <div class="w3-section">
+      <p><i class="fa fa-map-marker fa-fw custom_color w3-xxlarge w3-margin-right"></i>Bilaspur, Himachal Pradesh, INDIA</p>
+      <p><i class="fa fa-phone fa-fw custom_color w3-xxlarge w3-margin-right"></i> Phone: +91 xxxx-xxxx-xx</p>
+      <p><i class="fa fa-envelope fa-fw custom_color w3-xxlarge w3-margin-right"> </i> Email: drk.chitresh@gmail.com</p>
+    </div>
+    <br>
+    
+    <p>Let's get in touch. Send me a message:</p>
+
+    <form action="https://formcarry.com/s/aefRJdU2C5Z" target="_blank" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
+      <p><input class="w3-input w3-padding-16" type="text" placeholder="Name" required name="name"></p>
+      <p><input class="w3-input w3-padding-16" type="email" placeholder="Email" required name="email"></p>
+      <p><input class="w3-input w3-padding-16" type="text" placeholder="Subject" required name="Subject"></p>
+      <p><input class="w3-input w3-padding-16" type="text" placeholder="Message" required name="Message"></p>
+      <p><input class="w3-input w3-padding-16" type="file" placeholder="Attach a file" id="myfile" name="myfile"></p>
+      <input type="hidden" name="_gotcha">
+      <p>
+        <button class="w3-button w3-light-grey w3-padding-large" type="submit" value="Send">
+          <i class="fa fa-paper-plane"></i> SEND MESSAGE
+        </button>
+      </p>
+    </form>
+  </div>
+  
+
+
+
+  <!-- Footer -->
+  <footer class="w3-content w3-padding-64 w3-text-black w3-xlarge">
+    <a href="https://www.facebook.com/chitreshk.sharma" target="_blank"><i class="fa fa-facebook-official w3-hover-opacity"></i></a>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <!-- <i class="fa fa-snapchat w3-hover-opacity"></i> -->
+    <!-- <i class="fa fa-pinterest-p w3-hover-opacity"></i> -->
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+    <p class="w3-medium">Developed by: Manoj Kaushik </p>
+    <!-- <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p> -->
+  <!-- End footer -->
+  </footer>
+
+<!-- END PAGE CONTENT -->
+</div>
+
+</body>
+</html>

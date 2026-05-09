@@ -1,7 +1,10 @@
 <!doctype html>
 <html lang="en">
   <head>
+      <!-- ===== EXTERNAL LIBRARIES & ICONS ===== -->
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+      
+      <!-- ===== GOOGLE ANALYTICS ===== -->
       <!-- Global site tag (gtag.js) - Google Analytics -->
       <script async src="https://www.googletagmanager.com/gtag/js?id=UA-99569818-5"></script>
       <script>
@@ -15,6 +18,7 @@
           gtag('config', 'UA-99569818-5');
       </script>
 
+      <!-- ===== BASIC META TAGS ===== -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -46,71 +50,91 @@
     <meta itemprop="image" content="https://manojkaushik.github.io/images/profile.jpeg?format=1500w"/>
     <meta name="theme-color" content="#444444">
     
+    <!-- ===== FAVICON & ICONS ===== -->
     <link rel="apple-touch-icon" sizes="180x180" href="images/nicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="images/icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/icons/favicon-16x16.png">
 
-    <!-- Bootstrap CSS -->
+    <!-- ===== EXTERNAL STYLESHEETS & FONTS ===== -->
+    <!-- Bootstrap CSS Framework -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css2?family=Gentium+Basic:wght@700&display=swap" rel="stylesheet">
+    <!-- Academic Icons Library -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    
+    <!-- ===== CUSTOM SCRIPTS ===== -->
     <script src="js/scramble.js"></script>      
+    
     <title>Manoj Kaushik</title>
   </head>
 
 
   <body>
+    <!-- ===== MAIN CONTAINER ===== -->
     <div class="container pt-5 allstuffp">
-        <div class="row allstuff">  <!-- row pt-5 allstuff -->
-            <div class="col-md-3">
+        <div class="row allstuff">
+            <!-- ===== SIDEBAR: PROFILE & NAVIGATION ===== -->
+            <div class="col-md-3 col-12">
                 <div class="fixed-posi">
-  <h5 style="font-weight: 400; color: #111; font-size: 1.1rem; margin-top: 0.1rem;">Hi, I am</h5>
-  <h2 class="name">Manoj<br>Kaushik<span style="color: #a08036">.</span></h2>
-  <img src="images/profile_pics/8.jpg" class="profilepic" alt="Profile Picture">
-  <div class="menur">
-    <a class="menulink" target="_blank" href="assets/CV.pdf">
-      <i class="ai ai-cv headtag"></i> curriculum vitae
-    </a>
-  </div>
-  <div>
-    <a class="menulink" target="_blank" href="https://scholar.google.com/citations?user=OL46QaUAAAAJ&hl=en">
-      <i class="ai ai-google-scholar headtag"></i> google scholar
-    </a>
-  </div>
-  <div>
-    <a class="menulink" href="#">
-      <i class="fas fa-envelope headtag"></i>
-      <font id="emaillink" style="display: inline;">
-        <noscript><i>Please enable Javascript to view</i></noscript>
-      </font>
-      <script>
-        emailLinkScramble = new scrambledString(
-          document.getElementById('emaillink'),
-          'emailLinkScramble',
-          'manojkaushik93@gmail.com',
-          [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
-          'email address'
-        );
-      </script>
-    </a>
-  </div>
-  <div>
-    <a class="menulink" target="_blank" href="https://github.com/manojkaushik">
+                  <!-- Profile Header -->
+                  <h5 style="font-weight: 400; color: #111; font-size: 1.1rem; margin-top: 0.1rem;">Hi, I am</h5>
+                  <h2 class="name">Manoj<br>Kaushik<span style="color: #a08036">.</span></h2>
+                  <!-- Profile Picture -->
+                  <img src="images/profile_pics/8.jpg" class="profilepic" alt="Profile Picture">
+                  
+                  <!-- Navigation Menu -->
+                  <div class="menur">
+                    <!-- CV Link -->
+                    <a class="menulink" target="_blank" href="assets/CV.pdf">
+                      <i class="ai ai-cv headtag"></i> curriculum vitae
+                    </a>
+                  </div>
+                  <!-- Google Scholar Link -->
+                  <div>
+                    <a class="menulink" target="_blank" href="https://scholar.google.com/citations?user=OL46QaUAAAAJ&hl=en">
+                      <i class="ai ai-google-scholar headtag"></i> google scholar
+                    </a>
+                  </div>
+                  <!-- Email Link (Scrambled) -->
+                  <div>
+                    <a class="menulink" href="#">
+                      <i class="fas fa-envelope headtag"></i>
+                      <font id="emaillink" style="display: inline;">
+                        <noscript><i>Please enable Javascript to view</i></noscript>
+                      </font>
+                      <script>
+                        emailLinkScramble = new scrambledString(
+                          document.getElementById('emaillink'),
+                          'emailLinkScramble',
+                          'manojkaushik93@gmail.com',
+                          [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+                          'email address'
+                        );
+                      </script>
+                    </a>
+                  </div>
+                  <!-- GitHub Link -->
+                  <div>
+                    <a class="menulink" target="_blank" href="https://github.com/manojkaushik">
       <i class="fab fa-github headtag"></i> github profile
     </a>
   </div>
+  <!-- LinkedIn Link -->
   <div>
     <a class="menulink" target="_blank" href="https://www.linkedin.com/in/mnjkshk/">
       <i class="fab fa-linkedin headtag"></i> linkedin
     </a>
   </div>
+  <!-- Twitter Link -->
   <div>
     <a class="menulink" target="_blank" href="https://twitter.com/mnjkshk93">
       <i class="fab fa-twitter headtag"></i> twitter
     </a>
   </div>
+  <!-- Gallery Link -->
   <div>
     <a class="menulink" href="gallery.html">
       <i class="fas fa-images headtag"></i> gallery
@@ -118,7 +142,10 @@
   </div>
 </div>
             </div>
-            <div class="col-md-9 pt-5 about text-justify">
+            
+            <!-- ===== MAIN CONTENT AREA ===== -->
+            <div class="col-md-9 col-12 pt-5 about text-justify">
+                <!-- ===== ABOUT SECTION ===== -->
                 <div class="mainpara">
                 <p class="subpara">
                     I am a Ph.D. scholar at Indian Institute of Space Science and Technology, advised by <a target="_blank" href="https://www.iist.ac.in/ess/rao">Prof. Rama Rao Nidamanuri</a>. 
@@ -140,7 +167,9 @@
                 </p>
                 </div>
                 
+                <!-- ===== PUBLICATIONS SECTION ===== -->
                 <div class="header-1 pt-5">PUBLICATIONS</div>
+                <!-- ===== JOURNAL PUBLICATIONS ===== -->
                 <div class="pt-4">
                     <h5>Journals</h5>
                 </div>
@@ -240,6 +269,7 @@
 
 
 
+                <!-- ===== CONFERENCE PUBLICATIONS ===== -->
                 <div class="pt-4">
                     <h5>Conference</h5>
                 </div>
@@ -342,6 +372,8 @@
 
 
 
+
+                <!-- ===== TEACHING EXPERIENCE SECTION ===== -->
                 <div class="header-1 pt-5">Teaching</div>
                 <div class="pb-1">
                     <div class="talk my-2 pl-2">
@@ -353,7 +385,7 @@
                 </div>
                 
 
-                <!-- Logos of the Institutions -->
+                <!-- ===== INSTITUTION AFFILIATIONS & LOGOS ===== -->
                 <div class="row text-center py-5">
                     <div class="mx-auto mt-2">
                         <img class="img-fluid instilogo p-1" lsrc="images/IIST.png">
@@ -405,16 +437,33 @@
         </div>
     </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- ===== EXTERNAL JAVASCRIPT LIBRARIES ===== -->
+    <!-- jQuery Library -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- Popper.js for Bootstrap Tooltips/Popovers -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <!-- Bootstrap JavaScript Framework -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+    <!-- ===== VISITOR TRACKER ===== -->
+    <!-- ClustrMaps visitor tracking badge -->
     <a href="https://clustrmaps.com/site/1acp7" title="Visit tracker"><img
             src="//www.clustrmaps.com/map_v2.png?d=Lp1fKpQdhN7-bQXqX5Bbr0BfZO_zEKrR4kGKORfpAWk&cl=ffffff"
             style="display: none;"></a>
 </body>
   <style>
+/* ============================================
+   STYLESHEET SECTIONS:
+   1. General Body & Global Styles
+   2. Sidebar Profile Section
+   3. Main Content Area
+   4. Links & Hover Effects
+   5. Publication Cards
+   6. Institution Logos
+   7. Responsive Design Breakpoints
+============================================ */
+
+/* ===== 1. GENERAL BODY & GLOBAL STYLES ===== */
 /* General body styling */
 body {
   font-family: 'Roboto', sans-serif;
@@ -424,26 +473,57 @@ body {
   background-color: #fffffa;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
+/* Ensure all images are responsive */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Ensure text fields are readable on mobile */
+input, textarea, select {
+  font-size: 16px;
+}
+
+/* Improve touch targets on mobile */
+a, button {
+  min-height: 44px;
+  display: inline-block;
+}
+
+/* ===== 2. SIDEBAR PROFILE SECTION ===== */
 /* Fixed position container styling */
 .fixed-posi {
   position: fixed;
-  padding: 20px;
+  padding: 12px;
   margin-top: 0;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* Hide scrollbar while keeping scroll functionality */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Hide scrollbar for webkit browsers (Chrome, Safari, Opera) */
+.fixed-posi::-webkit-scrollbar {
+  display: none;
 }
 
 /* Profile picture styling */
 .profilepic {
   width: 170px;
   margin-top: 0;
-  margin-bottom: 3rem;
+  margin-bottom: 1.2rem;
 }
 
 /* Menu link styling */
 .menulink {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
   color: #5b5e6d;
   font-size: 1.1rem;
   text-decoration: none;
@@ -456,6 +536,15 @@ body {
 
 .menulink:last-child {
   margin-bottom: 0;
+}
+
+/* Menu container styling */
+.menur {
+  margin-bottom: 6px;
+}
+
+.menur div {
+  margin-bottom: 6px;
 }
 
 /* Head tag styling */
@@ -474,19 +563,291 @@ body {
   font-size: 1rem;
 }
 
-@media only screen and (max-width: 768px) {
+/* Header and text styling */
+.name {
+  font-size: 3rem;
+  color: #333;
+  font-family: 'Gentium Basic', serif;
+  font-weight: 700;
+  margin-top: 0;
+  line-height: 1.2;
+}
+
+.subpara {
+  line-height: 1.6;
+}
+
+.header-1 {
+  font-size: 1.6rem;
+  color: #a08036;
+}
+
+.mainpara {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  color: #5b5e6d;
+}
+
+/* Links and hover effects */
+a {
+  color: #444;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline dotted;
+  color: #444;
+  transition: 0.5s;
+}
+
+.subpara > a {
+  font-weight: 400;
+}
+
+/* Talk and paper styling */
+.talk {
+  border-left: 2px solid #ddd;
+  font-size: 0.98rem;
+}
+
+.papertitle {
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.thisauthor {
+  text-decoration: underline;
+}
+
+.conf {
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+.tag {
+  padding-right: 2px;
+  font-weight: 400;
+  font-size: 0.85rem;
+  color: #a08036;
+}
+
+.tagsep {
+  padding: 3px;
+  color: #444;
+  font-size: 0.8rem;
+}
+
+/* Institution logos and details */
+.instilogo {
+  height: 50px;
+}
+
+.institution {
+  font-size: 12px;
+  color: #444;
+}
+
+.years {
+  font-size: 11px;
+  color: #888;
+}
+
+/* ===== RESPONSIVE DESIGN: Tablet (≤991px) ===== */
+@media only screen and (max-width: 991px) {
+  .fixed-posi {
+    position: static;
+    padding: 12px;
+    text-align: center;
+    margin-bottom: 2rem;
+    max-height: none;
+    overflow: visible;
+  }
+
   .profilepic {
     width: 150px;
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
+    margin: 0 auto 1rem auto;
   }
 
   .about {
     padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .name {
+    font-size: 2.5rem;
+  }
+}
+
+/* ===== RESPONSIVE DESIGN: Mobile Devices (≤768px) ===== */
+/* Mobile screens */
+@media only screen and (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+  }
+
+  .pt-5 {
+    padding-top: 1.5rem !important;
+  }
+
+  .profilepic {
+    width: 130px;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin: 0 auto 1rem auto;
+  }
+
+  .about {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .name {
+    font-size: 2rem;
+    margin: 0.5rem 0;
+  }
+
+  h5 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .header-1 {
+    font-size: 1.3rem;
+  }
+
+  .menulink {
+    font-size: 0.95rem;
+    margin-bottom: 6px;
   }
 
   .sideimg {
     display: none;
+  }
+
+  .talk {
+    font-size: 0.9rem;
+  }
+
+  .papertitle {
+    font-size: 0.95rem;
+  }
+
+  .instilogo {
+    height: 40px;
+  }
+
+  .institution {
+    font-size: 10px;
+  }
+
+  .years {
+    font-size: 9px;
+  }
+
+  .row {
+    margin-left: -5px;
+    margin-right: -5px;
+  }
+
+  .col-lg-12 {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .mainpara {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+}
+
+/* ===== RESPONSIVE DESIGN: Extra Small Devices (≤576px) ===== */
+/* Extra small screens */
+@media only screen and (max-width: 576px) {
+  body {
+    font-size: 0.9rem;
+  }
+
+  .container {
+    padding: 0 10px;
+  }
+
+  .pt-5 {
+    padding-top: 1rem !important;
+  }
+
+  .name {
+    font-size: 1.5rem;
+  }
+
+  h5 {
+    font-size: 0.9rem;
+  }
+
+  .header-1 {
+    font-size: 1.1rem;
+  }
+
+  .about {
+    padding-left: 0;
+    padding-right: 0;
+    font-size: 0.85rem;
+    text-align: left !important;
+  }
+
+  .text-justify {
+    text-align: left !important;
+  }
+
+  .profilepic {
+    width: 110px;
+  }
+
+  .menulink {
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+  }
+
+  .talk {
+    font-size: 0.8rem;
+    padding-left: 8px;
+  }
+
+  .papertitle {
+    font-size: 0.85rem;
+  }
+
+  .tag {
+    font-size: 0.75rem;
+  }
+
+  .instilogo {
+    height: 35px;
+  }
+
+  .institution {
+    font-size: 8px;
+  }
+
+  .years {
+    font-size: 7px;
+  }
+
+  ul, li {
+    margin: 0.25rem 0;
+  }
+
+  .subpara {
+    margin-bottom: 0.75rem;
+  }
+
+  .d-flex {
+    flex-direction: column !important;
+  }
+
+  .ml-auto {
+    margin-left: 0 !important;
+    margin-top: 0.5rem;
   }
 }
 
@@ -497,6 +858,11 @@ body {
   font-family: 'Gentium Basic', serif;
   font-weight: 700;
   margin-top: 0;
+  line-height: 1.2;
+}
+
+.subpara {
+  line-height: 1.6;
 }
 
 .header-1 {
@@ -575,16 +941,16 @@ a:hover {
 }
   </style>
 
+  <!-- ===== CUSTOM JAVASCRIPT ===== -->
   <script>
-      if (window.matchMedia('(max-width: 767px)').matches) {
-            $(".sideimg").remove();
-        }
+      /* ===== IMAGE LAZY LOADING ===== */
+      /* Load images with lazy loading via lsrc attribute */
       $(function () {
             $.each(document.images, function () {
                 var this_image = this;
                 var src = $(this_image).attr('src') || '';
                 if (!src.length > 0) {
-                    //this_image.src = options.loading; // show loading
+                    // Check for lazy load source attribute
                     var lsrc = $(this_image).attr('lsrc') || '';
                     if (lsrc.length > 0) {
                         var img = new Image();
@@ -597,11 +963,14 @@ a:hover {
             });
         });
 
+        /* ===== EXPANDABLE SECTIONS ===== */
+        /* Expand NLP section on click */
         $('#nlptag').click(function () {
             $('#nlpfull').fadeIn();
             $(this).css('cursor','default');
         })
 
+        /* Expand HCI section on click */
         $('#hcitag').click(function () {
             $('#hcifull').fadeIn();
             $(this).css('cursor','default');

@@ -4,15 +4,6 @@
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
       <!-- Global site tag (gtag.js) - Google Analytics -->
       <script async src="https://www.googletagmanager.com/gtag/js?id=UA-99569818-5"></script>
-      <script>
-          window.dataLayer = window.dataLayer || [];
-
-          function gtag() {
-              dataLayer.push(arguments);
-          }
-          gtag('js', new Date());
-
-          gtag('config', 'UA-99569818-5');
       </script>
 
     <meta charset="utf-8">
@@ -65,8 +56,8 @@
         <div class="row allstuff">  <!-- row pt-5 allstuff -->
             <div class="col-md-3">
                 <div class="fixed-posi">
-                <h5 style="font-weight: 400;color:#111;font-size: 1.1rem; margin-top: 0.1rem;"> Hi, I am </h5>
-                <h2 class="name">Manoj<br>Kaushik<span style="color: #a08036">.</span></h2>
+                <h5 class="intro"> Hi, I am </h5>
+                <h2 class="name">Manoj<br>Kaushik<span class="color-accent">.</span></h2>
                 <img lsrc="images/profile-3.jpg" class="profilepic"> <!-- rounded-circle -->
                 <div>
                 </div>
@@ -75,14 +66,9 @@
                 <div class="">
                 <a class="menulink" href="#">
                     <i class="fas fa-envelope headtag"></i><span class="tagsep"></span>
-                    <font id="emaillink" style="display:inline;">
+                    <font id="emaillink" class="display-inline;">
                         <noscript><i>Please enable Javascript to view</i></noscript>
                     </font>
-                    <script>
-                        emailLinkScramble = new scrambledString(document.getElementById('emaillink'),
-                                        'emailLinkScramble', 'manojkaushik93@gmail.com',
-                                        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23], 'email address');
-                    </script>
                 </a>
                 </div>
                 <div class=""><a class="menulink" target="_blank" href="https://github.com/manojkaushik"><i class="fab fa-github headtag"></i><span class="tagsep"></span>github profile</a></div>
@@ -368,7 +354,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <a href="https://clustrmaps.com/site/1acp7" title="Visit tracker"><img
             src="//www.clustrmaps.com/map_v2.png?d=Lp1fKpQdhN7-bQXqX5Bbr0BfZO_zEKrR4kGKORfpAWk&cl=ffffff"
-            style="display: none;"></a>
+            style=""></a>
 </body>
   <style>
       body {
@@ -623,38 +609,5 @@
       
   </style>
 
-  <script>
-      if (window.matchMedia('(max-width: 767px)').matches) {
-            $(".sideimg").remove();
-        }
-      $(function () {
-            $.each(document.images, function () {
-                var this_image = this;
-                var src = $(this_image).attr('src') || '';
-                if (!src.length > 0) {
-                    //this_image.src = options.loading; // show loading
-                    var lsrc = $(this_image).attr('lsrc') || '';
-                    if (lsrc.length > 0) {
-                        var img = new Image();
-                        img.src = lsrc;
-                        $(img).on('load', function () {
-                            this_image.src = this.src;
-                        });
-                    }
-                }
-            });
-        });
 
-        $('#nlptag').click(function () {
-            $('#nlpfull').fadeIn();
-            $(this).css('cursor','default');
-        })
-
-        $('#hcitag').click(function () {
-            $('#hcifull').fadeIn();
-            $(this).css('cursor','default');
-        })
-
-
-  </script>
 </html>

@@ -1,0 +1,538 @@
+/* Root site shared styles moved from inline page styles */
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: #5b5e6d;
+  font-size: 1rem;
+  background-color: #fffffa;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+input,
+textarea,
+select {
+  font-size: 16px;
+}
+
+a,
+button {
+  min-height: 26px;
+  display: inline-block;
+}
+
+.fixed-posi {
+  position: fixed;
+  padding: 12px;
+  margin-top: 0;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.fixed-posi::-webkit-scrollbar {
+  display: none;
+}
+
+.profilepic {
+  width: 170px;
+  margin-top: 0;
+  margin-bottom: 1.2rem;
+  border: #404040 1px solid;
+}
+
+.menulink {
+  display: block;
+  margin-bottom: 6px;
+  color: #5b5e6d;
+  font-size: 1.1rem;
+  text-decoration: none;
+  padding: 2px;
+}
+
+.menulink:hover {
+  color: #444;
+  transition: 0.3s;
+}
+
+.menulink:hover .headtag {
+  color: #a08036;
+  transition: 0.2s;
+}
+
+.menulink:last-child {
+  margin-bottom: 0;
+}
+
+.menur {
+  margin-bottom: 6px;
+}
+
+.menur div {
+  margin-bottom: 6px;
+}
+
+.headtag {
+  color: #a08036;
+  font-size: 1rem;
+}
+
+.ai {
+  font-size: 1.2rem;
+}
+
+.about {
+  padding-left: 5.6rem;
+  font-size: 1rem;
+}
+
+.name {
+  font-size: 3rem;
+  color: #333;
+  font-family: "Gentium Basic", serif;
+  font-weight: 700;
+  margin-top: 0;
+  line-height: 1.2;
+}
+
+.subpara {
+  line-height: 1.6;
+}
+
+.header-1 {
+  font-size: 1.6rem;
+  color: #a08036;
+}
+
+.mainpara {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  color: #5b5e6d;
+}
+
+a {
+  color: #444;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline dotted;
+  color: #444;
+  transition: 0.5s;
+}
+
+.subpara > a {
+  font-weight: 400;
+}
+
+.talk {
+  border-left: 2px solid #ddd;
+  font-size: 0.98rem;
+  color: #505050;
+  text-align: left;
+  padding-top: 3px;
+}
+
+.papertitle {
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.thisauthor {
+  text-decoration: underline;
+}
+
+.conf {
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+.tag,
+.tagseparticle {
+  padding-right: 2px;
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: #a08036;
+}
+
+.tagsep,
+.headtagsep {
+  padding: 3px;
+  color: #444;
+  font-size: 0.8rem;
+}
+
+.article {
+  text-decoration: underline;
+  font-size: 1rem;
+}
+
+.noter {
+  font-size: 9pt;
+}
+
+.instilogo {
+  height: 50px;
+}
+
+.institution {
+  font-size: 12px;
+  color: #444;
+}
+
+.years {
+  font-size: 11px;
+  color: #888;
+}
+
+.title_text {
+  font-family: league-gothic, sans-serif;
+  font-weight: 700;
+  font-size: 5rem;
+  line-height: 54pt;
+  color: #000000;
+}
+
+.subtitle_text {
+  padding-top: 30px;
+  padding-bottom: 10px;
+  font-family: league-gothic, sans-serif;
+  font-weight: 700;
+  font-size: 32pt;
+  color: #000000;
+}
+
+.sideimg {
+  width: 110%;
+  border: 1px solid #ccc;
+}
+
+.more-link {
+  color: #999;
+  font-size: 0.9rem;
+}
+
+#nlptag,
+#hcitag {
+  cursor: pointer;
+}
+
+[aria-expanded="false"] > .expanded,
+[aria-expanded="true"] > .collapsed {
+  display: none;
+}
+
+@media only screen and (max-width: 991px) {
+  .fixed-posi {
+    position: static;
+    padding: 12px;
+    text-align: center;
+    margin-bottom: 2rem;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .profilepic {
+    width: 150px;
+    margin: 0 auto 1rem auto;
+  }
+
+  .about {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .name {
+    font-size: 2.5rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+  }
+
+  .pt-5 {
+    padding-top: 1.5rem !important;
+  }
+
+  .profilepic {
+    width: 130px;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin: 0 auto 1rem auto;
+  }
+
+  .about {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .name {
+    font-size: 2rem;
+    margin: 0.5rem 0;
+  }
+
+  h5 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .header-1 {
+    font-size: 1.3rem;
+  }
+
+  .menulink {
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+  }
+
+  .sideimg {
+    display: none;
+  }
+
+  .talk {
+    font-size: 0.9rem;
+  }
+
+  .papertitle {
+    font-size: 0.95rem;
+  }
+
+  .instilogo {
+    height: 40px;
+  }
+
+  .institution {
+    font-size: 10px;
+  }
+
+  .years {
+    font-size: 9px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .profilepic {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  body {
+    font-size: 0.9rem;
+  }
+
+  .container {
+    padding: 0 10px;
+  }
+
+  .pt-5 {
+    padding-top: 1rem !important;
+  }
+
+  .name {
+    font-size: 1.5rem;
+  }
+
+  h5 {
+    font-size: 0.9rem;
+  }
+
+  .header-1 {
+    font-size: 1.1rem;
+  }
+
+  .about {
+    padding-left: 0;
+    padding-right: 0;
+    font-size: 0.85rem;
+    text-align: left !important;
+  }
+
+  .text-justify {
+    text-align: left !important;
+  }
+
+  .profilepic {
+    width: 110px;
+  }
+
+  .menulink {
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+  }
+
+  .talk {
+    font-size: 0.8rem;
+    padding-left: 8px;
+  }
+
+  .papertitle {
+    font-size: 0.85rem;
+  }
+
+  .tag {
+    font-size: 0.75rem;
+  }
+
+  .instilogo {
+    height: 35px;
+  }
+
+  .institution {
+    font-size: 8px;
+  }
+
+  .years {
+    font-size: 7px;
+  }
+
+  ul,
+  li {
+    margin: 0.25rem 0;
+  }
+
+  .subpara {
+    margin-bottom: 0.75rem;
+  }
+
+  .d-flex {
+    flex-direction: column !important;
+  }
+
+  .ml-auto {
+    margin-left: 0 !important;
+    margin-top: 0.5rem;
+  }
+}
+
+/* ===== INLINE CSS CLASSES ===== */
+
+/* Headings */
+h5.intro {
+  font-weight: 400;
+  color: #111;
+  font-size: 1.1rem;
+  margin-top: 0.1rem;
+}
+
+h2.heading,
+h3.heading {
+  margin: 0 0 10px;
+}
+
+/* Text/Link Colors */
+.color-accent {
+  color: #a08036;
+}
+
+.color-blue-scholar {
+  color: #2873eb;
+}
+
+.color-dark {
+  color: #211f1f;
+}
+
+.color-linkedin {
+  color: #2867b2;
+}
+
+.color-twitter {
+  color: #1da1f2;
+}
+
+.color-light-gray {
+  color: #aaa;
+}
+
+.color-dark-gray {
+  color: #444;
+}
+
+.color-green {
+  color: #50af6f;
+}
+
+/* Display */
+.display-inline {
+  display: inline;
+}
+
+.display-none {
+  display: none;
+}
+
+/* Padding */
+.pt-small {
+  padding-top: 10px;
+}
+
+.pt-xsmall {
+  padding-top: 6px;
+}
+
+/* Link Styling */
+.in-text {
+  color: #39c;
+  text-decoration: none;
+}
+
+.in-text:hover {
+  color: #069;
+}
+
+/* Margin utilities */
+.m-0-0-10 {
+  margin: 0 0 10px;
+}
+
+.m-100 {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Width utilities */
+.w-50 {
+  width: 50%;
+}
+
+.w-30 {
+  width: 30%;
+}
+
+.w-10 {
+  width: 10%;
+}
+
+.w-75 {
+  width: 75%;
+}
+
+.w-60 {
+  width: 60%;
+}
+
+.w-20 {
+  width: 20%;
+}
+
+.h-24 {
+  height: 24px;
+}
+
+.h-100 {
+  width: 100%;
+}

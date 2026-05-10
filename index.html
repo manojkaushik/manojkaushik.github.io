@@ -55,10 +55,19 @@
     <!-- Academic Icons Library -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
     <link rel="stylesheet" href="css/site.css">
-    
-    <!-- ===== CUSTOM SCRIPTS ===== -->
-    <script src="js/scramble.js"></script>      
-    
+        
+    <!-- ===== EXTERNAL JAVASCRIPT LIBRARIES ===== -->
+    <!-- jQuery Library -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- Popper.js for Bootstrap Tooltips/Popovers -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <!-- Bootstrap JavaScript Framework -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <!-- ===== CUSTOM SCRIPTS ===== -->
+    <script src="js/scramble.js"></script>
+    <script src="js/site.js"></script>
+
+
     <title>Manoj Kaushik</title>
   </head>
 
@@ -77,53 +86,53 @@
                   <img src="images/profile_pics/8.jpg" class="profilepic" alt="Profile Picture">
                   
                   <!-- Navigation Menu -->
-                  <div class="">
-                    <!-- CV Link -->
-                    <a class="menulink" target="_blank" href="assets/CV.pdf">
-                      <i class="ai ai-cv headtag"></i> curriculum vitae
+                  <div class="indent">
+                      <!-- CV Link -->
+                      <a class="menulink" target="_blank" href="assets/CV.pdf">
+                        <i class="ai ai-cv headtag"></i> curriculum vitae
+                      </a>
+                    </div>
+                    <!-- Google Scholar Link -->
+                    <div>
+                      <a class="menulink" target="_blank" href="https://scholar.google.com/citations?user=OL46QaUAAAAJ&hl=en">
+                        <i class="ai ai-google-scholar headtag"></i> google scholar
+                      </a>
+                    </div>
+                    <!-- Email Link (Scrambled) -->
+                    <div>
+                      <a class="menulink" href="javascript:void(0)">
+                        <i class="fas fa-envelope headtag"></i>
+                        <font id="emaillink" class="display-inline">
+                          <noscript><i>Please enable Javascript to view</i></noscript>
+                        </font>
+                      </a>
+                    </div>
+                    <!-- GitHub Link -->
+                    <div>
+                      <a class="menulink" target="_blank" href="https://github.com/manojkaushik">
+                      <i class="fab fa-github headtag"></i> github profile
                     </a>
-                  </div>
-                  <!-- Google Scholar Link -->
-                  <div>
-                    <a class="menulink" target="_blank" href="https://scholar.google.com/citations?user=OL46QaUAAAAJ&hl=en">
-                      <i class="ai ai-google-scholar headtag"></i> google scholar
-                    </a>
-                  </div>
-                  <!-- Email Link (Scrambled) -->
-                  <div>
-                    <a class="menulink" href="#">
-                      <i class="fas fa-envelope headtag"></i>
-                      <font id="emaillink" class="display-inline">
-                        <noscript><i>Please enable Javascript to view</i></noscript>
-                      </font>
-                    </a>
-                  </div>
-                  <!-- GitHub Link -->
-                  <div>
-                    <a class="menulink" target="_blank" href="https://github.com/manojkaushik">
-      <i class="fab fa-github headtag"></i> github profile
-    </a>
-  </div>
-  <!-- LinkedIn Link -->
-  <div>
-    <a class="menulink" target="_blank" href="https://www.linkedin.com/in/mnjkshk/">
-      <i class="fab fa-linkedin headtag"></i> linkedin
-    </a>
-  </div>
-  <!-- Twitter Link -->
-  <div>
-    <a class="menulink" target="_blank" href="https://twitter.com/mnjkshk93">
-      <i class="fab fa-twitter headtag"></i> twitter
-    </a>
-  </div>
-  <!-- Gallery Link -->
-  <div>
-    <a class="menulink" href="gallery.html">
-      <i class="fas fa-images headtag"></i> gallery
-    </a>
-  </div>
-</div>
-            </div>
+                    </div>
+                    <!-- LinkedIn Link -->
+                    <div>
+                      <a class="menulink" target="_blank" href="https://www.linkedin.com/in/mnjkshk/">
+                        <i class="fab fa-linkedin headtag"></i> linkedin
+                      </a>
+                    </div>
+                    <!-- Twitter Link -->
+                    <div>
+                      <a class="menulink" target="_blank" href="https://twitter.com/mnjkshk93">
+                        <i class="fab fa-twitter headtag"></i> twitter
+                      </a>
+                    </div>
+                    <!-- Gallery Link -->
+                    <div>
+                      <a class="menulink" href="gallery.html">
+                        <i class="fas fa-images headtag"></i> gallery
+                      </a>
+                    </div>
+                </div>
+              </div>
             
             <!-- ===== MAIN CONTENT AREA ===== -->
             <div class="col-md-9 col-12 pt-5 about text-justify">
@@ -171,7 +180,6 @@
                             </div>
                         </div>
                     </div>                  
-
 
                     <div class="col-lg-12">
                         <div class="talk my-2 pl-2">
@@ -248,8 +256,6 @@
                         </div>
                     </div>
                 </div>
-
-
 
                 <!-- ===== CONFERENCE PUBLICATIONS ===== -->
                 <div class="pt-4">
@@ -352,9 +358,6 @@
                     </div>
                 </div>
 
-
-
-
                 <!-- ===== TEACHING EXPERIENCE SECTION ===== -->
                 <div class="header-1 pt-5">Teaching</div>
                 <div class="pb-1">
@@ -418,14 +421,5 @@
             </div>
         </div>
     </div>
-
-    <!-- ===== EXTERNAL JAVASCRIPT LIBRARIES ===== -->
-    <!-- jQuery Library -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <!-- Popper.js for Bootstrap Tooltips/Popovers -->
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <!-- Bootstrap JavaScript Framework -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="js/site.js"></script>
 </body>
 </html>

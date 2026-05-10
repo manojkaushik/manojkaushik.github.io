@@ -115,8 +115,7 @@ button {
 }
 
 .mainpara {
-  margin-top: 3rem;
-  margin-bottom: 2rem;
+  margin: 2rem;
   color: #5b5e6d;
 }
 
@@ -325,7 +324,7 @@ a:hover {
 
 @media only screen and (max-width: 600px) {
   .profilepic {
-    display: none;
+    display: block;
   }
 }
 

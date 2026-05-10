@@ -20,18 +20,23 @@ function scrambledString(
 
   var self = this;
 
+  // Bind methods to this object
   this.scrambleString = function () {
     var n = self.originalString.length;
     self.charPositions = [];
     for (var i = 0; i < n; i++) {
       self.charPositions.push(i);
     }
+
+    // Fisher-Yates shuffle
     for (var i = n - 1; i > 0; i--) {
       var j = Math.floor(Math.random() * (i + 1));
       var temp = self.charPositions[i];
       self.charPositions[i] = self.charPositions[j];
       self.charPositions[j] = temp;
     }
+
+    // Build scrambled string
     self.currentString = "";
     for (var i = 0; i < n; i++) {
       self.currentString += self.originalString[self.charPositions[i]];
@@ -48,22 +53,29 @@ function scrambledString(
 
   this.unscrambleStep = function () {
     self.step++;
+
     if (self.step < self.maxSteps) {
+      // Find a pair that's out of order and swap
       for (var i = 0; i < self.charPositions.length - 1; i++) {
         if (self.charPositions[i] > self.charPositions[i + 1]) {
+          // Swap in positions array
           var temp = self.charPositions[i];
           self.charPositions[i] = self.charPositions[i + 1];
           self.charPositions[i + 1] = temp;
+
+          // Swap in string
           self.currentString =
             self.currentString.substring(0, i) +
             self.currentString.substring(i + 1, i + 2) +
             self.currentString.substring(i, i + 1) +
             self.currentString.substring(i + 2);
+
           self.tag.innerHTML = self.currentString;
           return;
         }
       }
     } else {
+      // Done unscrambling
       clearInterval(self.interval);
       self.currentString = self.originalString;
       self.tag.innerHTML = self.currentString;
@@ -73,8 +85,12 @@ function scrambledString(
     }
   };
 
+  // Initialize with random positions
   this.scrambleString();
+
   window[this.objName] = this;
+
+  // Display the initial display text
   this.tag.innerHTML =
     '<span onClick="' +
     this.objName +

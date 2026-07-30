@@ -1,0 +1,101 @@
+#include <stdio.h>
+
+/* ---------- A very simple integer stack ---------- */
+
+int stack[100];
+int top = -1;
+
+void push(int x)
+{
+    top = top + 1;
+    stack[top] = x;
+}
+
+int pop(void)
+{
+    int x = stack[top];
+    top = top - 1;
+    return x;
+}
+
+/* ---------- Part 1: Evaluate a postfix expression ---------- */
+
+int evaluatePostfix(char expr[])
+{
+    for (int i = 0; expr[i] != '\0'; i++)
+    {
+        char ch = expr[i];
+
+        if (ch == ' ')
+            continue;                    /* skip spaces */
+
+        if (ch >= '0' && ch <= '9')
+            push(ch - '0');              /* digit -> number -> push */
+        else
+        {
+            int right = pop();           /* popped first  */
+            int left  = pop();           /* popped second */
+
+            if (ch == '+') push(left + right);
+            if (ch == '-') push(left - right);
+            if (ch == '*') push(left * right);
+            if (ch == '/') push(left / right);
+        }
+    }
+
+    return pop();                        /* final answer */
+}
+
+/* ---------- Part 2: Recursion ---------- */
+
+int factorial(int n)
+{
+    if (n == 0)
+        return 1;                        /* base case */
+
+    return n * factorial(n - 1);         /* recursive case */
+}
+
+
+/* Tail-recursive version: the call is the LAST action */
+int factorialTail(int n, int result)
+{
+    if (n == 0)
+        return result;
+
+    return factorialTail(n - 1, n * result);
+}
+
+/* ---------- Part 3: Tower of Hanoi ---------- */
+
+void hanoi(int n, char from, char to, char via)
+{
+    if (n == 1)
+    {
+        printf("Move disk 1: %c -> %c\n", from, to);
+        return;
+    }
+
+    hanoi(n - 1, from, via, to);         /* step 1: n-1 disks out of the way */
+    printf("Move disk %d: %c -> %c\n", n, from, to);
+    hanoi(n - 1, via, to, from);         /* step 3: n-1 disks onto the target */
+}
+
+/* ---------- Test driver ---------- */
+
+int main(void)
+{
+    printf("Postfix \"2 3 4 * + 5 -\" = %d\n\n",
+           evaluatePostfix("2 3 4 * + 5 -"));
+
+    printf("Postfix \"6 2 /\" = %d\n\n",
+           evaluatePostfix("6 2 /"));
+
+    printf("factorial(4)        = %d\n", factorial(4));
+    printf("factorialTail(4, 1) = %d\n\n", factorialTail(4, 1));
+
+    printf("Tower of Hanoi with 3 disks (A -> C using B):\n");
+    hanoi(3, 'A', 'C', 'B');
+
+    return 0;
+}

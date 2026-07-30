@@ -66,6 +66,7 @@
         <!-- ===== CUSTOM SCRIPTS ===== -->
         <script src="js/scramble.js"></script>
         <script src="js/site.js"></script>
+        <script src="js/layout.js"></script>
         <title>Manoj Kaushik</title>
   </head>
 
@@ -75,70 +76,17 @@
     <div class="container pt-5 allstuffp">
         <div class="row allstuff">
             <!-- ===== SIDEBAR: PROFILE & NAVIGATION ===== -->
-            <div class="col-md-3 col-12">
-                <div class="fixed-posi">
-                  <!-- Profile Header -->
-                  <h5 class="intro">Hi, I am</h5>
-                  <h2 class="name">Manoj<br>Kaushik<span class="color-accent">.</span></h2>
-                  <!-- Profile Picture -->
-                  <img src="images/profile_pics/9.png" class="profilepic" alt="Profile Picture">
-                  
-                  <!-- Navigation Menu -->
-                  <div class="indent">
-                      <!-- CV Link -->
-                      <a class="menulink" target="_blank" href="assets/CV__May'26.pdf">
-                        <i class="ai ai-cv headtag"></i> curriculum vitae
-                      </a>
-                    </div>
-                    <!-- Google Scholar Link -->
-                    <div>
-                      <a class="menulink" target="_blank" href="https://scholar.google.com/citations?user=OL46QaUAAAAJ&hl=en">
-                        <i class="ai ai-google-scholar headtag"></i> google scholar
-                      </a>
-                    </div>
-                    <!-- Email Link (Scrambled) -->
-                    <div>
-                      <a class="menulink" href="javascript:void(0)">
-                        <i class="fas fa-envelope headtag"></i>
-                        <font id="emaillink" class="display-inline">
-                          <noscript><i>Please enable Javascript to view</i></noscript>
-                        </font>
-                      </a>
-                    </div>
-                    <!-- GitHub Link -->
-                    <div>
-                      <a class="menulink" target="_blank" href="https://github.com/manojkaushik">
-                      <i class="fab fa-github headtag"></i> github profile
-                    </a>
-                    </div>
-                    <!-- LinkedIn Link -->
-                    <div>
-                      <a class="menulink" target="_blank" href="https://www.linkedin.com/in/mnjkshk/">
-                        <i class="fab fa-linkedin headtag"></i> linkedin
-                      </a>
-                    </div>
-                    <!-- Twitter Link -->
-                    <div>
-                      <a class="menulink" target="_blank" href="https://twitter.com/mnjkshk93">
-                        <i class="fab fa-twitter headtag"></i> twitter
-                      </a>
-                    </div>
-                    <!-- Gallery Link -->
-                    <div>
-                      <a class="menulink" href="gallery.html">
-                        <i class="fas fa-images headtag"></i> gallery
-                      </a>
-                    </div>
-                </div>
-              </div>
+            <div class="col-md-3 col-12" id="shared-sidebar"></div>
             
             <!-- ===== MAIN CONTENT AREA ===== -->
             <div class="col-md-9 col-12 pt-5 about text-justify">
+                <div id="shared-nav"></div>
                 <!-- ===== ABOUT SECTION ===== -->
                 <div class="mainpara">
                     <p class="subpara">
-                        I am a Ph.D. scholar at Indian Institute of Space Science and Technology, advised by <a target="_blank" href="https://www.iist.ac.in/people-faculty-profile/rama-rao-nidamanuri">Prof. Rama Rao Nidamanuri</a>. 
+                        I am a Ph.D. scholar at Indian Institute of Space Science and Technology, advised by <a target="_blank" href="https://www.iist.ac.in/people-faculty-profile/rama-rao-nidamanuri">Prof. Rama Rao Nidamanuri</a>.
                         My primary research work focuses on precision agriculture with AI. The work includes use of satellite, airborne, UAVs, and in-situ Hyperspectral and Multispectral data.
+                        I am also working as an Assistant Professor in the Department of Computer Science and Engineering at Graphic Era Hill University, Bhimtal.
                     </p>
                     <p class="subpara">
                         Some of my recent projects are:
@@ -390,9 +338,19 @@
 
                     <!-- ===== TEACHING EXPERIENCE SECTION ===== -->
                     <div class="header-1 pt-5">Teaching</div>
+                    
                     <div class="pb-1">
                         <div class="talk my-2 pl-2">
-                            <span class="papertitle"><a>Assistant Professor- Algorithms and Compiler Design</a></span><br>
+                            <span class="papertitle"><a>Assistant Professor- "Data Structures" and "Responsible and Explainable AI"</a></span><br>
+                            <div class="d-flex">
+                                <span class="conf"><b>Graphic Era Hill University, Bhimtal Campus</b> - Classroom @ Jul-Dec 2026</span><br>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="pb-1">
+                        <div class="talk my-2 pl-2">
+                            <span class="papertitle"><a>Assistant Professor- "Design and Analysis of Algorithms" and "Compiler Design"</a></span><br>
                             <div class="d-flex">
                                 <span class="conf"><b>Graphic Era Hill University, Bhimtal Campus</b> - Classroom @ Jan-Jun 2026</span><br>
                             </div>
@@ -417,54 +375,9 @@
                         </div>
                     </div>
                     
-                    <!-- ===== INSTITUTION AFFILIATIONS & LOGOS ===== -->
-                    <div class="row text-center py-5 justify-content-center">
-                        <div class="col-auto mx-2 mt-2 d-flex flex-column align-items-center">
-                            <img class="img-fluid instilogo p-1" lsrc="images/IIST.png">
-                            <div class="institution">IIST</div>
-                            <div class="years">Jan 2022 onwards</div>
-                        </div>
-                        <div class="col-auto mx-2 mt-2 d-flex flex-column align-items-center">
-                            <img class="img-fluid instilogo p-1" lsrc="images/NRSC.jpeg">
-                            <div class="institution">NRSC</div>
-                            <div class="years">2022-2024</div>
-                        </div>
-                        <div class="col-auto mx-2 mt-2 d-flex flex-column align-items-center">
-                            <img class="img-fluid instilogo p-2" lsrc="images/KaleidEO.png">
-                            <div class="institution">kaleidEO</div>
-                            <div class="years">Jan 2024 - April 2024</div>
-                        </div>
-                        <div class="col-auto mx-2 mt-2 d-flex flex-column align-items-center">
-                            <img class="img-fluid instilogo p-1" lsrc="images/MMM.jpeg">
-                            <div class="institution">MMMUT</div>
-                            <div class="years">2021</div>
-                        </div>
-                        <div class="col-auto mx-2 mt-2 d-flex flex-column align-items-center">
-                            <img class="img-fluid instilogo p-3" lsrc="images/Thotnr.jpeg">
-                            <div class="institution">Thotnr</div>
-                            <div class="years">2021</div>
-                        </div> 
-                        <div class="col-auto mx-2 mt-2 d-flex flex-column align-items-center">
-                            <img class="img-fluid instilogo p-3" lsrc="images/CAS.jpg">
-                            <div class="institution">CAS AKTU</div>
-                            <div class="years">2019-2021</div>
-                        </div>
-                        <div class="col-auto mx-2 mt-2 d-flex flex-column align-items-center">
-                            <img class="img-fluid instilogo p-2" lsrc="images/ICAR.jpeg">
-                            <div class="institution">ICAR</div>
-                            <div class="years">2018</div>
-                        </div>
-                        <div class="col-auto mx-2 mt-2 d-flex flex-column align-items-center">
-                            <img class="img-fluid instilogo p-3" lsrc="images/edureka.jpeg">
-                            <div class="institution">Edureka</div>
-                            <div class="years">2017</div>
-                        </div>
-                        <div class="col-auto mx-2 mt-2 d-flex flex-column align-items-center">
-                            <img class="img-fluid instilogo p-1" lsrc="images/KNIT.jpeg">
-                            <div class="institution">KNIT Sultanpur</div>
-                            <div class="years">2012 - 2016</div>
-                        </div>    
-                    </div>
+                </div>
+                <div class="mt-5">
+                    <div id="shared-footer"></div>
                 </div>
             </div>
         </div>

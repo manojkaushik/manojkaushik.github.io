@@ -46,6 +46,8 @@
     }
   }
 
+  window.initEmailScramble = initEmailScramble;
+
   function initResponsiveImages() {
     if (window.matchMedia("(max-width: 767px)").matches) {
       $(".sideimg").remove();

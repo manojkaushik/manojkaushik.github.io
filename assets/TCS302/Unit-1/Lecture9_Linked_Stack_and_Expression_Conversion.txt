@@ -1,0 +1,175 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdlib.h>
+
+/* Linked-list node: one value and the link to the node below it */
+typedef struct Node {
+    int          value;
+    struct Node *next;
+} Node;
+
+/* Stack: pointer to the top node and a running size counter */
+typedef struct {
+    Node   *top;
+    size_t  size;
+} Stack;
+
+/* Function declarations */
+void   stackInit(Stack *s);
+bool   stackIsEmpty(const Stack *s);
+size_t stackSize(const Stack *s);
+bool   stackPush(Stack *s, int value);
+bool   stackPop(Stack *s, int *outValue);
+bool   stackPeek(const Stack *s, int *outValue);
+void   stackClear(Stack *s);
+void   stackDisplay(const Stack *s);
+
+/* Initialize an empty stack */
+void stackInit(Stack *s)
+{
+    s->top  = NULL;
+    s->size = 0;
+}
+
+/* Check whether the stack is empty */
+bool stackIsEmpty(const Stack *s)
+{
+    return s->top == NULL;
+}
+
+/* Return the number of elements */
+size_t stackSize(const Stack *s)
+{
+    return s->size;
+}
+
+/* Insert an element at the top.
+   Fails only when the heap itself is exhausted. */
+bool stackPush(Stack *s, int value)
+{
+    Node *node = malloc(sizeof *node);
+
+    if (node == NULL) {
+        return false;              /* heap full */
+    }
+
+    node->value = value;
+    node->next  = s->top;          /* link first  */
+    s->top      = node;            /* then move   */
+    s->size    += 1;
+    return true;
+}
+
+/* Remove and return the top element */
+bool stackPop(Stack *s, int *outValue)
+{
+    if (stackIsEmpty(s) || outValue == NULL) {
+        return false;              /* underflow */
+    }
+
+    Node *node = s->top;           /* keep hold of the old top */
+    *outValue  = node->value;
+    s->top     = node->next;
+    free(node);                    /* release the node */
+    s->size   -= 1;
+    return true;
+}
+
+/* Read the top element without removing it */
+bool stackPeek(const Stack *s, int *outValue)
+{
+    if (stackIsEmpty(s) || outValue == NULL) {
+        return false;
+    }
+
+    *outValue = s->top->value;
+    return true;
+}
+
+/* Remove all elements, freeing every node */
+void stackClear(Stack *s)
+{
+    Node *node = s->top;
+
+    while (node != NULL) {
+        Node *next = node->next;   /* save next before free */
+        free(node);
+        node = next;
+    }
+
+    s->top  = NULL;
+    s->size = 0;
+}
+
+/* Display elements from top to bottom */
+void stackDisplay(const Stack *s)
+{
+    if (stackIsEmpty(s)) {
+        printf("Stack is empty.\n");
+        return;
+    }
+
+    printf("TOP -> ");
+
+    for (const Node *node = s->top; node != NULL; node = node->next) {
+        printf("%d ", node->value);
+    }
+
+    printf("\n");
+}
+
+int main(void)
+{
+    Stack s;
+    int value;
+
+    stackInit(&s);
+
+    printf("Initial stack:\n");
+    stackDisplay(&s);
+
+    printf("\nPushing 10, 20, 30, 40 and 50:\n");
+
+    for (int number = 10; number <= 50; number += 10) {
+        if (stackPush(&s, number)) {
+            printf("%d pushed successfully.\n", number);
+        } else {
+            printf("Cannot push %d: heap exhausted.\n", number);
+        }
+    }
+
+    printf("\nCurrent stack:\n");
+    stackDisplay(&s);
+
+    printf("Stack size: %zu\n", stackSize(&s));
+
+    if (stackPeek(&s, &value)) {
+        printf("Top element: %d\n", value);
+    }
+
+    printf("\nPopping all elements:\n");
+
+    while (stackPop(&s, &value)) {
+        printf("Popped: %d\n", value);
+    }
+
+    printf("\nAttempting another pop:\n");
+
+    if (!stackPop(&s, &value)) {
+        printf("Cannot pop: stack underflow.\n");
+    }
+
+    printf("\nPushing 100 and 200:\n");
+    stackPush(&s, 100);
+    stackPush(&s, 200);
+    stackDisplay(&s);
+
+    printf("\nClearing the stack:\n");
+    stackClear(&s);
+    stackDisplay(&s);
+
+    printf("Final stack size: %zu\n", stackSize(&s));
+
+    return 0;
+}

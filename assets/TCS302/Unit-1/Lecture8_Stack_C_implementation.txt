@@ -1,0 +1,162 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <stddef.h>
+
+#define STACK_CAPACITY 5
+
+typedef struct {
+    int items[STACK_CAPACITY];
+    int top;
+} Stack;
+
+/* Function declarations */
+void stackInit(Stack *stack);
+bool stackIsEmpty(const Stack *stack);
+bool stackIsFull(const Stack *stack);
+size_t stackSize(const Stack *stack);
+bool stackPush(Stack *stack, int value);
+bool stackPop(Stack *stack, int *outValue);
+bool stackPeek(const Stack *stack, int *outValue);
+void stackClear(Stack *stack);
+void stackDisplay(const Stack *stack);
+
+/* Initialize an empty stack */
+void stackInit(Stack *stack)
+{
+    stack->top = -1;
+}
+
+/* Check whether the stack is empty */
+bool stackIsEmpty(const Stack *stack)
+{
+    return stack->top == -1;
+}
+
+/* Check whether the stack is full */
+bool stackIsFull(const Stack *stack)
+{
+    return stack->top == STACK_CAPACITY - 1;
+}
+
+/* Return the number of elements */
+size_t stackSize(const Stack *stack)
+{
+    return (size_t)(stack->top + 1);
+}
+
+/* Insert an element at the top */
+bool stackPush(Stack *stack, int value)
+{
+    if (stackIsFull(stack)) {
+        return false;
+    }
+
+    stack->items[++stack->top] = value;
+    return true;
+}
+
+/* Remove and return the top element */
+bool stackPop(Stack *stack, int *outValue)
+{
+    if (stackIsEmpty(stack) || outValue == NULL) {
+        return false;
+    }
+
+    *outValue = stack->items[stack->top--];
+    return true;
+}
+
+/* Read the top element without removing it */
+bool stackPeek(const Stack *stack, int *outValue)
+{
+    if (stackIsEmpty(stack) || outValue == NULL) {
+        return false;
+    }
+
+    *outValue = stack->items[stack->top];
+    return true;
+}
+
+/* Remove all elements */
+void stackClear(Stack *stack)
+{
+    stack->top = -1;
+}
+
+/* Display elements from top to bottom */
+void stackDisplay(const Stack *stack)
+{
+    if (stackIsEmpty(stack)) {
+        printf("Stack is empty.\n");
+        return;
+    }
+
+    printf("TOP -> ");
+
+    for (int i = stack->top; i >= 0; --i) {
+        printf("%d ", stack->items[i]);
+    }
+
+    printf("\n");
+}
+
+int main(void)
+{
+    Stack stack;
+    int value;
+
+    stackInit(&stack);
+
+    printf("Initial stack:\n");
+    stackDisplay(&stack);
+
+    printf("\nPushing 10, 20, 30, 40 and 50:\n");
+
+    for (int number = 10; number <= 50; number += 10) {
+        if (stackPush(&stack, number)) {
+            printf("%d pushed successfully.\n", number);
+        } else {
+            printf("Cannot push %d: stack overflow.\n", number);
+        }
+    }
+
+    printf("\nCurrent stack:\n");
+    stackDisplay(&stack);
+
+    printf("Stack size: %zu\n", stackSize(&stack));
+
+    if (stackPeek(&stack, &value)) {
+        printf("Top element: %d\n", value);
+    }
+
+    printf("\nAttempting to push 60:\n");
+
+    if (!stackPush(&stack, 60)) {
+        printf("Cannot push 60: stack overflow.\n");
+    }
+
+    printf("\nPopping all elements:\n");
+
+    while (stackPop(&stack, &value)) {
+        printf("Popped: %d\n", value);
+    }
+
+    printf("\nAttempting another pop:\n");
+
+    if (!stackPop(&stack, &value)) {
+        printf("Cannot pop: stack underflow.\n");
+    }
+
+    printf("\nPushing 100 and 200:\n");
+    stackPush(&stack, 100);
+    stackPush(&stack, 200);
+    stackDisplay(&stack);
+
+    printf("\nClearing the stack:\n");
+    stackClear(&stack);
+    stackDisplay(&stack);
+
+    printf("Final stack size: %zu\n", stackSize(&stack));
+
+    return 0;
+}

@@ -1,0 +1,34 @@
+#include <stdio.h>
+#define MAX_SIZE 100
+int main(void)
+{
+    int array[MAX_SIZE], temp[MAX_SIZE];
+    int n, d, i;
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
+    if (n <= 0 || n > MAX_SIZE) {
+        printf("Invalid array size.\n");
+        return 1;
+    }
+    printf("Enter %d array elements:\n", n);
+    for (i = 0; i < n; i++)
+        scanf("%d", &array[i]);
+    printf("Enter positions to left-rotate: ");
+    scanf("%d", &d);
+    if (d < 0) {
+        printf("Number of rotations cannot be negative.\n");
+        return 1;
+    }
+    d = d % n;
+    for (i = 0; i < d; i++)
+        temp[i] = array[i];
+    for (i = 0; i < n - d; i++)
+        array[i] = array[i + d];
+    for (i = 0; i < d; i++)
+        array[n - d + i] = temp[i];
+    printf("Array after left rotation:\n");
+    for (i = 0; i < n; i++)
+        printf("%d ", array[i]);
+    printf("\n");
+    return 0;
+}

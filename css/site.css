@@ -183,7 +183,8 @@ button {
   position: absolute;
   top: 100%;
   left: 0;
-  min-width: 220px;
+  min-width: max-content;
+  width: max-content;
   background: #fffdfa;
   border: 1px solid #e6dfc6;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
@@ -198,6 +199,7 @@ button {
 .dropdown-link {
   display: block;
   padding: 0.45rem 0.75rem;
+  white-space: nowrap;
   color: #5b5e6d;
   text-decoration: none;
 }
@@ -348,6 +350,14 @@ a:hover {
 @media only screen and (max-width: 768px) {
   .container {
     padding: 0 15px;
+  }
+
+  .dropdown-menu {
+    min-width: 0;
+    width: auto;
+    max-width: calc(100vw - 2rem);
+    white-space: normal;
+    box-sizing: border-box;
   }
 
   .pt-5 {

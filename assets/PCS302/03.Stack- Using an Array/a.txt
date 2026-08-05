@@ -1,0 +1,74 @@
+#include <stdio.h>
+#define MAX 5
+
+int stack[MAX];
+int top = -1;
+
+void create() {
+    top = -1;                      // empty stack
+    printf("Stack created.\n");
+}
+
+int isEmpty() {
+    if (top == -1)
+        return 1;
+    else
+        return 0;
+}
+
+void push(int k) {
+    if (top == MAX - 1) {
+        printf("Stack Overflow. Cannot push %d.\n", k);
+        return;
+    }
+    top = top + 1;
+    stack[top] = k;
+    printf("%d pushed to stack.\n", k);
+}
+
+void pop() {
+    if (isEmpty() == 1) {
+        printf("Stack Underflow. Cannot pop.\n");
+        return;
+    }
+    printf("%d popped from stack.\n", stack[top]);
+    top = top - 1;
+}
+
+int size() {
+    return top + 1;
+}
+
+void print() {
+    int i;
+    if (isEmpty() == 1) {
+        printf("Stack is empty.\n");
+        return;
+    }
+    printf("Stack (top to bottom): ");
+    for (i = top; i >= 0; i--) {
+        printf("%d ", stack[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    create();
+
+    push(10);
+    push(20);
+    push(30);
+    print();
+
+    printf("Size = %d\n", size());
+
+    pop();
+    print();
+
+    if (isEmpty() == 1)
+        printf("Stack is empty.\n");
+    else
+        printf("Stack is not empty.\n");
+
+    return 0;
+}

@@ -1,0 +1,38 @@
+#include <stdio.h>
+#define N 4
+
+int main() {
+    int mat[N][N] = {
+        {10, 20, 30, 40},
+        {15, 25, 35, 45},
+        {27, 29, 37, 48},
+        {32, 33, 39, 50}
+    };
+
+    int key, row, col;
+    int found = 0;   // 0 = not found, 1 = found
+
+    printf("Enter key to search: ");
+    scanf("%d", &key);
+
+    // Start at the top-right corner
+    for (row = 0, col = N - 1; row < N && col >= 0; ) {
+        if (mat[row][col] == key) {
+            found = 1;
+            break;              // key found, stop searching
+        }
+        else if (mat[row][col] > key) {
+            col--;              // too big -> move left
+        }
+        else {
+            row++;              // too small -> move down
+        }
+    }
+
+    if (found == 1)
+        printf("Element %d found at position (%d, %d)\n", key, row, col);
+    else
+        printf("Element %d not found in the matrix\n", key);
+
+    return 0;
+}

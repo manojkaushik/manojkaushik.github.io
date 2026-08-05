@@ -1,0 +1,29 @@
+#include <stdio.h>
+#define M 4
+#define N 5
+
+int main() {
+    int mat[M][N] = {
+        {0, 0, 0, 1, 1},
+        {0, 1, 1, 1, 1},
+        {0, 0, 1, 1, 1},
+        {0, 0, 0, 0, 1}
+    };
+
+    int row, col;
+    int maxRow = -1;      // row with maximum 1's so far
+    col = N - 1;           // start at the last column
+
+    for (row = 0; row < M; row++) {
+        for ( ; col >= 0 && mat[row][col] == 1; col--) {
+            maxRow = row;   // this row has more 1's than the previous best
+        }
+    }
+
+    if (maxRow == -1)
+        printf("No row contains a 1.\n");
+    else
+        printf("Row %d has the maximum number of 1's.\n", maxRow);
+
+    return 0;
+}

@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <string.h>
+#define MAX 100
+
+char stack[MAX];
+int top = -1;
+
+void push(char c) {
+    top = top + 1;
+    stack[top] = c;
+}
+
+char pop() {
+    char c = stack[top];
+    top = top - 1;
+    return c;
+}
+
+int main() {
+    char expr[MAX];
+    int i;
+    int balanced = 1;    // assume balanced initially
+
+    printf("Enter expression: ");
+    scanf("%s", expr);
+
+    for (i = 0; expr[i] != '\0'; i++) {
+        char ch = expr[i];
+
+        if (ch == '(' || ch == '{' || ch == '[') {
+            push(ch);
+        }
+        else if (ch == ')' || ch == '}' || ch == ']') {
+            if (top == -1) {
+                balanced = 0;      // closing bracket with nothing to match
+                break;
+            }
+            char topCh = pop();
+            if ((ch == ')' && topCh != '(') ||
+                (ch == '}' && topCh != '{') ||
+                (ch == ']' && topCh != '[')) {
+                balanced = 0;      // mismatched pair
+                break;
+            }
+        }
+    }
+
+    if (balanced == 1 && top == -1)
+        printf("Expression is BALANCED.\n");
+    else
+        printf("Expression is NOT BALANCED.\n");
+
+    return 0;
+}

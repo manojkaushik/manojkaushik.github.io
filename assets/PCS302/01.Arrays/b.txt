@@ -1,0 +1,50 @@
+#include <stdio.h>
+#define MAX_SIZE 100
+int main(void)
+{
+    int array[MAX_SIZE];
+    int n, a, b, i, previousIndex = -1;
+    int distance, minimumDistance;
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
+    if (n <= 0 || n > MAX_SIZE) {
+        printf("Invalid array size.\n");
+        return 1;
+    }
+    printf("Enter %d array elements:\n", n);
+    for (i = 0; i < n; i++)
+        scanf("%d", &array[i]);
+    printf("Enter a and b: ");
+    scanf("%d %d", &a, &b);
+    minimumDistance = n + 1;
+    if (a == b) {
+        for (i = 0; i < n; i++) {
+            if (array[i] == a) {
+                if (previousIndex != -1) {
+                    distance = i - previousIndex;
+                    if (distance < minimumDistance)
+                        minimumDistance = distance;
+                }
+                previousIndex = i;
+            }
+        }
+    } else {
+        for (i = 0; i < n; i++) {
+            if (array[i] == a || array[i] == b) {
+                if (previousIndex != -1 &&
+                    array[i] != array[previousIndex]) {
+                    distance = i - previousIndex;
+                    if (distance < minimumDistance)
+                        minimumDistance = distance;
+                }
+                previousIndex = i;
+            }
+        }
+    }
+    if (minimumDistance == n + 1)
+        printf("A valid pair was not found.\n");
+    else
+        printf("Minimum distance between %d and %d = %d\n",
+               a, b, minimumDistance);
+    return 0;
+}

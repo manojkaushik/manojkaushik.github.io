@@ -181,7 +181,7 @@ button {
 .dropdown-menu {
   display: none;
   position: absolute;
-  top: 100%;
+  top: calc(100% - 1px);
   left: 0;
   min-width: max-content;
   width: max-content;
@@ -190,6 +190,10 @@ button {
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
   padding: 0.35rem 0;
   z-index: 1000;
+}
+
+.nav-item.open .dropdown-menu {
+  display: block;
 }
 
 .nav-item:hover .dropdown-menu {

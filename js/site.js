@@ -54,11 +54,35 @@
     }
   }
 
+  function initDropdownHoverDelay() {
+    $(".nav-item")
+      .has(".dropdown-menu")
+      .each(function () {
+        var $item = $(this);
+        var hideTimer = null;
+
+        $item.on("mouseenter", function () {
+          if (hideTimer) {
+            clearTimeout(hideTimer);
+            hideTimer = null;
+          }
+          $item.addClass("open");
+        });
+
+        $item.on("mouseleave", function () {
+          hideTimer = setTimeout(function () {
+            $item.removeClass("open");
+          }, 250);
+        });
+      });
+  }
+
   $(function () {
     initImageLazyLoading();
     initExpandableSections();
     initEmailScramble();
     initResponsiveImages();
+    initDropdownHoverDelay();
   });
 })(jQuery);
 

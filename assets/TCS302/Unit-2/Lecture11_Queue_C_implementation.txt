@@ -1,0 +1,148 @@
+
+#include <stdio.h>
+
+#define MAX 5
+
+int queue[MAX];
+int front = -1;    /* serving end  */
+int rear  = -1;    /* joining end  */
+
+
+
+/* Check whether the queue is empty */
+int isEmpty(void)
+{
+    return front == -1;
+}
+
+
+
+/* Check whether the queue is full */
+int isFull(void)
+{
+    return rear == MAX - 1;
+}
+
+
+
+/* Insert an element at the rear */
+void enqueue(int x)
+{
+    if (isFull())
+    {
+        printf("Queue Overflow: cannot insert %d\n", x);
+        return;
+    }
+
+    if (front == -1)
+        front = 0;            /* first element wakes front up */
+
+    rear = rear + 1;
+    queue[rear] = x;
+    printf("%d joined the queue.\n", x);
+}
+
+
+
+
+/* Remove and return the front element */
+int dequeue(void)
+{
+    if (isEmpty())
+    {
+        printf("Queue Underflow: nothing to remove\n");
+        return -1;
+    }
+
+    int x = queue[front];
+
+    if (front == rear)
+    {
+        front = -1;           /* last element removed:  */
+        rear  = -1;           /* reset to empty state   */
+    }
+    else
+    {
+        front = front + 1;
+    }
+
+    return x;
+}
+
+
+
+
+/* Read the front element without removing it */
+int peek(void)
+{
+    if (isEmpty())
+    {
+        printf("Queue is Empty\n");
+        return -1;
+    }
+
+    return queue[front];
+}
+
+
+
+
+/* Print all elements from front to rear */
+void display(void)
+{
+    if (isEmpty())
+    {
+        printf("Queue is Empty\n");
+        return;
+    }
+
+    printf("FRONT -> ");
+
+    for (int i = front; i <= rear; i++)
+        printf("%d ", queue[i]);
+
+    printf("<- REAR\n");
+}
+
+
+
+
+int main(void)
+{
+    printf("--- Filling the queue ---\n");
+    enqueue(10);
+    enqueue(20);
+    enqueue(30);
+    display();
+
+    printf("\nFront element (peek): %d\n", peek());
+
+    printf("\n--- Serving two elements ---\n");
+    printf("Dequeued: %d\n", dequeue());
+    printf("Dequeued: %d\n", dequeue());
+    display();
+
+    printf("\n--- Filling the remaining slots ---\n");
+    enqueue(40);
+    enqueue(50);
+    display();
+    printf("front = %d, rear = %d\n", front, rear);
+
+    printf("\n--- False overflow demonstration ---\n");
+    enqueue(60);    /* fails, although slots 0 and 1 are free! */
+
+    printf("\n--- Emptying the queue completely ---\n");
+    printf("Dequeued: %d\n", dequeue());
+    printf("Dequeued: %d\n", dequeue());
+    printf("Dequeued: %d\n", dequeue());
+    display();
+
+    printf("\n--- One dequeue too many ---\n");
+    dequeue();      /* underflow */
+
+    printf("\n--- The queue is reusable after emptying ---\n");
+    enqueue(70);
+    display();
+
+    return 0;
+}

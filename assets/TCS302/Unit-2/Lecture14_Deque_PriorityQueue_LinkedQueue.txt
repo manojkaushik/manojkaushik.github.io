@@ -1,0 +1,279 @@
+/* ============================================================
+   TCS302 - Data Structures with C
+   Unit II, Lecture 14 : Deque, Priority Queue, Linked Queue
+
+   Three separate demos in one file. Read and run them in
+   order: PART A, PART B, PART C.
+   ============================================================ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+/* ============================================================
+   PART A : DEQUE (Double-Ended Queue), array version
+   Both ends allow both insertion and deletion.
+   ============================================================ */
+
+#define DMAX 5
+
+int dq[DMAX];
+int dfront = -1;
+int drear  = -1;
+
+int dIsEmpty(void) { return dfront == -1; }
+int dIsFull(void)  { return (dfront == 0 && drear == DMAX - 1); }
+
+void insertFront(int x)
+{
+    if (dIsFull()) { printf("Deque Overflow (front)\n"); return; }
+
+    if (dfront == -1)
+        dfront = drear = DMAX / 2;         /* first element: start in the middle */
+    else if (dfront == 0)
+        { printf("Cannot insertFront: no space on left\n"); return; }
+    else
+        dfront = dfront - 1;
+
+    dq[dfront] = x;
+    printf("%d inserted at FRONT (index %d)\n", x, dfront);
+}
+
+void insertRear(int x)
+{
+    if (dIsFull()) { printf("Deque Overflow (rear)\n"); return; }
+
+    if (dfront == -1)
+        dfront = drear = DMAX / 2;
+    else if (drear == DMAX - 1)
+        { printf("Cannot insertRear: no space on right\n"); return; }
+    else
+        drear = drear + 1;
+
+    dq[drear] = x;
+    printf("%d inserted at REAR (index %d)\n", x, drear);
+}
+
+int deleteFront(void)
+{
+    if (dIsEmpty()) { printf("Deque Underflow\n"); return -1; }
+
+    int x = dq[dfront];
+    if (dfront == drear) { dfront = -1; drear = -1; }
+    else dfront = dfront + 1;
+    return x;
+}
+
+int deleteRear(void)
+{
+    if (dIsEmpty()) { printf("Deque Underflow\n"); return -1; }
+
+    int x = dq[drear];
+    if (dfront == drear) { dfront = -1; drear = -1; }
+    else drear = drear - 1;
+    return x;
+}
+
+void dDisplay(void)
+{
+    if (dIsEmpty()) { printf("Deque is empty.\n"); return; }
+    printf("FRONT -> ");
+    for (int i = dfront; i <= drear; i++) printf("%d ", dq[i]);
+    printf("<- REAR\n");
+}
+
+void demoDeque(void)
+{
+    printf("========== PART A: DEQUE ==========\n");
+    insertRear(10);
+    insertRear(20);
+    insertFront(5);
+    dDisplay();
+    printf("deleteFront -> %d\n", deleteFront());
+    printf("deleteRear  -> %d\n", deleteRear());
+    dDisplay();
+    printf("\n");
+}
+
+/* ============================================================
+   PART B : PRIORITY QUEUE, simple array version
+   insert is O(1); removeHighest scans for the largest priority.
+   Bigger number = higher priority.
+   ============================================================ */
+
+#define PMAX 5
+
+int pqValue[PMAX];
+int pqPrio[PMAX];
+int pqCount = 0;
+
+int pIsEmpty(void) { return pqCount == 0; }
+int pIsFull(void)  { return pqCount == PMAX; }
+
+void insert(int value, int priority)
+{
+    if (pIsFull()) { printf("Priority Queue Overflow\n"); return; }
+    pqValue[pqCount] = value;
+    pqPrio[pqCount]  = priority;
+    pqCount++;
+    printf("Inserted %d with priority %d\n", value, priority);
+}
+
+int removeHighest(void)
+{
+    if (pIsEmpty()) { printf("Priority Queue Underflow\n"); return -1; }
+
+    int hi = 0;
+    for (int i = 1; i < pqCount; i++)
+        if (pqPrio[i] > pqPrio[hi])
+            hi = i;
+
+    int value = pqValue[hi];
+
+    for (int i = hi; i < pqCount - 1; i++)
+    {
+        pqValue[i] = pqValue[i + 1];
+        pqPrio[i]  = pqPrio[i + 1];
+    }
+    pqCount--;
+
+    return value;
+}
+
+void pDisplay(void)
+{
+    if (pIsEmpty()) { printf("Priority queue is empty.\n"); return; }
+    printf("(value:priority)  ");
+    for (int i = 0; i < pqCount; i++) printf("%d:%d  ", pqValue[i], pqPrio[i]);
+    printf("\n");
+}
+
+void demoPriorityQueue(void)
+{
+    printf("========== PART B: PRIORITY QUEUE ==========\n");
+    insert(10, 2);
+    insert(20, 5);
+    insert(30, 1);
+    insert(40, 4);
+    pDisplay();
+
+    printf("removeHighest -> %d\n", removeHighest());
+    printf("removeHighest -> %d\n", removeHighest());
+    printf("removeHighest -> %d\n", removeHighest());
+    printf("removeHighest -> %d\n", removeHighest());
+    pDisplay();
+    printf("\n");
+}
+
+/* ============================================================
+   PART C : LINKED QUEUE
+   Same idea as Lecture 9's linked stack, but with TWO pointers:
+   front (for dequeue) and rear (for enqueue).
+   ============================================================ */
+
+typedef struct Node {
+    int          value;
+    struct Node *next;
+} Node;
+
+typedef struct {
+    Node *front;
+    Node *rear;
+} Queue;
+
+void qInit(Queue *q)
+{
+    q->front = NULL;
+    q->rear  = NULL;
+}
+
+int qIsEmpty(const Queue *q)
+{
+    return q->front == NULL;
+}
+
+void qEnqueue(Queue *q, int x)
+{
+    Node *node = malloc(sizeof *node);
+    if (node == NULL) { printf("Heap Overflow\n"); return; }
+
+    node->value = x;
+    node->next  = NULL;
+
+    if (q->rear == NULL)
+        q->front = node;          /* queue was empty */
+    else
+        q->rear->next = node;     /* link old rear to the new node */
+
+    q->rear = node;                /* new node is always the new rear */
+    printf("%d joined the queue.\n", x);
+}
+
+int qDequeue(Queue *q, int *out)
+{
+    if (qIsEmpty(q)) { printf("Queue Underflow\n"); return 0; }
+
+    Node *node = q->front;
+    *out = node->value;
+    q->front = node->next;
+
+    if (q->front == NULL)
+        q->rear = NULL;            /* just removed the LAST node */
+
+    free(node);
+    return 1;
+}
+
+void qDisplay(const Queue *q)
+{
+    if (qIsEmpty(q)) { printf("Queue is empty.\n"); return; }
+    printf("FRONT -> ");
+    for (const Node *n = q->front; n != NULL; n = n->next)
+        printf("%d ", n->value);
+    printf("<- REAR\n");
+}
+
+void demoLinkedQueue(void)
+{
+    printf("========== PART C: LINKED QUEUE ==========\n");
+    Queue q;
+    int v;
+
+    qInit(&q);
+    qDisplay(&q);
+
+    qEnqueue(&q, 10);
+    qEnqueue(&q, 20);
+    qEnqueue(&q, 30);
+    qDisplay(&q);
+
+    qDequeue(&q, &v);
+    printf("Dequeued: %d\n", v);
+    qDisplay(&q);
+
+    qEnqueue(&q, 40);
+    qEnqueue(&q, 50);
+    qDisplay(&q);
+
+    printf("--- Drain completely ---\n");
+    while (qDequeue(&q, &v))
+        printf("Dequeued: %d\n", v);
+
+    qDequeue(&q, &v);              /* deliberate underflow */
+    qDisplay(&q);
+
+    printf("--- Reusable after emptying ---\n");
+    qEnqueue(&q, 100);
+    qDisplay(&q);
+}
+
+/* ============================================================
+   main : run all three demos in order
+   ============================================================ */
+
+int main(void)
+{
+    demoDeque();
+    demoPriorityQueue();
+    demoLinkedQueue();
+    return 0;
+}

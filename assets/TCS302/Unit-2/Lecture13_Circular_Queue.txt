@@ -1,0 +1,150 @@
+/* ============================================================
+   TCS302 - Data Structures with C
+   Unit II, Lecture 13 : Circular Queue using an Array
+
+   Fixes the "false overflow" problem of the linear queue
+   (Lecture 11) by letting front and rear wrap around to
+   index 0 after reaching MAX - 1.
+   ============================================================ */
+
+#include <stdio.h>
+
+#define MAX 5
+
+int queue[MAX];
+int front = -1;    /* serving end */
+int rear  = -1;    /* joining end */
+
+/* Check whether the queue is empty (SAME as Lecture 11) */
+int isEmpty(void)
+{
+    return front == -1;
+}
+
+/* Check whether the queue is full (the ONE new idea) */
+int isFull(void)
+{
+    /* Full when the slot rear is about to move into
+       is the slot front is already standing on. */
+    return (rear + 1) % MAX == front;
+}
+
+/* Insert an element at the rear, wrapping around if needed */
+void enqueue(int x)
+{
+    if (isFull())
+    {
+        printf("Queue Overflow: cannot insert %d\n", x);
+        return;
+    }
+
+    if (front == -1)
+        front = 0;                /* first element wakes front up */
+
+    rear = (rear + 1) % MAX;      /* the wrap rule */
+    queue[rear] = x;
+    printf("%d joined the queue at index %d.\n", x, rear);
+}
+
+/* Remove and return the front element, wrapping around if needed */
+int dequeue(void)
+{
+    if (isEmpty())
+    {
+        printf("Queue Underflow: nothing to remove\n");
+        return -1;
+    }
+
+    int x = queue[front];
+
+    if (front == rear)
+    {
+        front = -1;                /* last element removed: */
+        rear  = -1;                /* reset to empty state  */
+    }
+    else
+    {
+        front = (front + 1) % MAX; /* the wrap rule again */
+    }
+
+    return x;
+}
+
+/* Read the front element without removing it */
+int peek(void)
+{
+    if (isEmpty())
+    {
+        printf("Queue is Empty\n");
+        return -1;
+    }
+
+    return queue[front];
+}
+
+/* Print all elements from front to rear, following the wrap.
+   NOTE: cannot use "for (i = front; i <= rear; i++)" here,
+   because after a wrap front can be BIGGER than rear. */
+void display(void)
+{
+    if (isEmpty())
+    {
+        printf("Queue is Empty\n");
+        return;
+    }
+
+    printf("FRONT -> ");
+
+    int i = front;
+    while (1)
+    {
+        printf("%d ", queue[i]);
+        if (i == rear)
+            break;
+        i = (i + 1) % MAX;
+    }
+
+    printf("<- REAR\n");
+}
+
+int main(void)
+{
+    printf("--- Fill the queue completely ---\n");
+    enqueue(10);
+    enqueue(20);
+    enqueue(30);
+    enqueue(40);
+    enqueue(50);
+    display();
+    printf("front = %d, rear = %d\n\n", front, rear);
+
+    printf("--- Genuinely full: this enqueue must fail ---\n");
+    enqueue(60);
+
+    printf("\n--- Serve two elements, freeing indices 0 and 1 ---\n");
+    printf("Dequeued: %d\n", dequeue());
+    printf("Dequeued: %d\n", dequeue());
+    display();
+    printf("front = %d, rear = %d\n\n", front, rear);
+
+    printf("--- THE FIX: enqueue wraps around and reuses index 0 ---\n");
+    enqueue(60);
+    display();
+    printf("front = %d, rear = %d\n\n", front, rear);
+
+    printf("--- One more: wraps to index 1 ---\n");
+    enqueue(70);
+    display();
+    printf("front = %d, rear = %d (genuinely full again)\n\n", front, rear);
+
+    printf("--- Drain completely ---\n");
+    while (!isEmpty())
+        printf("Dequeued: %d\n", dequeue());
+    display();
+
+    printf("\n--- Reusable after emptying ---\n");
+    enqueue(100);
+    display();
+
+    return 0;
+}

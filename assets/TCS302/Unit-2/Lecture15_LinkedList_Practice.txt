@@ -1,0 +1,428 @@
+============================================================
+TCS302 - Data Structures with C
+Unit II, Lecture 15 : Linked Lists - PRACTICE PROGRAMS
+============================================================
+
+  All eight programs below were compiled and run before being
+  placed in this file, so the "Expected output" under each one
+  is the program's REAL output, not a guess.
+
+  The programs get harder as you go down the list. Try to
+  predict the output yourself before running each one.
+
+  All programs use the SAME struct Node from Lecture 15:
+
+      struct Node {
+          int data;
+          struct Node *next;
+      };
+
+============================================================
+PRACTICE 1 : Create ONE node and print its value
+============================================================
+Goal: the smallest possible linked list program - one malloc,
+one node, one free.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *next;
+};
+
+int main(void)
+{
+    struct Node *head = malloc(sizeof(struct Node));
+    if (head == NULL) { printf("Allocation failed\n"); return 1; }
+
+    head->data = 100;
+    head->next = NULL;
+
+    printf("The node holds: %d\n", head->data);
+
+    free(head);
+    return 0;
+}
+
+Expected output:
+    The node holds: 100
+
+
+============================================================
+PRACTICE 2 : Create TWO nodes, link them, traverse and print
+============================================================
+Goal: practice the ONE line that links two nodes together,
+then walk the list with the traversal loop from Lecture 15.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *next;
+};
+
+int main(void)
+{
+    struct Node *head   = malloc(sizeof(struct Node));
+    struct Node *second = malloc(sizeof(struct Node));
+    if (head == NULL || second == NULL) { printf("Allocation failed\n"); return 1; }
+
+    head->data = 5;
+    head->next = second;
+
+    second->data = 15;
+    second->next = NULL;
+
+    for (struct Node *p = head; p != NULL; p = p->next)
+        printf("%d -> ", p->data);
+    printf("NULL\n");
+
+    free(head);
+    free(second);
+    return 0;
+}
+
+Expected output:
+    5 -> 15 -> NULL
+
+
+============================================================
+PRACTICE 3 : Build a FOUR-node list by hand and traverse it
+============================================================
+Goal: repeat the "malloc, fill, link" pattern one more time
+than the lecture did - four nodes instead of three.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *next;
+};
+
+int main(void)
+{
+    struct Node *head, *second, *third, *fourth;
+
+    head   = malloc(sizeof(struct Node));
+    second = malloc(sizeof(struct Node));
+    third  = malloc(sizeof(struct Node));
+    fourth = malloc(sizeof(struct Node));
+
+    if (head == NULL || second == NULL || third == NULL || fourth == NULL)
+    {
+        printf("Allocation failed\n");
+        return 1;
+    }
+
+    head->data = 2;
+    head->next = second;
+
+    second->data = 4;
+    second->next = third;
+
+    third->data = 6;
+    third->next = fourth;
+
+    fourth->data = 8;
+    fourth->next = NULL;
+
+    printf("List: ");
+    for (struct Node *p = head; p != NULL; p = p->next)
+        printf("%d -> ", p->data);
+    printf("NULL\n");
+
+    free(head);
+    free(second);
+    free(third);
+    free(fourth);
+    return 0;
+}
+
+Expected output:
+    List: 2 -> 4 -> 6 -> 8 -> NULL
+
+
+============================================================
+PRACTICE 4 : Count how many nodes are in the list
+============================================================
+Goal: write your FIRST function that takes head as a
+parameter and answers a question about the whole list.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *next;
+};
+
+int countNodes(struct Node *head)
+{
+    int count = 0;
+    for (struct Node *p = head; p != NULL; p = p->next)
+        count++;
+    return count;
+}
+
+int main(void)
+{
+    struct Node *head, *second, *third;
+
+    head   = malloc(sizeof(struct Node));
+    second = malloc(sizeof(struct Node));
+    third  = malloc(sizeof(struct Node));
+
+    head->data = 10;   head->next = second;
+    second->data = 20; second->next = third;
+    third->data = 30;  third->next = NULL;
+
+    printf("Number of nodes: %d\n", countNodes(head));
+
+    free(head); free(second); free(third);
+    return 0;
+}
+
+Expected output:
+    Number of nodes: 3
+
+
+============================================================
+PRACTICE 5 : Sum of all node values, and their average
+============================================================
+Goal: accumulate a running total while traversing - the
+same loop shape as countNodes, just adding data instead of 1.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *next;
+};
+
+int sumList(struct Node *head)
+{
+    int sum = 0;
+    for (struct Node *p = head; p != NULL; p = p->next)
+        sum += p->data;
+    return sum;
+}
+
+int main(void)
+{
+    struct Node *head, *second, *third, *fourth;
+
+    head   = malloc(sizeof(struct Node));
+    second = malloc(sizeof(struct Node));
+    third  = malloc(sizeof(struct Node));
+    fourth = malloc(sizeof(struct Node));
+
+    head->data = 10;   head->next = second;
+    second->data = 20; second->next = third;
+    third->data = 30;  third->next = fourth;
+    fourth->data = 40; fourth->next = NULL;
+
+    int total = sumList(head);
+    printf("Sum = %d\n", total);
+    printf("Average = %.2f\n", total / 4.0);
+
+    free(head); free(second); free(third); free(fourth);
+    return 0;
+}
+
+Expected output:
+    Sum = 100
+    Average = 25.00
+
+
+============================================================
+PRACTICE 6 : Find the maximum value in the list
+============================================================
+Goal: same traversal shape again, this time keeping the
+BEST value seen so far instead of a total.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *next;
+};
+
+int findMax(struct Node *head)
+{
+    int max = head->data;      /* assume the list is never empty */
+    for (struct Node *p = head->next; p != NULL; p = p->next)
+        if (p->data > max)
+            max = p->data;
+    return max;
+}
+
+int main(void)
+{
+    struct Node *head, *second, *third, *fourth;
+
+    head   = malloc(sizeof(struct Node));
+    second = malloc(sizeof(struct Node));
+    third  = malloc(sizeof(struct Node));
+    fourth = malloc(sizeof(struct Node));
+
+    head->data = 12;   head->next = second;
+    second->data = 47; second->next = third;
+    third->data = 8;   third->next = fourth;
+    fourth->data = 33; fourth->next = NULL;
+
+    printf("Maximum value in the list: %d\n", findMax(head));
+
+    free(head); free(second); free(third); free(fourth);
+    return 0;
+}
+
+Expected output:
+    Maximum value in the list: 47
+
+
+============================================================
+PRACTICE 7 : Search for a value in the list
+============================================================
+Goal: traverse and STOP early when the value is found -
+your first search function, returning position or -1.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *next;
+};
+
+int search(struct Node *head, int key)
+{
+    int position = 1;
+    for (struct Node *p = head; p != NULL; p = p->next)
+    {
+        if (p->data == key)
+            return position;
+        position++;
+    }
+    return -1;      /* not found */
+}
+
+int main(void)
+{
+    struct Node *head, *second, *third;
+
+    head   = malloc(sizeof(struct Node));
+    second = malloc(sizeof(struct Node));
+    third  = malloc(sizeof(struct Node));
+
+    head->data = 7;    head->next = second;
+    second->data = 14; second->next = third;
+    third->data = 21;  third->next = NULL;
+
+    int key1 = 14, key2 = 99;
+
+    int pos1 = search(head, key1);
+    if (pos1 != -1)
+        printf("%d found at position %d\n", key1, pos1);
+    else
+        printf("%d not found\n", key1);
+
+    int pos2 = search(head, key2);
+    if (pos2 != -1)
+        printf("%d found at position %d\n", key2, pos2);
+    else
+        printf("%d not found\n", key2);
+
+    free(head); free(second); free(third);
+    return 0;
+}
+
+Expected output:
+    14 found at position 2
+    99 not found
+
+
+============================================================
+PRACTICE 8 : Free every node and prove none are leaked
+============================================================
+Goal: write freeList() properly - the "save next before
+free" pattern from Lecture 9/14, applied to a plain list.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *next;
+};
+
+void freeList(struct Node *head)
+{
+    struct Node *p = head;
+    while (p != NULL)
+    {
+        struct Node *next = p->next;   /* save before free */
+        printf("Freeing node holding %d\n", p->data);
+        free(p);
+        p = next;
+    }
+}
+
+int main(void)
+{
+    struct Node *head, *second, *third;
+
+    head   = malloc(sizeof(struct Node));
+    second = malloc(sizeof(struct Node));
+    third  = malloc(sizeof(struct Node));
+
+    head->data = 1;   head->next = second;
+    second->data = 2; second->next = third;
+    third->data = 3;  third->next = NULL;
+
+    printf("Before freeing:\n");
+    for (struct Node *p = head; p != NULL; p = p->next)
+        printf("%d -> ", p->data);
+    printf("NULL\n\n");
+
+    freeList(head);
+
+    return 0;
+}
+
+Expected output:
+    Before freeing:
+    1 -> 2 -> 3 -> NULL
+
+    Freeing node holding 1
+    Freeing node holding 2
+    Freeing node holding 3
+
+(Verified with AddressSanitizer: this program has zero memory
+leaks - every malloc has a matching free.)
+
+
+============================================================
+TRY IT YOURSELF - three extra exercises, no code given
+============================================================
+
+9.  Write printReverse(head) that prints the list back to
+    front WITHOUT changing any next pointers. (Hint: you
+    cannot walk backward on a singly linked list - think
+    about recursion, or about storing values somewhere first.)
+
+10. Write countEven(head) that returns how many nodes hold
+    an even value. Reuse the loop shape from Practice 4.
+
+11. Combine Practice 3 and Practice 8: build a five-node
+    list by hand, print it, then free it completely. Confirm
+    with a print statement after each free (like Practice 8)
+    that every node is actually released.
+
+============================================================
+End of practice set.
+============================================================

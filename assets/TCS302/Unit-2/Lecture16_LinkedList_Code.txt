@@ -1,0 +1,128 @@
+
+
+
+This program builds a linked list of n nodes using a LOOP
+(instead of writing a separate malloc block for every node), 
+then traverses it and searches it for two values.
+
+------------------------------------------------------------
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *next;
+};
+
+
+/* Build a list of n nodes using a loop, with a tail pointer
+   so each new node attaches in O(1) - no re-walking needed. */
+
+struct Node *createList(int n)
+{
+    struct Node *head = NULL;
+    struct Node *tail = NULL;
+
+    for (int i = 1; i <= n; i++)
+    {
+        struct Node *node = malloc(sizeof(struct Node));
+        if (node == NULL) { printf("Allocation failed\n"); exit(1); }
+
+        node->data = i * 10;   /* demo values: 10, 20, 30, ... */
+        node->next = NULL;
+
+        if (head == NULL)
+            head = node;              /* first node */
+        else
+            tail->next = node;        /* attach after the current last node */
+
+        tail = node;                  /* this node is now the last one */
+    }
+
+    return head;
+}
+
+
+
+
+/* Walk the list from head to NULL, printing every value. */
+
+void traverse(struct Node *head)
+{
+    printf("List: ");
+    for (struct Node *p = head; p != NULL; p = p->next)
+        printf("%d -> ", p->data);
+    printf("NULL\n");
+}
+
+
+
+
+/* Walk the list looking for key. Return its 1-based position, or -1 if it is not found. */
+
+int search(struct Node *head, int key)
+{
+    int position = 1;
+    for (struct Node *p = head; p != NULL; p = p->next)
+    {
+        if (p->data == key)
+            return position;
+        position++;
+    }
+    return -1;
+}
+
+
+
+
+/* Free every node - save next before freeing the current node. */
+
+void freeList(struct Node *head)
+{
+    struct Node *p = head;
+    while (p != NULL)
+    {
+        struct Node *next = p->next;
+        free(p);
+        p = next;
+    }
+}
+
+
+
+
+int main(void)
+{
+    struct Node *head = createList(5);
+    traverse(head);
+
+    int key1 = 30, key2 = 99;
+    int pos1 = search(head, key1);
+    int pos2 = search(head, key2);
+
+    if (pos1 != -1)
+        printf("%d found at position %d\n", key1, pos1);
+    else
+        printf("%d not found\n", key1);
+
+    if (pos2 != -1)
+        printf("%d found at position %d\n", key2, pos2);
+    else
+        printf("%d not found\n", key2);
+
+    freeList(head);
+    return 0;
+}
+
+------------------------------------------------------------
+Expected output
+------------------------------------------------------------
+
+List: 10 -> 20 -> 30 -> 40 -> 50 -> NULL
+30 found at position 3
+99 not found
+
+============================================================
+End of file.
+============================================================

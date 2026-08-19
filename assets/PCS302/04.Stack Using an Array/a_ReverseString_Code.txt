@@ -1,0 +1,84 @@
+Reverse a String Using a Stack - With and Without Recursion
+
+========================================
+ Version 1: WITHOUT RECURSION (Explicit Stack)
+========================================
+
+#include <stdio.h>
+#include <string.h>
+#define MAX 100
+
+char stack[MAX];
+int top = -1;
+
+void push(char c) {
+    top = top + 1;
+    stack[top] = c;
+}
+
+char pop() {
+    char c = stack[top];
+    top = top - 1;
+    return c;
+}
+
+int main() {
+    char str[MAX];
+    int i, len;
+
+    printf("Enter a string: ");
+    scanf("%s", str);
+
+    len = strlen(str);
+
+    // Push every character onto the stack
+    for (i = 0; i < len; i++) {
+        push(str[i]);
+    }
+
+    // Pop every character back into the string -> reverses it
+    for (i = 0; i < len; i++) {
+        str[i] = pop();
+    }
+
+    printf("Reversed string: %s\n", str);
+
+    return 0;
+}
+
+
+========================================
+ Version 2: WITH RECURSION (Call Stack)
+========================================
+
+#include <stdio.h>
+#include <string.h>
+
+void reverseUsingRecursion(char str[], int index, int len) {
+    // Base case: reached end of string
+    if (index == len) {
+        return;
+    }
+
+    // Go to the next character first (this "pushes" onto call stack)
+    reverseUsingRecursion(str, index + 1, len);
+
+    // Print current character after returning (this "pops")
+    printf("%c", str[index]);
+}
+
+int main() {
+    char str[100];
+    int len;
+
+    printf("Enter a string: ");
+    scanf("%s", str);
+
+    len = strlen(str);
+
+    printf("Reversed string: ");
+    reverseUsingRecursion(str, 0, len);
+    printf("\n");
+
+    return 0;
+}

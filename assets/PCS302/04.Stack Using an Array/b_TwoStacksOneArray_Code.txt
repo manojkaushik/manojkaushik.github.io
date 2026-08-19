@@ -1,0 +1,79 @@
+Two Stacks Using One Array - Space-Efficient Stack Sharing
+
+========================================
+ C Program
+========================================
+
+#include <stdio.h>
+#define N 6
+
+int arr[N];
+int top1 = -1;     // Stack 1 grows from left (index 0 upward)
+int top2 = N;       // Stack 2 grows from right (index N-1 downward)
+
+void push1(int k) {
+    if (top1 + 1 == top2) {
+        printf("Overflow! Cannot push %d to Stack1.\n", k);
+        return;
+    }
+    top1 = top1 + 1;
+    arr[top1] = k;
+    printf("%d pushed to Stack1.\n", k);
+}
+
+void push2(int k) {
+    if (top1 + 1 == top2) {
+        printf("Overflow! Cannot push %d to Stack2.\n", k);
+        return;
+    }
+    top2 = top2 - 1;
+    arr[top2] = k;
+    printf("%d pushed to Stack2.\n", k);
+}
+
+void pop1() {
+    if (top1 == -1) {
+        printf("Stack1 Underflow.\n");
+        return;
+    }
+    printf("%d popped from Stack1.\n", arr[top1]);
+    top1 = top1 - 1;
+}
+
+void pop2() {
+    if (top2 == N) {
+        printf("Stack2 Underflow.\n");
+        return;
+    }
+    printf("%d popped from Stack2.\n", arr[top2]);
+    top2 = top2 + 1;
+}
+
+void printStacks() {
+    int i;
+    printf("Stack1: ");
+    for (i = 0; i <= top1; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
+
+    printf("Stack2: ");
+    for (i = N - 1; i >= top2; i--)
+        printf("%d ", arr[i]);
+    printf("\n");
+}
+
+int main() {
+    push1(10);
+    push1(20);
+    push2(100);
+    push2(200);
+
+    printStacks();
+
+    pop1();
+    pop2();
+
+    printStacks();
+
+    return 0;
+}

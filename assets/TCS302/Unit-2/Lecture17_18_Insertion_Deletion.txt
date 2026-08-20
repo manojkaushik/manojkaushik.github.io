@@ -1,0 +1,248 @@
+============================================================
+Insertion and Deletion - Front, End, and Position
+============================================================
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *next;
+};
+
+/* ============================================================
+   Shared helpers
+   ============================================================ */
+
+void traverse(struct Node *head)
+{
+    if (head == NULL) { printf("List is empty.\n"); return; }
+    printf("List: ");
+    for (struct Node *p = head; p != NULL; p = p->next)
+        printf("%d -> ", p->data);
+    printf("NULL\n");
+}
+
+void freeList(struct Node *head)
+{
+    struct Node *p = head;
+    while (p != NULL)
+    {
+        struct Node *next = p->next;   /* save before free */
+        free(p);
+        p = next;
+    }
+}
+
+
+
+/* ============================================================
+   INSERT
+   ============================================================ */
+
+/* Insert at the FRONT: O(1), no traversal needed. */
+
+struct Node *insertFront(struct Node *head, int value)
+{
+    struct Node *node = malloc(sizeof(struct Node));
+    if (node == NULL) { printf("Allocation failed\n"); exit(1); }
+    node->data = value;
+    node->next = head;   /* link first */
+    return node;         /* new head   */
+}
+
+
+
+
+/* Insert at the END: must walk to the last node first - O(n). */
+
+struct Node *insertEnd(struct Node *head, int value)
+{
+    struct Node *node = malloc(sizeof(struct Node));
+    if (node == NULL) { printf("Allocation failed\n"); exit(1); }
+    node->data = value;
+    node->next = NULL;
+
+    if (head == NULL)
+        return node;
+
+    struct Node *p = head;
+    while (p->next != NULL)   /* walk to the LAST node */
+        p = p->next;
+
+    p->next = node;
+    return head;
+}
+
+
+
+
+/* Insert AFTER a given position (1-based). position 0 = new head. */
+
+struct Node *insertAtPosition(struct Node *head, int value, int position)
+{
+    struct Node *node = malloc(sizeof(struct Node));
+    if (node == NULL) { printf("Allocation failed\n"); exit(1); }
+    node->data = value;
+
+    if (position == 0)
+    {
+        node->next = head;
+        return node;
+    }
+
+    struct Node *p = head;
+    for (int i = 1; i < position && p != NULL; i++)
+        p = p->next;
+
+    if (p == NULL)
+    {
+        printf("Position out of range\n");
+        free(node);
+        return head;
+    }
+
+    node->next = p->next;   /* link first */
+    p->next    = node;      /* then move  */
+    return head;
+}
+
+
+
+
+
+/* ============================================================
+   DELETE - mirrors INSERT, position for position
+   ============================================================ */
+
+/* Delete the FRONT node: O(1). Underflow if the list is empty. */
+
+struct Node *deleteFront(struct Node *head)
+{
+    if (head == NULL) { printf("Underflow: list is empty\n"); return NULL; }
+
+    struct Node *temp = head;   /* save before moving   */
+    head = head->next;          /* move                 */
+    free(temp);                 /* then free             */
+    return head;
+}
+
+
+
+
+
+/* Delete the LAST node: O(n).
+   Must stop at the SECOND-TO-LAST node - one node earlier
+   than insertEnd's walk did - so its next can be set to NULL. */
+
+struct Node *deleteEnd(struct Node *head)
+{
+    if (head == NULL) { printf("Underflow: list is empty\n"); return NULL; }
+
+    if (head->next == NULL)     /* only one node in the list */
+    {
+        free(head);
+        return NULL;
+    }
+
+    struct Node *p = head;
+    while (p->next->next != NULL)   /* stop ONE EARLIER than insertEnd */
+        p = p->next;
+
+    free(p->next);
+    p->next = NULL;
+    return head;
+}
+
+
+
+
+/* Delete the node AT a given position (1-based). */
+
+struct Node *deleteAtPosition(struct Node *head, int position)
+{
+    if (head == NULL) { printf("Underflow: list is empty\n"); return NULL; }
+
+    if (position == 1)
+        return deleteFront(head);
+
+    struct Node *p = head;
+    for (int i = 1; i < position - 1 && p != NULL; i++)
+        p = p->next;
+
+    if (p == NULL || p->next == NULL)
+    {
+        printf("Position out of range\n");
+        return head;
+    }
+
+    struct Node *target = p->next;
+    p->next = target->next;   /* unlink first */
+    free(target);              /* then free    */
+    return head;
+}
+
+
+
+/* ============================================================
+   main : insert five nodes, then delete four different ways
+   ============================================================ */
+
+int main(void)
+{
+    printf("--- Build: 10 20 30 40 50 ---\n");
+    struct Node *head = NULL;
+    head = insertEnd(head, 10);
+    head = insertEnd(head, 20);
+    head = insertEnd(head, 30);
+    head = insertEnd(head, 40);
+    head = insertEnd(head, 50);
+    traverse(head);
+
+    printf("\n--- deleteFront ---\n");
+    head = deleteFront(head);
+    traverse(head);
+
+    printf("\n--- deleteEnd ---\n");
+    head = deleteEnd(head);
+    traverse(head);
+
+    printf("\n--- deleteAtPosition(2) ---\n");
+    head = deleteAtPosition(head, 2);
+    traverse(head);
+
+    printf("\n--- Underflow test: drain completely, then delete once more ---\n");
+    head = deleteFront(head);
+    head = deleteFront(head);
+    traverse(head);
+    head = deleteFront(head);   /* deliberate underflow */
+    traverse(head);
+
+    freeList(head);
+    return 0;
+}
+
+------------------------------------------------------------
+Expected output (verified):
+------------------------------------------------------------
+
+--- Build: 10 20 30 40 50 ---
+List: 10 -> 20 -> 30 -> 40 -> 50 -> NULL
+
+--- deleteFront ---
+List: 20 -> 30 -> 40 -> 50 -> NULL
+
+--- deleteEnd ---
+List: 20 -> 30 -> 40 -> NULL
+
+--- deleteAtPosition(2) ---
+List: 20 -> 40 -> NULL
+
+--- Underflow test: drain completely, then delete once more ---
+List is empty.
+Underflow: list is empty
+List is empty.
+
+============================================================
+End of file.
+============================================================

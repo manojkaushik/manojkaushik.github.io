@@ -1,0 +1,156 @@
+============================================================
+Doubly Linked Lists
+============================================================
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *prev;
+    struct Node *next;
+};
+
+
+/* Insert at the FRONT: O(1). Up to 3 links fixed (2 if the list was empty - there is no old head to redirect). */
+
+struct Node *insertFront(struct Node *head, int value)
+{
+    struct Node *node = malloc(sizeof(struct Node));
+    if (node == NULL) { printf("Allocation failed\n"); exit(1); }
+    node->data = value;
+    node->prev = NULL;
+    node->next = head;
+
+    if (head != NULL)
+        head->prev = node;   /* the OLD head now looks back at the new node */
+
+    return node;
+}
+
+
+
+/* Insert at the END: O(n) walk - same shape as the singly linked version, plus one extra line to set prev. */
+
+struct Node *insertEnd(struct Node *head, int value)
+{
+    struct Node *node = malloc(sizeof(struct Node));
+    if (node == NULL) { printf("Allocation failed\n"); exit(1); }
+    node->data = value;
+    node->next = NULL;
+
+    if (head == NULL) { node->prev = NULL; return node; }
+
+    struct Node *p = head;
+    while (p->next != NULL)
+        p = p->next;
+
+    p->next = node;
+    node->prev = p;
+    return head;
+}
+
+
+
+
+/* Delete a node we ALREADY HAVE A POINTER TO - O(1), no searching required. This is the genuine payoff of prev. */
+
+struct Node *deleteNode(struct Node *head, struct Node *target)
+{
+    if (target->prev != NULL)
+        target->prev->next = target->next;
+    else
+        head = target->next;   /* target was the head */
+
+    if (target->next != NULL)
+        target->next->prev = target->prev;
+
+    free(target);
+    return head;
+}
+
+
+
+/* Forward traversal: identical to a singly linked list. */
+
+void traverseForward(struct Node *head)
+{
+    printf("Forward:  ");
+    for (struct Node *p = head; p != NULL; p = p->next)
+        printf("%d -> ", p->data);
+    printf("NULL\n");
+}
+
+
+
+/* Backward traversal: only possible because of prev. Without a tail pointer, reaching the last node still costs O(n); walking back from there is then free. */
+
+void traverseBackward(struct Node *head)
+{
+    if (head == NULL) { printf("Backward: (empty)\n"); return; }
+    struct Node *p = head;
+    while (p->next != NULL) p = p->next;   /* walk to the last node first */
+    printf("Backward: ");
+    while (p != NULL) { printf("%d -> ", p->data); p = p->prev; }
+    printf("NULL\n");
+}
+
+
+
+
+void freeList(struct Node *head)
+{
+    struct Node *p = head;
+    while (p != NULL) { struct Node *next = p->next; free(p); p = next; }
+}
+
+
+
+int main(void)
+{
+    struct Node *head = NULL;
+    head = insertEnd(head, 10);
+    head = insertEnd(head, 20);
+    head = insertEnd(head, 30);
+    traverseForward(head);
+    traverseBackward(head);
+
+    printf("\n--- insertFront(5) ---\n");
+    head = insertFront(head, 5);
+    traverseForward(head);
+    traverseBackward(head);
+
+    printf("\n--- delete the node holding 20 (already have its pointer) ---\n");
+    struct Node *target = head->next->next;  /* the node holding 20 */
+    printf("target->data = %d\n", target->data);
+    head = deleteNode(head, target);
+    traverseForward(head);
+    traverseBackward(head);
+
+    printf("\n--- delete the head node (5) ---\n");
+    head = deleteNode(head, head);
+    traverseForward(head);
+
+    freeList(head);
+    return 0;
+}
+
+------------------------------------------------------------
+Expected output:
+------------------------------------------------------------
+
+Forward:  10 -> 20 -> 30 -> NULL
+Backward: 30 -> 20 -> 10 -> NULL
+
+--- insertFront(5) ---
+Forward:  5 -> 10 -> 20 -> 30 -> NULL
+Backward: 30 -> 20 -> 10 -> 5 -> NULL
+
+--- delete the node holding 20 (already have its pointer) ---
+target->data = 20
+Forward:  5 -> 10 -> 30 -> NULL
+Backward: 30 -> 10 -> 5 -> NULL
+
+--- delete the head node (5) ---
+Forward:  10 -> 30 -> NULL

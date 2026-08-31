@@ -1,0 +1,88 @@
+Queue Using an Array - Create, EnQueue, DeQueue, IsEmpty, Size
+
+========================================
+ C Program
+========================================
+
+
+
+#include <stdio.h>
+#define MAX 5
+
+int arr[MAX];
+int front = 0;
+int rear = -1;
+int count = 0;
+
+void create() {
+    front = 0;
+    rear = -1;
+    count = 0;
+    printf("Queue created.\n");
+}
+
+int isEmpty() {
+    if (count == 0)
+        return 1;
+    else
+        return 0;
+}
+
+void enqueue(int k) {
+    if (rear == MAX - 1) {
+        printf("Queue Overflow. Cannot enqueue %d.\n", k);
+        return;
+    }
+    rear = rear + 1;
+    arr[rear] = k;
+    count = count + 1;
+    printf("%d enqueued to queue.\n", k);
+}
+
+void dequeue() {
+    if (isEmpty() == 1) {
+        printf("Queue Underflow. Cannot dequeue.\n");
+        return;
+    }
+    printf("%d dequeued from queue.\n", arr[front]);
+    front = front + 1;
+    count = count - 1;
+}
+
+int size() {
+    return count;
+}
+
+void print() {
+    int i;
+    if (isEmpty() == 1) {
+        printf("Queue is empty.\n");
+        return;
+    }
+    printf("Queue (front to rear): ");
+    for (i = front; i <= rear; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    create();
+
+    enqueue(10);
+    enqueue(20);
+    enqueue(30);
+    print();
+
+    printf("Size = %d\n", size());
+
+    dequeue();
+    print();
+
+    if (isEmpty() == 1)
+        printf("Queue is empty.\n");
+    else
+        printf("Queue is not empty.\n");
+
+    return 0;
+}

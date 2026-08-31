@@ -1,0 +1,86 @@
+Reverse a Queue - Using a Stack
+========================================
+ C Program
+========================================
+
+
+
+#include <stdio.h>
+#define MAX 10
+
+int queue[MAX];
+int front = 0, rear = -1, count = 0;
+
+int stack[MAX];
+int top = -1;
+
+void enqueue(int k) {
+    if (rear == MAX - 1) {
+        printf("Queue Overflow.\n");
+        return;
+    }
+    rear++;
+    queue[rear] = k;
+    count++;
+}
+
+int dequeue() {
+    int val = queue[front];
+    front++;
+    count--;
+    return val;
+}
+
+int isEmpty() {
+    return (count == 0);
+}
+
+void push(int k) {
+    top++;
+    stack[top] = k;
+}
+
+int pop() {
+    int val = stack[top];
+    top--;
+    return val;
+}
+
+void printQueue() {
+    int i;
+    printf("Queue (front to rear): ");
+    for (i = front; i <= rear; i++)
+        printf("%d ", queue[i]);
+    printf("\n");
+}
+
+void reverseQueue() {
+    // Step 1: move every element from queue to stack
+    while (isEmpty() == 0) {
+        int val = dequeue();
+        push(val);
+    }
+
+    // Step 2: move every element back from stack to queue
+    while (top != -1) {
+        int val = pop();
+        enqueue(val);
+    }
+}
+
+int main() {
+    enqueue(10);
+    enqueue(20);
+    enqueue(30);
+    enqueue(40);
+
+    printf("Original ");
+    printQueue();
+
+    reverseQueue();
+
+    printf("Reversed ");
+    printQueue();
+
+    return 0;
+}

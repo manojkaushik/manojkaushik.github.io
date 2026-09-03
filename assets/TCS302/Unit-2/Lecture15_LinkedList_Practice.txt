@@ -1,16 +1,6 @@
 ============================================================
-TCS302 - Data Structures with C
-Unit II, Lecture 15 : Linked Lists - PRACTICE PROGRAMS
+Linked Lists - PRACTICE PROGRAMS
 ============================================================
-
-  All eight programs below were compiled and run before being
-  placed in this file, so the "Expected output" under each one
-  is the program's REAL output, not a guess.
-
-  The programs get harder as you go down the list. Try to
-  predict the output yourself before running each one.
-
-  All programs use the SAME struct Node from Lecture 15:
 
       struct Node {
           int data;
@@ -402,27 +392,5 @@ Expected output:
     Freeing node holding 2
     Freeing node holding 3
 
-(Verified with AddressSanitizer: this program has zero memory
-leaks - every malloc has a matching free.)
 
 
-============================================================
-TRY IT YOURSELF - three extra exercises, no code given
-============================================================
-
-9.  Write printReverse(head) that prints the list back to
-    front WITHOUT changing any next pointers. (Hint: you
-    cannot walk backward on a singly linked list - think
-    about recursion, or about storing values somewhere first.)
-
-10. Write countEven(head) that returns how many nodes hold
-    an even value. Reuse the loop shape from Practice 4.
-
-11. Combine Practice 3 and Practice 8: build a five-node
-    list by hand, print it, then free it completely. Confirm
-    with a print statement after each free (like Practice 8)
-    that every node is actually released.
-
-============================================================
-End of practice set.
-============================================================

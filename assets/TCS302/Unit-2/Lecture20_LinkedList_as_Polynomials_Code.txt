@@ -136,24 +136,4 @@ A(x) = 5x^3 + 2x^1 + 7x^0
 B(x) = 3x^3 + 4x^2 - 2x^1
 A(x) + B(x) = 8x^3 + 4x^2 + 7x^0
 
-------------------------------------------------------------
-Notes:
-------------------------------------------------------------
-- The exponent-1 terms (2 and -2) cancel exactly to 0 and
-  correctly produce NO node in the result - the "if (sum != 0)"
-  guard is what makes that happen. Skipping this guard would
-  leave a useless "0x^1" term in the answer.
 
-- addPoly only works correctly because both lists are sorted by
-  DECREASING exponent. This is exactly why merging two SORTED
-  lists is easy (one comparison at a time) while merging two
-  unsorted lists is not - a preview of merge sort (Unit IV).
-
-- Try it yourself: add P(x) = 4x^2 + 3x + 6 and
-  Q(x) = 4x^2 - 3x + 1 by hand first, then modify main() to
-  check your answer. (Expected: 8x^2 + 7 - the linear terms
-  cancel exactly, same pattern as A(x) + B(x) above.)
-
-============================================================
-End of file.
-============================================================

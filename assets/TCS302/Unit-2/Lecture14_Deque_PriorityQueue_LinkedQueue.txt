@@ -1,6 +1,5 @@
 /* ============================================================
-   TCS302 - Data Structures with C
-   Unit II, Lecture 14 : Deque, Priority Queue, Linked Queue
+   Deque, Priority Queue, Linked Queue
 
    Three separate demos in one file. Read and run them in
    order: PART A, PART B, PART C.

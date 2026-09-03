@@ -1,0 +1,191 @@
+============================================================
+Lecture 22 : Array and Linked Representations of a Binary Tree
+============================================================
+
+
+Two independent programs, representing the SAME 7-node
+complete binary tree two different ways:
+
+        1
+      /   \
+     2     3
+    / \   / \
+   4   5 6   7
+
+  PART A - Array representation (index arithmetic, no pointers)
+  PART B - Linked representation (struct Node with left/right)
+
+
+============================================================
+PART A : Array representation
+============================================================
+
+#include <stdio.h>
+#define MAX 7
+
+int tree[MAX] = {1, 2, 3, 4, 5, 6, 7};   /* complete binary tree, index 0 = root */
+
+int parentIndex(int i) { return (i - 1) / 2; }
+int leftIndex(int i)   { return 2 * i + 1; }
+int rightIndex(int i)  { return 2 * i + 2; }
+
+
+void showNode(int i)
+{
+    if (i >= MAX) { printf("index %d does not exist\n", i); return; }
+
+    printf("index %d (value %d):  ", i, tree[i]);
+
+    if (i == 0)
+        printf("parent = none (root)");
+    else
+        printf("parent = index %d (value %d)", parentIndex(i), tree[parentIndex(i)]);
+
+    int l = leftIndex(i), 
+    r = rightIndex(i);
+    printf(",  left = %s", l < MAX ? "index" : "none");
+
+    if (l < MAX) 
+     printf(" %d (value %d)", l, tree[l]);
+
+    printf(",  right = %s", r < MAX ? "index" : "none");
+
+    if (r < MAX) 
+     printf(" %d (value %d)", r, tree[r]);
+
+    printf("\n");
+}
+
+
+int main(void)
+{
+    printf("Array:  ");
+    for (int i = 0; i < MAX; i++) 
+     printf("%d ", tree[i]);
+
+    printf("\n\n");
+
+    for (int i = 0; i < MAX; i++)
+        showNode(i);
+
+    return 0;
+}
+
+------------------------------------------------------------
+Expected output:
+------------------------------------------------------------
+
+Array:  1 2 3 4 5 6 7
+
+index 0 (value 1):  parent = none (root),  left = index 1 (value 2),  right = index 2 (value 3)
+index 1 (value 2):  parent = index 0 (value 1),  left = index 3 (value 4),  right = index 4 (value 5)
+index 2 (value 3):  parent = index 0 (value 1),  left = index 5 (value 6),  right = index 6 (value 7)
+index 3 (value 4):  parent = index 1 (value 2),  left = none,  right = none
+index 4 (value 5):  parent = index 1 (value 2),  left = none,  right = none
+index 5 (value 6):  parent = index 2 (value 3),  left = none,  right = none
+index 6 (value 7):  parent = index 2 (value 3),  left = none,  right = none
+
+
+
+
+
+============================================================
+PART B : Linked representation
+============================================================
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *left;
+    struct Node *right;
+};
+
+struct Node *newNode(int value)
+{
+    struct Node *new = malloc(sizeof(struct Node));
+    if (new == NULL) { printf("Allocation failed\n"); exit(1); }
+    new->data = value;
+    new->left = NULL;
+    new->right = NULL;
+    return new;
+}
+
+/* Build the SAME 7-node complete tree as the array version*/
+struct Node *buildSampleTree(void)
+{
+    struct Node *root = newNode(1);
+    root->left  = newNode(2);
+    root->right = newNode(3);
+    root->left->left   = newNode(4);
+    root->left->right  = newNode(5);
+    root->right->left  = newNode(6);
+    root->right->right = newNode(7);
+    return root;
+}
+
+void showNode(struct Node *node)
+{
+    if (node == NULL) return;
+    printf("value %d:  left = %s,  right = %s\n",
+           node->data,
+           node->left  ? "present" : "none",
+           node->right ? "present" : "none");
+}
+
+
+
+/* Print all nodes at a given level - a small preview of the */
+void printLevel(struct Node *node, int level)
+{
+    if (node == NULL) return;
+
+    if (level == 0) { printf("%d ", node->data); return; }
+    printLevel(node->left, level - 1);
+    printLevel(node->right, level - 1);
+}
+
+
+
+void freeTree(struct Node *node)
+{
+    if (node == NULL) return;
+    freeTree(node->left);
+    freeTree(node->right);
+    free(node);
+}
+
+
+
+int main(void)
+{
+    struct Node *root = buildSampleTree();
+
+    printf("Level 0: "); printLevel(root, 0); printf("\n");
+    printf("Level 1: "); printLevel(root, 1); printf("\n");
+    printf("Level 2: "); printLevel(root, 2); printf("\n\n");
+
+    showNode(root);
+    showNode(root->left);
+    showNode(root->right);
+    showNode(root->left->left);
+
+    freeTree(root);
+    return 0;
+}
+
+------------------------------------------------------------
+Expected output:
+------------------------------------------------------------
+
+Level 0: 1
+Level 1: 2 3
+Level 2: 4 5 6 7
+
+value 1:  left = present,  right = present
+value 2:  left = present,  right = present
+value 3:  left = present,  right = present
+value 4:  left = none,  right = none
+
+

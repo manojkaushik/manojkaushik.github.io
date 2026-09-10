@@ -1,0 +1,214 @@
+============================================================
+Binary Tree Traversal Preorder, Inorder, Postorder
+============================================================
+
+Two independent programs in this file:
+
+  PART A - The three traversals on the 7-node sample tree,
+           plus countNodes and heightOf.
+  PART B - The SAME three traversals applied to an expression
+           tree, showing preorder/inorder/postorder ARE
+           prefix/infix/postfix.
+
+============================================================
+PART A : Traversal: sample tree
+============================================================
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *left;
+    struct Node *right;
+};
+
+struct Node *newNode(int value)
+{
+    struct Node *n = malloc(sizeof(struct Node));
+    if (n == NULL) { printf("Allocation failed\n"); exit(1); }
+    n->data = value;
+    n->left = NULL;
+    n->right = NULL;
+    return n;
+}
+
+
+
+/* 7-node complete tree by hand*/
+struct Node *buildSampleTree(void)
+{
+    struct Node *root = newNode(1);
+    root->left  = newNode(2);
+    root->right = newNode(3);
+    root->left->left   = newNode(4);
+    root->left->right  = newNode(5);
+    root->right->left  = newNode(6);
+    root->right->right = newNode(7);
+    return root;
+}
+
+
+
+/* Node|Left|Right */
+void preorder(struct Node *root)
+{
+    if (root == NULL) return;
+    printf("%d ", root->data);
+    preorder(root->left);
+    preorder(root->right);
+}
+
+
+/* Left|Node|Right */
+void inorder(struct Node *root)
+{
+    if (root == NULL) return;
+    inorder(root->left);
+    printf("%d ", root->data);
+    inorder(root->right);
+}
+
+
+
+/* Left|Right|Node */
+void postorder(struct Node *root)
+{
+    if (root == NULL) return;
+    postorder(root->left);
+    postorder(root->right);
+    printf("%d ", root->data);
+}
+
+
+
+int countNodes(struct Node *root)
+{
+    if (root == NULL) return 0;
+    return 1 + countNodes(root->left) + countNodes(root->right);
+}
+
+
+
+int heightOf(struct Node *root)
+{
+    if (root == NULL) return -1;   /* empty tree has height -1; single node has height 0 */
+    int lh = heightOf(root->left);
+    int rh = heightOf(root->right);
+    return 1 + (lh > rh ? lh : rh);
+}
+
+
+
+void freeTree(struct Node *n)
+{
+    if (n == NULL) return;
+    freeTree(n->left);
+    freeTree(n->right);
+    free(n);
+}
+
+
+int main(void)
+{
+    struct Node *root = buildSampleTree();
+
+    printf("Preorder:  "); preorder(root);  printf("\n");
+    printf("Inorder:   "); inorder(root);   printf("\n");
+    printf("Postorder: "); postorder(root); printf("\n\n");
+
+    printf("Node count: %d\n", countNodes(root));
+    printf("Height:     %d\n", heightOf(root));
+
+    freeTree(root);
+    return 0;
+}
+
+------------------------------------------------------------
+Expected output:
+------------------------------------------------------------
+
+Preorder:  1 2 4 5 3 6 7
+Inorder:   4 2 5 1 6 3 7
+Postorder: 4 5 2 6 7 3 1
+
+Node count: 7
+Height:     2
+
+
+
+
+============================================================
+PART B : Expression tree traversal
+============================================================
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    char data;
+    struct Node *left;
+    struct Node *right;
+};
+
+
+struct Node *newNode(char value)
+{
+    struct Node *n = malloc(sizeof(struct Node));
+    n->data = value;
+    n->left = NULL;
+    n->right = NULL;
+    return n;
+}
+
+
+void preorder(struct Node *root)
+{
+    if (!root) return;           /* "!root" is same as "root==NULL" */
+    printf("%c ", root->data);
+    preorder(root->left);
+    preorder(root->right);
+}
+
+
+void inorder(struct Node *root)
+{
+    if (!root) return;          /* "!root" is same as "root==NULL" */
+    inorder(root->left);
+    printf("%c ", root->data);
+    inorder(root->right);
+}
+
+void postorder(struct Node *root)
+{
+    if (!root) return;        /* "!root" is same as "root==NULL" */
+    postorder(root->left);
+    postorder(root->right);
+    printf("%c ", root->data);
+}
+
+int main(void)
+{
+    /* Tree for A + B * C - D  */
+    struct Node *root = newNode('-');
+    root->left = newNode('+');
+    root->right = newNode('D');
+    root->left->left = newNode('A');
+    root->left->right = newNode('*');
+    root->left->right->left = newNode('B');
+    root->left->right->right = newNode('C');
+
+    printf("Preorder  (prefix):  "); preorder(root);  printf("\n");
+    printf("Inorder   (infix):   "); inorder(root);   printf("\n");
+    printf("Postorder (postfix): "); postorder(root); printf("\n");
+    return 0;
+}
+
+------------------------------------------------------------
+Expected output (verified by compiling and running):
+------------------------------------------------------------
+
+Preorder  (prefix):  - + A * B C D
+Inorder   (infix):   A + B * C - D
+Postorder (postfix): A B C * + D -
+

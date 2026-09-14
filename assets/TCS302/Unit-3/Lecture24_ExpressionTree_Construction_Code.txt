@@ -1,0 +1,141 @@
+============================================================
+Expression Tree Construction
+============================================================
+
+Builds an expression tree from a postfix string, using a stack
+of TREE NODES instead of the stack of INTEGERS. Then walks the 
+built tree with the three traversals.
+------------------------------------------------------------
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    char data;
+    struct Node *left;
+    struct Node *right;
+};
+
+struct Node *newNode(char value)
+{
+    struct Node *n = malloc(sizeof(struct Node));
+    if (n == NULL) { printf("Allocation failed\n"); exit(1); }
+    n->data = value;
+    n->left = NULL;
+    n->right = NULL;
+    return n;
+}
+
+int isOperator(char c)
+{
+    return c == '+' || c == '-' || c == '*' || c == '/';
+}
+
+/* A stack of tree-node pointers, used only while building */
+#define MAX 50
+struct Node *stack[MAX];
+int top = -1;
+
+
+void push(struct Node *n) { stack[++top] = n; }
+
+struct Node *pop(void)    { return stack[top--]; }
+
+
+/* Build an expression tree from a postfix string (space-separated tokens) */
+struct Node *buildExpressionTree(const char postfix[])
+{
+    top = -1;   /* reset stack */
+
+    for (int i = 0; postfix[i] != '\0'; i++)
+    {
+        char ch = postfix[i];
+        if (ch == ' ') continue;
+
+        if (isOperator(ch))
+        {
+	    struct Node *node  = newNode(ch);
+            struct Node *right = pop();   /* popped first  */
+            struct Node *left  = pop();   /* popped second */
+            
+            node->left  = left;
+            node->right = right;
+            push(node);
+        }
+        else
+        {
+            push(newNode(ch));            /* operand -> leaf */
+        }
+    }
+
+    return pop();   /* the single remaining node is the root */
+}
+
+
+void preorder(struct Node *root)  
+   { 
+     if (!root) 
+      return; 
+     printf("%c ", root->data); 
+     preorder(root->left);  
+     preorder(root->right); 
+   }
+
+
+void inorder(struct Node *root)   
+   { 
+    if (!root) 
+     return; 
+    inorder(root->left);  
+    printf("%c ", root->data); 
+    inorder(root->right); 
+   }
+
+
+void postorder(struct Node *root) 
+   { 
+    if (!root) 
+     return; 
+    postorder(root->left); 
+    postorder(root->right); 
+    printf("%c ", root->data); 
+   }
+
+void freeTree(struct Node *n)
+{
+    if (n == NULL) return;
+    freeTree(n->left);
+    freeTree(n->right);
+    free(n);
+}
+
+
+
+int main(void)
+{
+    const char *postfix = "A B C * + D -";   /* for A + B*C - D */
+
+    struct Node *root = buildExpressionTree(postfix);
+
+    printf("Built from postfix: %s\n\n", postfix);
+    printf("Preorder  (prefix):  "); preorder(root);  printf("\n");
+    printf("Inorder   (infix):   "); inorder(root);   printf("\n");
+    printf("Postorder (postfix): "); postorder(root); printf("\n");
+
+    freeTree(root);
+    return 0;
+}
+
+------------------------------------------------------------
+Expected output:
+------------------------------------------------------------
+
+Built from postfix: A B C * + D -
+
+Preorder  (prefix):  - + A * B C D
+Inorder   (infix):   A + B * C - D
+Postorder (postfix): A B C * + D -
+
+Notice postorder(root) is IDENTICAL to the postfix string the
+tree was built from - construction and postorder traversal are
+inverse operations on the same tree.

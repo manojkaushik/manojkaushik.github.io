@@ -1,0 +1,94 @@
+Queue Operations Using the Minimum Number of Stacks (2 Stacks)
+========================================
+ C Program
+========================================
+
+#include <stdio.h>
+#define MAX 10
+
+int stack1[MAX], top1 = -1;    // in-stack  (for enqueue)
+int stack2[MAX], top2 = -1;    // out-stack (for dequeue)
+
+int isEmpty1() { return (top1 == -1); }
+int isEmpty2() { return (top2 == -1); }
+
+void push1(int k) {
+    top1 = top1 + 1;
+    stack1[top1] = k;
+}
+
+int pop1() {
+    int val = stack1[top1];
+    top1 = top1 - 1;
+    return val;
+}
+
+void push2(int k) {
+    top2 = top2 + 1;
+    stack2[top2] = k;
+}
+
+int pop2() {
+    int val = stack2[top2];
+    top2 = top2 - 1;
+    return val;
+}
+
+int isEmptyQueue() {
+    return (isEmpty1() == 1 && isEmpty2() == 1);
+}
+
+void enqueue(int k) {
+    if (top1 == MAX - 1) {
+        printf("Overflow. Cannot enqueue %d.\n", k);
+        return;
+    }
+    push1(k);
+    printf("%d enqueued to queue.\n", k);
+}
+
+void dequeue() {
+    if (isEmpty2() == 1) {
+        // move everything from stack1 into stack2 (reverses the order)
+        while (isEmpty1() == 0) {
+            int val = pop1();
+            push2(val);
+        }
+    }
+    if (isEmpty2() == 1) {
+        printf("Queue Underflow.\n");
+        return;
+    }
+    int val = pop2();
+    printf("%d dequeued from queue.\n", val);
+}
+
+void printQueue() {
+    int i;
+    if (isEmptyQueue() == 1) {
+        printf("Queue is empty.\n");
+        return;
+    }
+    printf("Queue (front to rear): ");
+    for (i = top2; i >= 0; i--)
+        printf("%d ", stack2[i]);
+    for (i = 0; i <= top1; i++)
+        printf("%d ", stack1[i]);
+    printf("\n");
+}
+
+int main() {
+    enqueue(10);
+    enqueue(20);
+    enqueue(30);
+    printQueue();
+
+    dequeue();
+    enqueue(40);
+    printQueue();
+
+    dequeue();
+    printQueue();
+
+    return 0;
+}

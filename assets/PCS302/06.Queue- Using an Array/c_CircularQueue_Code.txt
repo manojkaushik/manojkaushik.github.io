@@ -1,0 +1,97 @@
+Circular Queue - Create, EnQueue, DeQueue, IsEmpty, Front, Rear
+
+========================================
+ C Program
+========================================
+
+#include <stdio.h>
+#define MAX 5
+
+int arr[MAX];
+int front = -1, rear = -1;
+
+void create() {
+    front = -1;
+    rear = -1;
+    printf("Circular queue created.\n");
+}
+
+int isEmpty() {
+    if (front == -1)
+        return 1;
+    else
+        return 0;
+}
+
+int isFull() {
+    if ((rear + 1) % MAX == front)
+        return 1;
+    else
+        return 0;
+}
+
+void enqueue(int k) {
+    if (isFull() == 1) {
+        printf("Queue Overflow. Cannot enqueue %d.\n", k);
+        return;
+    }
+    if (isEmpty() == 1) {
+        front = 0;
+        rear = 0;
+    } else {
+        rear = (rear + 1) % MAX;
+    }
+    arr[rear] = k;
+    printf("%d enqueued to queue.\n", k);
+}
+
+void dequeue() {
+    if (isEmpty() == 1) {
+        printf("Queue Underflow. Cannot dequeue.\n");
+        return;
+    }
+    printf("%d dequeued from queue.\n", arr[front]);
+    if (front == rear) {
+        front = -1;      // queue becomes empty
+        rear = -1;
+    } else {
+        front = (front + 1) % MAX;
+    }
+}
+
+void frontElement() {
+    if (isEmpty() == 1) {
+        printf("Queue is empty.\n");
+        return;
+    }
+    printf("Front element = %d\n", arr[front]);
+}
+
+void rearElement() {
+    if (isEmpty() == 1) {
+        printf("Queue is empty.\n");
+        return;
+    }
+    printf("Rear element = %d\n", arr[rear]);
+}
+
+int main() {
+    create();
+
+    enqueue(10);
+    enqueue(20);
+    enqueue(30);
+    enqueue(40);
+    enqueue(50);
+
+    frontElement();
+    rearElement();
+
+    dequeue();
+    enqueue(60);        // wraps around to index 0
+
+    frontElement();
+    rearElement();
+
+    return 0;
+}

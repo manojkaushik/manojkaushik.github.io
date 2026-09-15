@@ -1,0 +1,193 @@
+Threaded Binary Trees
+============================================================
+
+Every NULL child pointer is replaced with a pointer
+to the node's inorder predecessor or successor. Then traverses
+it inorder with NO stack and NO recursion.
+
+------------------------------------------------------------
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *left;
+    struct Node *right;
+    int leftThread;    /* 1 if left is a THREAD (predecessor), 0 if a real child */
+    int rightThread;   /* 1 if right is a THREAD (successor),  0 if a real child */
+};
+
+
+struct Node *newNode(int value)
+{
+    struct Node *n = malloc(sizeof(struct Node));
+    if (n == NULL) { printf("Allocation failed\n"); exit(1); }
+    n->data = value;
+    n->left = NULL;
+    n->right = NULL;
+    n->leftThread = 1;    /* every node starts fully threaded (no real children yet) */
+    n->rightThread = 1;
+    return n;
+}
+
+/* Global handles kept only so main() can print an accurate
+   thread map afterward - not required by the algorithm itself. */
+
+struct Node *n1, *n2, *n3, *n4, *n5, *n6, *n7;
+
+/* Same 7-node tree as Lecture 22/23, built with ordinary links first */
+struct Node *buildSampleTree(void)
+{
+    n1 = newNode(1); n2 = newNode(2); n3 = newNode(3);
+    n4 = newNode(4); n5 = newNode(5); n6 = newNode(6); n7 = newNode(7);
+
+    n1->left = n2;  n1->leftThread = 0;
+    n1->right = n3; n1->rightThread = 0;
+    
+    n2->left = n4;  n2->leftThread = 0;
+    n2->right = n5; n2->rightThread = 0;
+    
+    n3->left = n6;  n3->leftThread = 0;
+    n3->right = n7; n3->rightThread = 0;
+
+    return n1;
+}
+
+
+
+/* One inorder pass that converts every NULL child into a thread.
+   'prev' remembers the most recently completed node. */
+
+struct Node *prev = NULL;
+
+void threadify(struct Node *root)
+{
+    if (root == NULL) return;
+
+    threadify(root->left);
+
+    if (root->left == NULL)
+    {
+        root->left = prev;
+        root->leftThread = 1;
+    }
+    if (prev != NULL && prev->right == NULL)
+    {
+        prev->right = root;
+        prev->rightThread = 1;
+    }
+    prev = root;
+
+    threadify(root->right);
+}
+
+struct Node *createThreadedTree(void)
+{
+    struct Node *root = buildSampleTree();
+    prev = NULL;
+    threadify(root);
+    return root;
+}
+
+
+
+/* Leftmost real node - the inorder starting point */
+
+struct Node *leftmost(struct Node *node)
+{
+    if (node == NULL) return NULL;
+    while (node->leftThread == 0)
+        node = node->left;
+    return node;
+}
+
+
+
+/* Inorder traversal with NO stack and NO recursion */
+
+void inorderThreaded(struct Node *root)
+{
+    struct Node *cur = leftmost(root);
+
+    while (cur != NULL)
+    {
+        printf("%d ", cur->data);
+
+        if (cur->rightThread == 1)
+            cur = cur->right;            /* follow the thread directly */
+        else
+            cur = leftmost(cur->right);  /* go right once, then all the way left */
+    }
+}
+
+
+
+
+/* Free only REAL children - never follow a thread, or we would
+   free the same node twice (double free) or chase a cycle. */
+
+void freeThreaded(struct Node *n)
+{
+    if (n == NULL) return;
+    if (n->leftThread == 0) freeThreaded(n->left);
+    if (n->rightThread == 0) freeThreaded(n->right);
+    free(n);
+}
+
+
+
+void printSide(struct Node *link, int isThread)
+{
+    if (link == NULL) printf("NULL");
+    else if (isThread) printf("THREAD->%d", link->data);
+    else printf("REAL->%d", link->data);
+}
+
+
+
+
+void reportNode(struct Node *n)
+{
+    printf("node %d: left=", n->data);
+    printSide(n->left, n->leftThread);
+    printf(", right=");
+    printSide(n->right, n->rightThread);
+    printf("\n");
+}
+
+
+
+
+int main(void)
+{
+    struct Node *root = createThreadedTree();
+
+    printf("Threaded inorder (no stack, no recursion): ");
+    inorderThreaded(root);
+    printf("\n\n");
+
+    printf("Thread map (accurate, read directly from the struct):\n");
+    struct Node *all[7] = {n1, n2, n3, n4, n5, n6, n7};
+    for (int i = 0; i < 7; i++) reportNode(all[i]);
+
+    freeThreaded(root);
+    return 0;
+}
+
+------------------------------------------------------------
+Expected output:
+------------------------------------------------------------
+
+Threaded inorder (no stack, no recursion): 4 2 5 1 6 3 7
+
+Thread map (accurate, read directly from the struct):
+node 1: left=REAL->2, right=REAL->3
+node 2: left=REAL->4, right=REAL->5
+node 3: left=REAL->6, right=REAL->7
+node 4: left=NULL, right=THREAD->2
+node 5: left=THREAD->2, right=THREAD->1
+node 6: left=THREAD->1, right=THREAD->3
+node 7: left=THREAD->3, right=NULL
+
+

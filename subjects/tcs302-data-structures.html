@@ -53,6 +53,54 @@
       href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"
     />
     <link rel="stylesheet" href="../css/site.css" />
+    <style>
+      .unit-header {
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .unit-header:hover {
+        color: #0000ff;
+      }
+
+      .unit-toggle-icon {
+        display: inline-block;
+        width: 1.2em;
+        text-align: center;
+        color: #666;
+        font-weight: 700;
+      }
+
+      .unit-content {
+        display: none;
+      }
+
+      .unit-content.open {
+        display: block;
+      }
+
+      .toggle-all-btn {
+        margin-bottom: 1rem;
+        margin-right: 0.75rem;
+        padding: 0.35rem 0.9rem;
+        border: 1px solid #000;
+        border-radius: 4px;
+        background: #fff;
+        color: #000;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .toggle-all-btn:hover,
+      .toggle-all-btn:focus,
+      .toggle-all-btn:active,
+      .toggle-all-btn:visited {
+        background: #f5f5f5;
+        color: #000;
+        border-color: #000;
+        outline: none;
+      }
+    </style>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
@@ -81,12 +129,15 @@
 
             <p>
               Data Structures are fundamental for organizing and managing data
-              efficiently in software development. They help students understand
+              efficiently in software development. They help to understand
               how data is stored, accessed, and manipulated using algorithms and
               C programming concepts.
             </p>
 
-            <p>
+            <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1rem;">
+              <button id="toggle-all-units" class="toggle-all-btn" type="button">
+                Expand All
+              </button>
               <a
                 href="https://www.programiz.com/c-programming/online-compiler/"
                 target="_blank"
@@ -94,212 +145,231 @@
                 style="color: blue"
                 >Online C compiler</a
               >
-            </p>
+            </div>
 
-            <h3 class="mt-4">Unit 1 - Introduction to Data Structures</h3>
-            <ul>
-              <li>
-                Lecture 1 - Introduction to Data Structures
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS302/Unit-1/Lecture1_Introduction_to_Data_Structures.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS302/Unit-1/Lecture1_Introduction_to_Data_Structures.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                </span>
-              </li>
-              <li>
-                Lecture 2 - Data Structure Operations, and ADT
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS302/Unit-1/Lecture2_Data_Structure_Operations_ADT_Teaching_Style.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS302/Unit-1/Lecture2_Data_Structure_Operations_ADT_Teaching_Style.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                </span>
-              </li>
-              <li>
-                Lecture 3-4 - Pointers, Structures, Data Models and Algorithm Complexity
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS302/Unit-1/Lecture3_4_Pointers_Structures_DM_Algo_complexity.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS302/Unit-1/Lecture3_4_Pointers_Structures_DM_Algo_complexity.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                </span>
-              </li>
-              <li>
-                Lecture 5-6-7 - Arrays
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS302/Unit-1/Lecture5_6_7_Arrays.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS302/Unit-1/Lecture5_6_7_Arrays.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                </span>
-              </li>
-              <li>
-                Lecture 8 - All Stack Functions in C
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS302/Unit-1/Lecture8_All_Stack_Functions_in_C.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS302/Unit-1/Lecture8_All_Stack_Functions_in_C.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS302/Unit-1/Lecture8_Stack_C_implementation.txt" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">C code</a>
-                </span>
-              </li>
-              <li>
-                Lecture 9 - Linked Stack and Expression Conversion
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS302/Unit-1/Lecture9_Linked_Stack_and_Expression_Conversion.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS302/Unit-1/Lecture9_Linked_Stack_and_Expression_Conversion.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS302/Unit-1/Lecture9_Linked_Stack_and_Expression_Conversion.txt" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">C code</a>
-                </span>
-              </li>
-              <li>
-                Lecture 10 - Postfix Evaluation, Recursion and Hanoi
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS302/Unit-1/Lecture10_Postfix_Evaluation_Recursion_Hanoi.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS302/Unit-1/Lecture10_Postfix_Evaluation_Recursion_Hanoi.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS302/Unit-1/Lecture10_Postfix_Recursion_Hanoi.txt" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">C code</a>
-                </span>
-              </li>
-            </ul>
+            <h3 class="mt-4 unit-header" data-target="unit-1" aria-expanded="false">
+              <span class="unit-toggle-icon">+</span> Unit-1: Introduction, Arrays, Stacks and Recursion
+            </h3>
+            <div id="unit-1" class="unit-content">
+              <ul>
+                <li>
+                  Lecture 1 - Introduction to Data Structures
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS302/Unit-1/Lecture1_Introduction_to_Data_Structures.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS302/Unit-1/Lecture1_Introduction_to_Data_Structures.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                  </span>
+                </li>
+                <li>
+                  Lecture 2 - Data Structure Operations, and ADT
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS302/Unit-1/Lecture2_Data_Structure_Operations_ADT_Teaching_Style.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS302/Unit-1/Lecture2_Data_Structure_Operations_ADT_Teaching_Style.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                  </span>
+                </li>
+                <li>
+                  Lecture 3-4 - Pointers, Structures, Data Models and Algorithm Complexity
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS302/Unit-1/Lecture3_4_Pointers_Structures_DM_Algo_complexity.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS302/Unit-1/Lecture3_4_Pointers_Structures_DM_Algo_complexity.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                  </span>
+                </li>
+                <li>
+                  Lecture 5-6-7 - Arrays
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS302/Unit-1/Lecture5_6_7_Arrays.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS302/Unit-1/Lecture5_6_7_Arrays.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                  </span>
+                </li>
+                <li>
+                  Lecture 8 - All Stack Functions in C
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS302/Unit-1/Lecture8_All_Stack_Functions_in_C.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS302/Unit-1/Lecture8_All_Stack_Functions_in_C.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS302/Unit-1/Lecture8_Stack_C_implementation.txt" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">C code</a>
+                  </span>
+                </li>
+                <li>
+                  Lecture 9 - Linked Stack and Expression Conversion
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS302/Unit-1/Lecture9_Linked_Stack_and_Expression_Conversion.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS302/Unit-1/Lecture9_Linked_Stack_and_Expression_Conversion.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS302/Unit-1/Lecture9_Linked_Stack_and_Expression_Conversion.txt" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">C code</a>
+                  </span>
+                </li>
+                <li>
+                  Lecture 10 - Postfix Evaluation, Recursion and Hanoi
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS302/Unit-1/Lecture10_Postfix_Evaluation_Recursion_Hanoi.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS302/Unit-1/Lecture10_Postfix_Evaluation_Recursion_Hanoi.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS302/Unit-1/Lecture10_Postfix_Recursion_Hanoi.txt" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">C code</a>
+                  </span>
+                </li>
+              </ul>
+            </div>
 
-            <h3 class="mt-4">Unit 2</h3>
-            <ul>
-              <li>
-                Lecture 11-12 - Queue ADT and Array Representation
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS302/Unit-2/Lecture11-12_Queue_ADT_Array_Representation.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS302/Unit-2/Lecture11-12_Queue_ADT_Array_Representation.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS302/Unit-2/Lecture11-12_Queue_C_implementation.txt" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">C code</a>
-                </span>
-              </li>
-              <li>
-                Lecture 13 - Circular Queue
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS302/Unit-2/Lecture13_Circular_Queue.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS302/Unit-2/Lecture13_Circular_Queue.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS302/Unit-2/Lecture13_Circular_Queue.txt" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">C code</a>
-                </span>
-              </li>
-              <li>
-                Lecture 14 - DEque, Priority Queue and Linked Queue
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS302/Unit-2/Lecture14_Deque_PriorityQueue_LinkedQueue.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS302/Unit-2/Lecture14_Deque_PriorityQueue_LinkedQueue.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS302/Unit-2/Lecture14_Deque_PriorityQueue_LinkedQueue.txt" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">C code</a>
-                </span>
-              </li>
-              <li>
-                Lecture 15 - Introduction to Linked Lists
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS302/Unit-2/Lecture15_Introduction_to_Linked_Lists.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS302/Unit-2/Lecture15_Introduction_to_Linked_Lists.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS302/Unit-2/Lecture15_LinkedList_Practice.txt" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">C code</a>
-                </span>
-              </li>
-              <li>
-                Lecture 16 - Creation, Traversal and Searching
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS302/Unit-2/Lecture16_Creation_Traversal_Searching.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS302/Unit-2/Lecture16_Creation_Traversal_Searching.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS302/Unit-2/Lecture16_LinkedList_Code.txt" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">C code</a>
-                </span>
-              </li>
-              <li>
-                Lecture 17-18 - Insertion and Deletion
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS302/Unit-2/Lecture17_18_Insertion_Deletion.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS302/Unit-2/Lecture17_18_Insertion_Deletion.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS302/Unit-2/Lecture17_18_Insertion_Deletion.txt" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">C code</a>
-                </span>
-              </li>
-              <li>
-                Lecture 19 - Doubly Linked Lists
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS302/Unit-2/Lecture19_Doubly_Linked_Lists.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS302/Unit-2/Lecture19_Doubly_Linked_Lists.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS302/Unit-2/Lecture19_DoublyLinkedList_Code.txt" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">C code</a>
-                </span>
-              </li>
+            <h3 class="mt-4 unit-header" data-target="unit-2" aria-expanded="false">
+              <span class="unit-toggle-icon">+</span> Unit-2: Queues and Linked Lists
+            </h3>
+            <div id="unit-2" class="unit-content">
+              <ul>
+                <li>
+                  Lecture 11-12 - Queue ADT and Array Representation
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS302/Unit-2/Lecture11-12_Queue_ADT_Array_Representation.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS302/Unit-2/Lecture11-12_Queue_ADT_Array_Representation.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS302/Unit-2/Lecture11-12_Queue_C_implementation.txt" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">C code</a>
+                  </span>
+                </li>
+                <li>
+                  Lecture 13 - Circular Queue
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS302/Unit-2/Lecture13_Circular_Queue.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS302/Unit-2/Lecture13_Circular_Queue.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS302/Unit-2/Lecture13_Circular_Queue.txt" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">C code</a>
+                  </span>
+                </li>
+                <li>
+                  Lecture 14 - DEque, Priority Queue and Linked Queue
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS302/Unit-2/Lecture14_Deque_PriorityQueue_LinkedQueue.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS302/Unit-2/Lecture14_Deque_PriorityQueue_LinkedQueue.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS302/Unit-2/Lecture14_Deque_PriorityQueue_LinkedQueue.txt" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">C code</a>
+                  </span>
+                </li>
+                <li>
+                  Lecture 15 - Introduction to Linked Lists
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS302/Unit-2/Lecture15_Introduction_to_Linked_Lists.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS302/Unit-2/Lecture15_Introduction_to_Linked_Lists.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS302/Unit-2/Lecture15_LinkedList_Practice.txt" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">C code</a>
+                  </span>
+                </li>
+                <li>
+                  Lecture 16 - Creation, Traversal and Searching
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS302/Unit-2/Lecture16_Creation_Traversal_Searching.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS302/Unit-2/Lecture16_Creation_Traversal_Searching.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS302/Unit-2/Lecture16_LinkedList_Code.txt" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">C code</a>
+                  </span>
+                </li>
+                <li>
+                  Lecture 17-18 - Insertion and Deletion
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS302/Unit-2/Lecture17_18_Insertion_Deletion.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS302/Unit-2/Lecture17_18_Insertion_Deletion.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS302/Unit-2/Lecture17_18_Insertion_Deletion.txt" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">C code</a>
+                  </span>
+                </li>
+                <li>
+                  Lecture 19 - Doubly Linked Lists
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS302/Unit-2/Lecture19_Doubly_Linked_Lists.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS302/Unit-2/Lecture19_Doubly_Linked_Lists.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS302/Unit-2/Lecture19_DoublyLinkedList_Code.txt" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">C code</a>
+                  </span>
+                </li>
+                <li>
+                  Lecture 20 - Linked List as Polynomials
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS302/Unit-2/Lecture20_LinkedList_as_Polynomials_Code.txt" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">C code</a>
+                  </span>
+                </li>
+              </ul>
+            </div>
 
-              <li>
-                Lecture 20 - Linked List as Polynomials
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS302/Unit-2/Lecture20_LinkedList_as_Polynomials_Code.txt" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">C code</a>
-                </span>
-              </li>
-            </ul>
+            <h3 class="mt-4 unit-header" data-target="unit-3" aria-expanded="false">
+              <span class="unit-toggle-icon">+</span> Unit-3: Trees, Searching and Hashing
+            </h3>
+            <div id="unit-3" class="unit-content">
+              <ul>
+                <li>
+                  Lecture 21 - Tree Terminology and Binary Trees
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS302/Unit-3/Lecture21_Tree_Terminology_Binary_Trees.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS302/Unit-3/Lecture21_Tree_Terminology_Binary_Trees.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                  </span>
+                </li>
+                <li>
+                  Lecture 22 - Array and Linked Tree Representations
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS302/Unit-3/Lecture22_Array_Linked_Tree_Representations.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS302/Unit-3/Lecture22_Array_Linked_Tree_Representations.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS302/Unit-3/Lecture22_Tree_Representations_Code.txt" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">C code</a>
+                  </span>
+                </li>
+                <li>
+                  Lecture 23 - Binary Tree Traversal
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS302/Unit-3/Lecture23_Binary_Tree_Traversal.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS302/Unit-3/Lecture23_Binary_Tree_Traversal.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS302/Unit-3/Lecture23_Traversal_Code.txt" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">C code</a>
+                  </span>
+                </li>
+                <li>
+                  Lecture 24 - Expression Tree Construction
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS302/Unit-3/Lecture24_Expression_Tree_Construction.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS302/Unit-3/Lecture24_Expression_Tree_Construction.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS302/Unit-3/Lecture24_ExpressionTree_Construction_Code.txt" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">C code</a>
+                  </span>
+                </li>
+                <li>
+                  Lecture 25 - Threaded Binary Trees
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS302/Unit-3/Lecture25_Threaded_Binary_Trees.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS302/Unit-3/Lecture25_Threaded_Binary_Trees.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS302/Unit-3/Lecture25_ThreadedTree_Code.txt" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">C code</a>
+                  </span>
+                </li>
+              </ul>
+            </div>
 
-            <h3 class="mt-4">Unit 3</h3>
-            <ul>
-              <li>
-                Lecture 21 - Tree Terminology and Binary Trees
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS302/Unit-3/Lecture21_Tree_Terminology_Binary_Trees.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS302/Unit-3/Lecture21_Tree_Terminology_Binary_Trees.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                </span>
-              </li>
-              <li>
-                Lecture 22 - Array and Linked Tree Representations
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS302/Unit-3/Lecture22_Array_Linked_Tree_Representations.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS302/Unit-3/Lecture22_Array_Linked_Tree_Representations.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS302/Unit-3/Lecture22_Tree_Representations_Code.txt" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">C code</a>
-                </span>
-              </li>
-              <li>
-                Lecture 23 - Binary Tree Traversal
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS302/Unit-3/Lecture23_Binary_Tree_Traversal.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS302/Unit-3/Lecture23_Binary_Tree_Traversal.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS302/Unit-3/Lecture23_Traversal_Code.txt" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">C code</a>
-                </span>
-              </li>
-              <li>
-                Lecture 24 - Expression Tree Construction
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS302/Unit-3/Lecture24_Expression_Tree_Construction.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS302/Unit-3/Lecture24_Expression_Tree_Construction.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS302/Unit-3/Lecture24_ExpressionTree_Construction_Code.txt" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">C code</a>
-                </span>
-              </li>
-              <li>
-                Lecture 25 - Threaded Binary Trees
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS302/Unit-3/Lecture25_Threaded_Binary_Trees.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS302/Unit-3/Lecture25_Threaded_Binary_Trees.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS302/Unit-3/Lecture25_ThreadedTree_Code.txt" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">C code</a>
-                </span>
-              </li>
-            </ul>
+            <h3 class="mt-4 unit-header" data-target="unit-4" aria-expanded="false">
+              <span class="unit-toggle-icon">+</span> Unit-4: Sorting and Binary Search Trees
+            </h3>
+            <div id="unit-4" class="unit-content">
+              <p>No materials uploaded yet.</p>
+            </div>
 
-            <h3 class="mt-4">Unit 4</h3>
-            <p>No materials uploaded yet.</p>
-
-            <h3 class="mt-4">Unit 5</h3>
-            <p>No materials uploaded yet.</p>
+            <h3 class="mt-4 unit-header" data-target="unit-5" aria-expanded="false">
+              <span class="unit-toggle-icon">+</span> Unit-5: File Structures and Graphs
+            </h3>
+            <div id="unit-5" class="unit-content">
+              <p>No materials uploaded yet.</p>
+            </div>
           </div>
           <div class="mt-5">
             <div id="shared-footer"></div>
@@ -307,5 +377,87 @@
         </div>
       </div>
     </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const headers = document.querySelectorAll(".unit-header");
+        const contents = document.querySelectorAll(".unit-content");
+        const toggleAllButton = document.getElementById("toggle-all-units");
+
+        function syncToggleAllButton() {
+          if (!toggleAllButton) return;
+          const allOpen = Array.from(contents).every((item) => item.classList.contains("open"));
+          toggleAllButton.textContent = allOpen ? "Collapse All" : "Expand All";
+        }
+
+        function setUnitState(targetHeader, shouldOpen) {
+          const targetId = targetHeader.getAttribute("data-target");
+          const targetContent = document.getElementById(targetId);
+
+          if (!targetContent) return;
+
+          if (shouldOpen) {
+            targetContent.classList.add("open");
+            targetContent.style.display = "block";
+            targetHeader.setAttribute("aria-expanded", "true");
+            const icon = targetHeader.querySelector(".unit-toggle-icon");
+            if (icon) icon.textContent = "−";
+          } else {
+            targetContent.classList.remove("open");
+            targetContent.style.display = "none";
+            targetHeader.setAttribute("aria-expanded", "false");
+            const icon = targetHeader.querySelector(".unit-toggle-icon");
+            if (icon) icon.textContent = "+";
+          }
+        }
+
+        headers.forEach((header) => {
+          header.addEventListener("click", function () {
+            const targetId = this.getAttribute("data-target");
+            const content = document.getElementById(targetId);
+
+            if (!content) return;
+
+            const isOpen = content.classList.contains("open");
+
+            contents.forEach((item) => {
+              item.classList.remove("open");
+              item.style.display = "none";
+            });
+
+            headers.forEach((item) => {
+              item.setAttribute("aria-expanded", "false");
+              const icon = item.querySelector(".unit-toggle-icon");
+              if (icon) icon.textContent = "+";
+            });
+
+            if (!isOpen) {
+              content.classList.add("open");
+              content.style.display = "block";
+              this.setAttribute("aria-expanded", "true");
+              const icon = this.querySelector(".unit-toggle-icon");
+              if (icon) icon.textContent = "−";
+            }
+
+            syncToggleAllButton();
+          });
+        });
+
+        if (toggleAllButton) {
+          toggleAllButton.addEventListener("click", function () {
+            const allOpen = Array.from(contents).every((item) => item.classList.contains("open"));
+            const shouldOpen = !allOpen;
+            headers.forEach((header) => setUnitState(header, shouldOpen));
+            syncToggleAllButton();
+          });
+        }
+
+        contents.forEach((content) => {
+          content.classList.remove("open");
+          content.style.display = "none";
+        });
+
+        syncToggleAllButton();
+      });
+    </script>
   </body>
 </html>

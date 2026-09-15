@@ -50,6 +50,54 @@
       href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"
     />
     <link rel="stylesheet" href="../css/site.css" />
+    <style>
+      .unit-header {
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .unit-header:hover,
+      .books-header:hover {
+        color: #0000ff;
+      }
+
+      .unit-toggle-icon {
+        display: inline-block;
+        width: 1.2em;
+        text-align: center;
+        color: #666;
+        font-weight: 700;
+      }
+
+      .unit-content {
+        display: none;
+      }
+
+      .unit-content.open {
+        display: block;
+      }
+
+      .toggle-all-btn {
+        margin-bottom: 1rem;
+        padding: 0.35rem 0.9rem;
+        border: 1px solid #000;
+        border-radius: 4px;
+        background: #fff;
+        color: #000;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .toggle-all-btn:hover,
+      .toggle-all-btn:focus,
+      .toggle-all-btn:active,
+      .toggle-all-btn:visited {
+        background: #f5f5f5;
+        color: #000;
+        border-color: #000;
+        outline: none;
+      }
+    </style>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
@@ -84,169 +132,193 @@
               used in a way that benefits society.
             </p>
 
-            <h3 class="mt-4">Unit 1 - Introduction to Responsible AI</h3>
-            <ul>
-              <li>
-                Lecture 1 - Introduction to AI and Responsible AI
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS349/Unit-1/Lecture1_Introduction_to_AI_and_Responsible_AI.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS349/Unit-1/Lecture1_Introduction_to_AI_and_Responsible_AI.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                </span>
-              </li>
-              <li>
-                Lecture 2 - AI Ethics, Morality and Law
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS349/Unit-1/Lecture2_AI_Ethics_Morality_and_Law.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS349/Unit-1/Lecture2_AI_Ethics_Morality_and_Law.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                </span>
-              </li>
-              <li>
-                Lecture 3 - Common Ethical Dilemmas and Stakeholder Analysis
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS349/Unit-1/Lecture3_Common_Ethical_Dilemmas_and_Stakeholder_Analysis.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS349/Unit-1/Lecture3_Common_Ethical_Dilemmas_and_Stakeholder_Analysis.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                </span>
-              </li>
-              <li>
-                Lecture 4 - Bias in AI Systems: Types
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS349/Unit-1/Lecture4_Bias_in_AI_Systems_Types.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS349/Unit-1/Lecture4_Bias_in_AI_Systems_Types.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                </span>
-              </li>
-              <li>
-                Lecture 5 - Algorithmic, Interactional, Feedback and Deployment Bias
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS349/Unit-1/Lecture5_Algorithmic_Interactional_Feedback_Deployment_Bias.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS349/Unit-1/Lecture5_Algorithmic_Interactional_Feedback_Deployment_Bias.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                </span>
-              </li>
-              <li>
-                Lecture 6-7 - Bias Detection and Fairness
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS349/Unit-1/Lecture6-7_Bias_Detection_Fairness.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS349/Unit-1/Lecture6-7_Bias_Detection_Fairness.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                </span>
-              </li>
-              <li>
-                Lecture 8-9 - Fairness Tradeoffs and Mitigation
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS349/Unit-1/Lecture8-9_Fairness_Tradeoffs_Mitigation.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS349/Unit-1/Lecture8-9_Fairness_Tradeoffs_Mitigation.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                </span>
-              </li>
-            </ul>
+            <button id="toggle-all-units" class="toggle-all-btn" type="button">
+              Expand All
+            </button>
 
-            <h3 class="mt-4">Unit 2 - Transparency, Accountability and Privacy</h3>
-            <ul>
-              <li>
-                Lecture 1 - Responsible AI Principles
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS349/Unit-2/Lecture1_Responsible_AI_Principles.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS349/Unit-2/Lecture1_Responsible_AI_Principles.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                </span>
-              </li>
-              <li>
-                Lecture 2 - Transparency in AI
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS349/Unit-2/Lecture2_Transparency_in_AI.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS349/Unit-2/Lecture2_Transparency_in_AI.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                </span>
-              </li>
-              <li>
-                Lecture 3 - Transparency Tools
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS349/Unit-2/Lecture3_Transparency_Tools.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS349/Unit-2/Lecture3_Transparency_Tools.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                </span>
-              </li>
-              <li>
-                Lecture 4-5 - Accountability and Governance
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS349/Unit-2/Lecture4-5_Accountability_Governance.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS349/Unit-2/Lecture4-5_Accountability_Governance.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                </span>
-              </li>
-              <li>
-                Lecture 6 - AI Surveillance
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS349/Unit-2/Lecture6_AI_Surveillance.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS349/Unit-2/Lecture6_AI_Surveillance.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                </span>
-              </li>
-              <li>
-                Lecture 7 - Privacy in AI
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS349/Unit-2/Lecture7_Privacy_in_AI.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS349/Unit-2/Lecture7_Privacy_in_AI.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                </span>
-              </li>
-              <li>
-                Lecture 8 - Data Protection Techniques
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS349/Unit-2/Lecture8_Data_Protection_Techniques.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS349/Unit-2/Lecture8_Data_Protection_Techniques.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                </span>
-              </li>
-              <li>
-                Lecture 9 - Security, Privacy Balance and Review
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS349/Unit-2/Lecture9_Security_Privacy_Balance_Review.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS349/Unit-2/Lecture9_Security_Privacy_Balance_Review.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                </span>
-              </li>
-            </ul>
+            <h3 class="mt-4 unit-header" data-target="unit-1" aria-expanded="false">
+              <span class="unit-toggle-icon">+</span> Unit-1: Introduction to AI Ethics, Bias and Fairness
+            </h3>
+            <div id="unit-1" class="unit-content">
+              <ul>
+                <li>
+                  Lecture 1 - Introduction to AI and Responsible AI
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS349/Unit-1/Lecture1_Introduction_to_AI_and_Responsible_AI.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS349/Unit-1/Lecture1_Introduction_to_AI_and_Responsible_AI.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                  </span>
+                </li>
+                <li>
+                  Lecture 2 - AI Ethics, Morality and Law
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS349/Unit-1/Lecture2_AI_Ethics_Morality_and_Law.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS349/Unit-1/Lecture2_AI_Ethics_Morality_and_Law.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                  </span>
+                </li>
+                <li>
+                  Lecture 3 - Common Ethical Dilemmas and Stakeholder Analysis
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS349/Unit-1/Lecture3_Common_Ethical_Dilemmas_and_Stakeholder_Analysis.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS349/Unit-1/Lecture3_Common_Ethical_Dilemmas_and_Stakeholder_Analysis.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                  </span>
+                </li>
+                <li>
+                  Lecture 4 - Bias in AI Systems: Types
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS349/Unit-1/Lecture4_Bias_in_AI_Systems_Types.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS349/Unit-1/Lecture4_Bias_in_AI_Systems_Types.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                  </span>
+                </li>
+                <li>
+                  Lecture 5 - Algorithmic, Interactional, Feedback and Deployment Bias
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS349/Unit-1/Lecture5_Algorithmic_Interactional_Feedback_Deployment_Bias.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS349/Unit-1/Lecture5_Algorithmic_Interactional_Feedback_Deployment_Bias.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                  </span>
+                </li>
+                <li>
+                  Lecture 6-7 - Bias Detection and Fairness
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS349/Unit-1/Lecture6-7_Bias_Detection_Fairness.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS349/Unit-1/Lecture6-7_Bias_Detection_Fairness.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                  </span>
+                </li>
+                <li>
+                  Lecture 8-9 - Fairness Tradeoffs and Mitigation
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS349/Unit-1/Lecture8-9_Fairness_Tradeoffs_Mitigation.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS349/Unit-1/Lecture8-9_Fairness_Tradeoffs_Mitigation.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                  </span>
+                </li>
+              </ul>
+            </div>
 
-            <h3 class="mt-4">Unit 3</h3>
-            <ul>
-              <li>
-                Lecture 1 - AI and Employment
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS349/Unit-3/Lecture1_AI_and_Employment.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS349/Unit-3/Lecture1_AI_and_Employment.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                </span>
-              </li>
-              <li>
-                Lecture 2 - Job Augmentation
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS349/Unit-3/Lecture2_Job_Augmentation.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS349/Unit-3/Lecture2_Job_Augmentation.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                </span>
-              </li>
-              <li>
-                Lecture 3 - AI Productivity and Industry Transformation
-                <span style="margin-left: 12px;">
-                  <a href="../assets/TCS349/Unit-3/Lecture3_AI_Productivity_Industry_Transformation.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
-                  <span style="color: #666;"> | </span>
-                  <a href="../assets/TCS349/Unit-3/Lecture3_AI_Productivity_Industry_Transformation.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
-                </span>
-              </li>
-            </ul>
+            <h3 class="mt-4 unit-header" data-target="unit-2" aria-expanded="false">
+              <span class="unit-toggle-icon">+</span> Unit-2: Transparency, Accountability, Surveillance and Privacy
+            </h3>
+            <div id="unit-2" class="unit-content">
+              <ul>
+                <li>
+                  Lecture 1 - Responsible AI Principles
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS349/Unit-2/Lecture1_Responsible_AI_Principles.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS349/Unit-2/Lecture1_Responsible_AI_Principles.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                  </span>
+                </li>
+                <li>
+                  Lecture 2 - Transparency in AI
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS349/Unit-2/Lecture2_Transparency_in_AI.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS349/Unit-2/Lecture2_Transparency_in_AI.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                  </span>
+                </li>
+                <li>
+                  Lecture 3 - Transparency Tools
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS349/Unit-2/Lecture3_Transparency_Tools.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS349/Unit-2/Lecture3_Transparency_Tools.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                  </span>
+                </li>
+                <li>
+                  Lecture 4-5 - Accountability and Governance
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS349/Unit-2/Lecture4-5_Accountability_Governance.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS349/Unit-2/Lecture4-5_Accountability_Governance.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                  </span>
+                </li>
+                <li>
+                  Lecture 6 - AI Surveillance
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS349/Unit-2/Lecture6_AI_Surveillance.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS349/Unit-2/Lecture6_AI_Surveillance.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                  </span>
+                </li>
+                <li>
+                  Lecture 7 - Privacy in AI
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS349/Unit-2/Lecture7_Privacy_in_AI.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS349/Unit-2/Lecture7_Privacy_in_AI.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                  </span>
+                </li>
+                <li>
+                  Lecture 8 - Data Protection Techniques
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS349/Unit-2/Lecture8_Data_Protection_Techniques.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS349/Unit-2/Lecture8_Data_Protection_Techniques.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                  </span>
+                </li>
+                <li>
+                  Lecture 9 - Security, Privacy Balance and Review
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS349/Unit-2/Lecture9_Security_Privacy_Balance_Review.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS349/Unit-2/Lecture9_Security_Privacy_Balance_Review.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                  </span>
+                </li>
+              </ul>
+            </div>
 
-            <h3 class="mt-4">Unit 4</h3>
-            <p>No materials uploaded yet.</p>
+            <h3 class="mt-4 unit-header" data-target="unit-3" aria-expanded="false">
+              <span class="unit-toggle-icon">+</span> Unit-3: Societal Impacts of AI
+            </h3>
+            <div id="unit-3" class="unit-content">
+              <ul>
+                <li>
+                  Lecture 1 - AI and Employment
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS349/Unit-3/Lecture1_AI_and_Employment.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS349/Unit-3/Lecture1_AI_and_Employment.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                  </span>
+                </li>
+                <li>
+                  Lecture 2 - Job Augmentation
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS349/Unit-3/Lecture2_Job_Augmentation.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS349/Unit-3/Lecture2_Job_Augmentation.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                  </span>
+                </li>
+                <li>
+                  Lecture 3 - AI Productivity and Industry Transformation
+                  <span style="margin-left: 12px;">
+                    <a href="../assets/TCS349/Unit-3/Lecture3_AI_Productivity_Industry_Transformation.pptx" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pptx</a>
+                    <span style="color: #666;"> | </span>
+                    <a href="../assets/TCS349/Unit-3/Lecture3_AI_Productivity_Industry_Transformation.pdf" target="_blank" rel="noopener" style="color: blue; text-decoration: none;">pdf</a>
+                  </span>
+                </li>
+              </ul>
+            </div>
 
-            <h3 class="mt-4">Unit 5</h3>
-            <p>No materials uploaded yet.</p>
+            <h3 class="mt-4 unit-header" data-target="unit-4" aria-expanded="false">
+              <span class="unit-toggle-icon">+</span> Unit-4: Explainable Artificial Intelligence Fundamentals
+            </h3>
+            <div id="unit-4" class="unit-content">
+              <p>No materials uploaded yet.</p>
+            </div>
 
-            <h3 class="mt-4">Books / References</h3>
+            <h3 class="mt-4 unit-header" data-target="unit-5" aria-expanded="false">
+              <span class="unit-toggle-icon">+</span> Unit-5: Visualization and Applications of Explainable AI
+            </h3>
+            <div id="unit-5" class="unit-content">
+              <p>No materials uploaded yet.</p>
+            </div>
+
+            <h3 class="mt-4 books-header">Books / References</h3>
             <ul>
               <li>
                 <a
@@ -265,12 +337,101 @@
                 >
               </li>
             </ul>
-          </div>
           <div class="mt-5">
             <div id="shared-footer"></div>
           </div>
         </div>
       </div>
     </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const headers = document.querySelectorAll(".unit-header");
+        const contents = document.querySelectorAll(".unit-content");
+        const toggleAllButton = document.getElementById("toggle-all-units");
+
+        function syncToggleAllButton() {
+          if (!toggleAllButton) {
+            return;
+          }
+
+          const allOpen = Array.from(contents).every((item) => item.classList.contains("open"));
+          toggleAllButton.textContent = allOpen ? "Collapse All" : "Expand All";
+        }
+
+        function setUnitState(targetHeader, shouldOpen) {
+          const targetId = targetHeader.getAttribute("data-target");
+          const targetContent = document.getElementById(targetId);
+
+          if (!targetContent) {
+            return;
+          }
+
+          if (shouldOpen) {
+            targetContent.classList.add("open");
+            targetContent.style.display = "block";
+            targetHeader.setAttribute("aria-expanded", "true");
+            const icon = targetHeader.querySelector(".unit-toggle-icon");
+            if (icon) icon.textContent = "−";
+          } else {
+            targetContent.classList.remove("open");
+            targetContent.style.display = "none";
+            targetHeader.setAttribute("aria-expanded", "false");
+            const icon = targetHeader.querySelector(".unit-toggle-icon");
+            if (icon) icon.textContent = "+";
+          }
+        }
+
+        headers.forEach((header) => {
+          header.addEventListener("click", function () {
+            const targetId = this.getAttribute("data-target");
+            const content = document.getElementById(targetId);
+
+            if (!content) {
+              return;
+            }
+
+            const isOpen = content.classList.contains("open");
+
+            contents.forEach((item) => {
+              item.classList.remove("open");
+              item.style.display = "none";
+            });
+
+            headers.forEach((item) => {
+              item.setAttribute("aria-expanded", "false");
+              const icon = item.querySelector(".unit-toggle-icon");
+              if (icon) icon.textContent = "+";
+            });
+
+            if (!isOpen) {
+              content.classList.add("open");
+              content.style.display = "block";
+              this.setAttribute("aria-expanded", "true");
+              const icon = this.querySelector(".unit-toggle-icon");
+              if (icon) icon.textContent = "−";
+            }
+
+            syncToggleAllButton();
+          });
+        });
+
+        if (toggleAllButton) {
+          toggleAllButton.addEventListener("click", function () {
+            const allOpen = Array.from(contents).every((item) => item.classList.contains("open"));
+            const shouldOpen = !allOpen;
+
+            headers.forEach((header) => setUnitState(header, shouldOpen));
+            syncToggleAllButton();
+          });
+        }
+
+        contents.forEach((content) => {
+          content.classList.remove("open");
+          content.style.display = "none";
+        });
+
+        syncToggleAllButton();
+      });
+    </script>
   </body>
 </html>

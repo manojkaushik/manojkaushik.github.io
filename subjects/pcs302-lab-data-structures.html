@@ -53,6 +53,54 @@
       href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"
     />
     <link rel="stylesheet" href="../css/site.css" />
+    <style>
+      .unit-header {
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .unit-header:hover {
+        color: #0000ff;
+      }
+
+      .unit-toggle-icon {
+        display: inline-block;
+        width: 1.2em;
+        text-align: center;
+        color: #666;
+        font-weight: 700;
+      }
+
+      .unit-content {
+        display: none;
+      }
+
+      .unit-content.open {
+        display: block;
+      }
+
+      .toggle-all-btn {
+        margin-bottom: 1rem;
+        margin-right: 0.75rem;
+        padding: 0.35rem 0.9rem;
+        border: 1px solid #000;
+        border-radius: 4px;
+        background: #fff;
+        color: #000;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .toggle-all-btn:hover,
+      .toggle-all-btn:focus,
+      .toggle-all-btn:active,
+      .toggle-all-btn:visited {
+        background: #f5f5f5;
+        color: #000;
+        border-color: #000;
+        outline: none;
+      }
+    </style>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
@@ -85,7 +133,10 @@
               programming techniques used in lab sessions.
             </p>
 
-            <p>
+            <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1rem;">
+              <button id="toggle-all-units" class="toggle-all-btn" type="button">
+                Expand All
+              </button>
               <a
                 href="https://www.programiz.com/c-programming/online-compiler/"
                 target="_blank"
@@ -93,10 +144,13 @@
                 style="color: blue"
                 >Online C compiler</a
               >
-            </p>
+            </div>
 
-            <h3 class="mt-4">Unit 1 - Arrays</h3>
-            <ul>
+            <h3 class="mt-4 unit-header" data-target="unit-1" aria-expanded="false">
+              <span class="unit-toggle-icon">+</span> Lab 1 - Arrays
+            </h3>
+            <div id="unit-1" class="unit-content">
+              <ul>
               <li>
                 Left Rotation of an Array
                 <span style="margin-left: 12px;">
@@ -115,8 +169,13 @@
               </li>
             </ul>
 
-            <h3 class="mt-4">Unit 2 - Arrays</h3>
-            <ul>
+            </div>
+
+            <h3 class="mt-4 unit-header" data-target="unit-2" aria-expanded="false">
+              <span class="unit-toggle-icon">+</span> Lab 2 - Arrays
+            </h3>
+            <div id="unit-2" class="unit-content">
+              <ul>
               <li>
                 Search Element in Sorted Matrix
                 <span style="margin-left: 12px;">
@@ -135,8 +194,13 @@
               </li>
             </ul>
 
-            <h3 class="mt-4">Unit 3 - Stack Using an Array</h3>
-            <ul>
+            </div>
+
+            <h3 class="mt-4 unit-header" data-target="unit-3" aria-expanded="false">
+              <span class="unit-toggle-icon">+</span> Lab 3 - Stack Using an Array
+            </h3>
+            <div id="unit-3" class="unit-content">
+              <ul>
               <li>
                 Stack Array Lab
                 <span style="margin-left: 12px;">
@@ -155,8 +219,13 @@
               </li>
             </ul>
 
-            <h3 class="mt-4">Unit 4 - Stack Using an Array</h3>
-            <ul>
+            </div>
+
+            <h3 class="mt-4 unit-header" data-target="unit-4" aria-expanded="false">
+              <span class="unit-toggle-icon">+</span> Lab 4 - Stack Using an Array
+            </h3>
+            <div id="unit-4" class="unit-content">
+              <ul>
               <li>
                 Reverse String Using Stack Lab
                 <span style="margin-left: 12px;">
@@ -175,8 +244,13 @@
               </li>
             </ul>
 
-            <h3 class="mt-4">Unit 5 - Queue Using an Array</h3>
-            <ul>
+            </div>
+
+            <h3 class="mt-4 unit-header" data-target="unit-5" aria-expanded="false">
+              <span class="unit-toggle-icon">+</span> Lab 5 - Queue Using an Array
+            </h3>
+            <div id="unit-5" class="unit-content">
+              <ul>
               <li>
                 Queue Array Lab
                 <span style="margin-left: 12px;">
@@ -203,8 +277,13 @@
               </li>
             </ul>
 
-            <h3 class="mt-4">Unit 6 - Queue Using an Array</h3>
-            <ul>
+            </div>
+
+            <h3 class="mt-4 unit-header" data-target="unit-6" aria-expanded="false">
+              <span class="unit-toggle-icon">+</span> Lab 6 - Queue Using an Array
+            </h3>
+            <div id="unit-6" class="unit-content">
+              <ul>
               <li>
                 Stack Using Queue Lab
                 <span style="margin-left: 12px;">
@@ -231,29 +310,63 @@
               </li>
             </ul>
 
-            <h3 class="mt-4">Unit 7 - Linked List</h3>
-            <p>No materials uploaded yet.</p>
+            </div>
 
-            <h3 class="mt-4">Unit 8 - Linked List</h3>
-            <p>No materials uploaded yet.</p>
+            <h3 class="mt-4 unit-header" data-target="unit-7" aria-expanded="false">
+              <span class="unit-toggle-icon">+</span> Lab 7 - Linked List
+            </h3>
+            <div id="unit-7" class="unit-content">
+              <p>No materials uploaded yet.</p>
+            </div>
 
-            <h3 class="mt-4">Unit 9 - Linked List</h3>
-            <p>No materials uploaded yet.</p>
+            <h3 class="mt-4 unit-header" data-target="unit-8" aria-expanded="false">
+              <span class="unit-toggle-icon">+</span> Lab 8 - Linked List
+            </h3>
+            <div id="unit-8" class="unit-content">
+              <p>No materials uploaded yet.</p>
+            </div>
 
-            <h3 class="mt-4">Unit 10 - Linked List</h3>
-            <p>No materials uploaded yet.</p>
+            <h3 class="mt-4 unit-header" data-target="unit-9" aria-expanded="false">
+              <span class="unit-toggle-icon">+</span> Lab 9 - Linked List
+            </h3>
+            <div id="unit-9" class="unit-content">
+              <p>No materials uploaded yet.</p>
+            </div>
 
-            <h3 class="mt-4">Unit 11 - Tree</h3>
-            <p>No materials uploaded yet.</p>
+            <h3 class="mt-4 unit-header" data-target="unit-10" aria-expanded="false">
+              <span class="unit-toggle-icon">+</span> Lab 10 - Linked List
+            </h3>
+            <div id="unit-10" class="unit-content">
+              <p>No materials uploaded yet.</p>
+            </div>
 
-            <h3 class="mt-4">Unit 12 - Tree</h3>
-            <p>No materials uploaded yet.</p>
+            <h3 class="mt-4 unit-header" data-target="unit-11" aria-expanded="false">
+              <span class="unit-toggle-icon">+</span> Lab 11 - Tree
+            </h3>
+            <div id="unit-11" class="unit-content">
+              <p>No materials uploaded yet.</p>
+            </div>
 
-            <h3 class="mt-4">Unit 13 - Tree</h3>
-            <p>No materials uploaded yet.</p>
+            <h3 class="mt-4 unit-header" data-target="unit-12" aria-expanded="false">
+              <span class="unit-toggle-icon">+</span> Lab 12 - Tree
+            </h3>
+            <div id="unit-12" class="unit-content">
+              <p>No materials uploaded yet.</p>
+            </div>
 
-            <h3 class="mt-4">Unit 14 - Tree</h3>
-            <p>No materials uploaded yet.</p>
+            <h3 class="mt-4 unit-header" data-target="unit-13" aria-expanded="false">
+              <span class="unit-toggle-icon">+</span> Lab 13 - Tree
+            </h3>
+            <div id="unit-13" class="unit-content">
+              <p>No materials uploaded yet.</p>
+            </div>
+
+            <h3 class="mt-4 unit-header" data-target="unit-14" aria-expanded="false">
+              <span class="unit-toggle-icon">+</span> Lab 14 - Tree
+            </h3>
+            <div id="unit-14" class="unit-content">
+              <p>No materials uploaded yet.</p>
+            </div>
           </div>
           <div class="mt-5">
             <div id="shared-footer"></div>
@@ -261,5 +374,87 @@
         </div>
       </div>
     </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const headers = document.querySelectorAll(".unit-header");
+        const contents = document.querySelectorAll(".unit-content");
+        const toggleAllButton = document.getElementById("toggle-all-units");
+
+        function syncToggleAllButton() {
+          if (!toggleAllButton) return;
+          const allOpen = Array.from(contents).every((item) => item.classList.contains("open"));
+          toggleAllButton.textContent = allOpen ? "Collapse All" : "Expand All";
+        }
+
+        function setUnitState(targetHeader, shouldOpen) {
+          const targetId = targetHeader.getAttribute("data-target");
+          const targetContent = document.getElementById(targetId);
+
+          if (!targetContent) return;
+
+          if (shouldOpen) {
+            targetContent.classList.add("open");
+            targetContent.style.display = "block";
+            targetHeader.setAttribute("aria-expanded", "true");
+            const icon = targetHeader.querySelector(".unit-toggle-icon");
+            if (icon) icon.textContent = "−";
+          } else {
+            targetContent.classList.remove("open");
+            targetContent.style.display = "none";
+            targetHeader.setAttribute("aria-expanded", "false");
+            const icon = targetHeader.querySelector(".unit-toggle-icon");
+            if (icon) icon.textContent = "+";
+          }
+        }
+
+        headers.forEach((header) => {
+          header.addEventListener("click", function () {
+            const targetId = this.getAttribute("data-target");
+            const content = document.getElementById(targetId);
+
+            if (!content) return;
+
+            const isOpen = content.classList.contains("open");
+
+            contents.forEach((item) => {
+              item.classList.remove("open");
+              item.style.display = "none";
+            });
+
+            headers.forEach((item) => {
+              item.setAttribute("aria-expanded", "false");
+              const icon = item.querySelector(".unit-toggle-icon");
+              if (icon) icon.textContent = "+";
+            });
+
+            if (!isOpen) {
+              content.classList.add("open");
+              content.style.display = "block";
+              this.setAttribute("aria-expanded", "true");
+              const icon = this.querySelector(".unit-toggle-icon");
+              if (icon) icon.textContent = "−";
+            }
+
+            syncToggleAllButton();
+          });
+        });
+
+        if (toggleAllButton) {
+          toggleAllButton.addEventListener("click", function () {
+            const allOpen = Array.from(contents).every((item) => item.classList.contains("open"));
+            const shouldOpen = !allOpen;
+            headers.forEach((header) => setUnitState(header, shouldOpen));
+            syncToggleAllButton();
+          });
+        }
+
+        contents.forEach((content) => {
+          content.classList.remove("open");
+          content.style.display = "none";
+        });
+
+        syncToggleAllButton();
+      });
+    </script>
   </body>
 </html>

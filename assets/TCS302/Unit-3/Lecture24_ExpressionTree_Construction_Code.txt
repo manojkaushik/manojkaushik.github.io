@@ -55,11 +55,9 @@ struct Node *buildExpressionTree(const char postfix[])
         if (isOperator(ch))
         {
 	    struct Node *node  = newNode(ch);
-            struct Node *right = pop();   /* popped first  */
-            struct Node *left  = pop();   /* popped second */
+            node->right = pop();   /* popped first  */
+            node->left  = pop();   /* popped second */
             
-            node->left  = left;
-            node->right = right;
             push(node);
         }
         else
@@ -125,6 +123,8 @@ int main(void)
     freeTree(root);
     return 0;
 }
+
+
 
 ------------------------------------------------------------
 Expected output:

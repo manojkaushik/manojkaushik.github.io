@@ -1,0 +1,82 @@
+============================================================
+Sequential and Binary Search
+============================================================
+
+Both searches run on the same 10-element sorted array, so
+their comparison counts are directly comparable.
+
+------------------------------------------------------------
+
+#include <stdio.h>
+
+
+/* Sequential search: check every element, left to right.
+   Works on ANY array, sorted or not. */
+
+int sequentialSearch(int arr[], int n, int key)
+{
+    for (int i = 0; i < n; i++)
+    {
+        if (arr[i] == key)
+            return i;    /* found at index i */
+    }
+    return -1;           /* not found */
+}
+
+
+
+
+/* Binary search: array MUST be sorted. Repeatedly halve the range. */
+
+int binarySearch(int arr[], int n, int key)
+{
+    int low = 0, high = n - 1;
+
+    while (low <= high)
+    {
+        int mid = (low + high) / 2;
+
+        if (arr[mid] == key)
+            return mid;
+        else if (arr[mid] < key)
+            low = mid + 1;    /* key is in the right half */
+        else
+            high = mid - 1;   /* key is in the left half */
+    }
+    return -1;
+}
+
+
+
+int main(void)
+{
+    int arr[] = {3, 7, 12, 18, 24, 31, 45, 52, 68, 77};
+    int n = 10;
+
+    printf("Array: ");
+    for (int i = 0; i < n; i++) printf("%d ", arr[i]);
+    printf("\n\n");
+
+    int targets[] = {45, 77, 3, 50};
+    for (int t = 0; t < 4; t++)
+    {
+        int key = targets[t];
+        int seqResult = sequentialSearch(arr, n, key);
+        int binResult = binarySearch(arr, n, key);
+        printf("key=%d : sequential -> index %d, binary -> index %d\n", key, seqResult, binResult);
+    }
+
+    return 0;
+}
+
+------------------------------------------------------------
+Expected output:
+------------------------------------------------------------
+
+Array: 3 7 12 18 24 31 45 52 68 77
+
+key=45 : sequential -> index 6, binary -> index 6
+key=77 : sequential -> index 9, binary -> index 9
+key=3  : sequential -> index 0, binary -> index 0
+key=50 : sequential -> index -1, binary -> index -1
+

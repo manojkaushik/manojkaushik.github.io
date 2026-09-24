@@ -1,0 +1,240 @@
+============================================================
+Lecture 28 : Hash Functions and Hashing
+============================================================
+
+Two independent programs, both using the SAME six keys and the
+SAME hash function (h(key) = key % 7), so their results are
+directly comparable.
+
+  PART A - Separate chaining (array of linked lists)
+  PART B - Linear probing (open addressing, plain array)
+
+============================================================
+PART A : Separate chaining
+============================================================
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#define TABLE_SIZE 7
+
+struct Node {
+    int key;
+    struct Node *next;
+};
+
+struct Node *table[TABLE_SIZE];
+
+int hashFunc(int key)
+{
+    return key % TABLE_SIZE;
+}
+
+void insert(int key)
+{
+    int idx = hashFunc(key);
+    struct Node *node = malloc(sizeof(struct Node));
+    if (node == NULL) { printf("Allocation failed\n"); exit(1); }
+    node->key = key;
+    node->next = table[idx];   /* insert at front of the chain */
+    table[idx] = node;
+    printf("insert(%d) -> index %d\n", key, idx);
+}
+
+int search(int key)
+{
+    int idx = hashFunc(key);
+    int probes = 0;
+    for (struct Node *p = table[idx]; p != NULL; p = p->next)
+    {
+        probes++;
+        if (p->key == key)
+            return probes;
+    }
+    return -1;
+}
+
+void display(void)
+{
+    for (int i = 0; i < TABLE_SIZE; i++)
+    {
+        printf("  [%d]: ", i);
+        for (struct Node *p = table[i]; p != NULL; p = p->next)
+            printf("%d -> ", p->key);
+        printf("NULL\n");
+    }
+}
+
+void freeTable(void)
+{
+    for (int i = 0; i < TABLE_SIZE; i++)
+    {
+        struct Node *p = table[i];
+        while (p != NULL)
+        {
+            struct Node *next = p->next;
+            free(p);
+            p = next;
+        }
+    }
+}
+
+int main(void)
+{
+    for (int i = 0; i < TABLE_SIZE; i++) table[i] = NULL;
+
+    int keys[] = {23, 12, 17, 9, 24, 15};
+    int n = 6;
+
+    for (int i = 0; i < n; i++) insert(keys[i]);
+
+    printf("\nTable after all inserts:\n");
+    display();
+
+    printf("\nSearch results:\n");
+    printf("  search(9)  -> %d probes\n", search(9));
+    printf("  search(24) -> %d probes\n", search(24));
+    printf("  search(15) -> %d probes\n", search(15));
+    printf("  search(99) -> %d (not found)\n", search(99));
+
+    freeTable();
+    return 0;
+}
+
+------------------------------------------------------------
+Expected output:
+------------------------------------------------------------
+
+insert(23) -> index 2
+insert(12) -> index 5
+insert(17) -> index 3
+insert(9) -> index 2
+insert(24) -> index 3
+insert(15) -> index 1
+
+Table after all inserts:
+  [0]: NULL
+  [1]: 15 -> NULL
+  [2]: 9 -> 23 -> NULL
+  [3]: 24 -> 17 -> NULL
+  [4]: NULL
+  [5]: 12 -> NULL
+  [6]: NULL
+
+Search results:
+  search(9)  -> 1 probes
+  search(24) -> 1 probes
+  search(15) -> 1 probes
+  search(99) -> -1 (not found)
+
+
+============================================================
+PART B : Linear probing (open addressing)
+============================================================
+
+#include <stdio.h>
+
+#define TABLE_SIZE 7
+#define EMPTY -1
+
+int table[TABLE_SIZE];
+
+int hashFunc(int key)
+{
+    return key % TABLE_SIZE;
+}
+
+int insert(int key)
+{
+    int idx = hashFunc(key);
+    int start = idx;
+    int probes = 0;
+
+    while (table[idx] != EMPTY)
+    {
+        probes++;
+        idx = (idx + 1) % TABLE_SIZE;   /* wrap around */
+        if (idx == start) return -1;    /* table full */
+    }
+    table[idx] = key;
+    printf("insert(%d) -> home index %d, placed at index %d (%d probe%s)\n",
+           key, start, idx, probes, probes == 1 ? "" : "s");
+    return idx;
+}
+
+int search(int key)
+{
+    int idx = hashFunc(key);
+    int start = idx;
+    int probes = 0;
+
+    while (table[idx] != EMPTY)
+    {
+        probes++;
+        if (table[idx] == key) return probes;
+        idx = (idx + 1) % TABLE_SIZE;
+        if (idx == start) break;
+    }
+    return -1;
+}
+
+void display(void)
+{
+    printf("  index: ");
+    for (int i = 0; i < TABLE_SIZE; i++) printf("%3d", i);
+    printf("\n  value: ");
+    for (int i = 0; i < TABLE_SIZE; i++)
+    {
+        if (table[i] == EMPTY) printf("  .");
+        else printf("%3d", table[i]);
+    }
+    printf("\n");
+}
+
+int main(void)
+{
+    for (int i = 0; i < TABLE_SIZE; i++) table[i] = EMPTY;
+
+    int keys[] = {23, 12, 17, 9, 24, 15};
+    int n = 6;
+
+    for (int i = 0; i < n; i++) insert(keys[i]);
+
+    printf("\nTable after all inserts:\n");
+    display();
+
+    printf("\nSearch results:\n");
+    printf("  search(9)  -> %d probes\n", search(9));
+    printf("  search(24) -> %d probes\n", search(24));
+    printf("  search(15) -> %d probes\n", search(15));
+    printf("  search(99) -> %d (not found)\n", search(99));
+
+    return 0;
+}
+
+------------------------------------------------------------
+Expected output:
+------------------------------------------------------------
+
+insert(23) -> home index 2, placed at index 2 (0 probes)
+insert(12) -> home index 5, placed at index 5 (0 probes)
+insert(17) -> home index 3, placed at index 3 (0 probes)
+insert(9) -> home index 2, placed at index 4 (2 probes)
+insert(24) -> home index 3, placed at index 6 (3 probes)
+insert(15) -> home index 1, placed at index 1 (0 probes)
+
+Table after all inserts:
+  index:   0  1  2  3  4  5  6
+  value:   . 15 23 17  9 12 24
+
+Search results:
+  search(9)  -> 3 probes
+  search(24) -> 4 probes
+  search(15) -> 1 probes
+  search(99) -> -1 (not found)
+
+
+
+
+
+

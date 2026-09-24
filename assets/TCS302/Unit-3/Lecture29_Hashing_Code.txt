@@ -1,0 +1,312 @@
+Quadratic Probing and Double Hashing
+============================================================
+
+
+Three independent programs. Parts A and B use the SAME six
+keys and tableSize as Lecture 28, so every probe count is
+directly comparable across all three collision-resolution
+methods (linear, quadratic, double hashing). Part C is a
+short, separate demonstration of quadratic probing's failure
+mode with a non-prime table size.
+
+
+============================================================
+PART A : Quadratic probing
+============================================================
+
+#include <stdio.h>
+
+#define TABLE_SIZE 7
+#define EMPTY -1
+
+int table[TABLE_SIZE];
+
+int hashFunc(int key)
+{
+    return key % TABLE_SIZE;
+}
+
+int insert(int key)
+{
+    int home = hashFunc(key);
+    int i = 0;
+
+    while (i < TABLE_SIZE)
+    {
+        int idx = (home + i * i) % TABLE_SIZE;
+        if (table[idx] == EMPTY)
+        {
+            table[idx] = key;
+            printf("insert(%d) -> home %d, i=%d, placed at index %d\n", key, home, i, idx);
+            return idx;
+        }
+        i++;
+    }
+    printf("insert(%d) -> FAILED (no empty slot found within %d probes)\n", key, TABLE_SIZE);
+    return -1;
+}
+
+int search(int key)
+{
+    int home = hashFunc(key);
+    int i = 0;
+    while (i < TABLE_SIZE)
+    {
+        int idx = (home + i * i) % TABLE_SIZE;
+        if (table[idx] == key) return i + 1;
+        if (table[idx] == EMPTY) return -1;
+        i++;
+    }
+    return -1;
+}
+
+void display(void)
+{
+    printf("  index: ");
+    for (int i = 0; i < TABLE_SIZE; i++) printf("%3d", i);
+    printf("\n  value: ");
+    for (int i = 0; i < TABLE_SIZE; i++)
+    {
+        if (table[i] == EMPTY) printf("  .");
+        else printf("%3d", table[i]);
+    }
+    printf("\n");
+}
+
+
+
+int main(void)
+{
+    for (int i = 0; i < TABLE_SIZE; i++) table[i] = EMPTY;
+
+    int keys[] = {23, 12, 17, 9, 24, 15};
+    int n = 6;
+
+    for (int i = 0; i < n; i++) insert(keys[i]);
+
+    printf("\nTable after all inserts:\n");
+    display();
+
+    printf("\nSearch results:\n");
+    printf("  search(9)  -> %d probes\n", search(9));
+    printf("  search(24) -> %d probes\n", search(24));
+    printf("  search(15) -> %d probes\n", search(15));
+
+    return 0;
+}
+
+------------------------------------------------------------
+Expected output:
+------------------------------------------------------------
+
+insert(23) -> home 2, i=0, placed at index 2
+insert(12) -> home 5, i=0, placed at index 5
+insert(17) -> home 3, i=0, placed at index 3
+insert(9) -> home 2, i=2, placed at index 6
+insert(24) -> home 3, i=1, placed at index 4
+insert(15) -> home 1, i=0, placed at index 1
+
+Table after all inserts:
+  index:   0  1  2  3  4  5  6
+  value:   . 15 23 17 24 12  9
+
+Search results:
+  search(9)  -> 3 probes
+  search(24) -> 2 probes
+  search(15) -> 1 probes
+
+Compare with Lecture 28's linear probing on the identical
+keys: 24 needed 3 hops there. Here it needs only 2 checks.
+
+
+============================================================
+PART B : Double hashing
+============================================================
+
+#include <stdio.h>
+
+#define TABLE_SIZE 7
+#define EMPTY -1
+
+int table[TABLE_SIZE];
+
+int hash1(int key) { return key % TABLE_SIZE; }
+int hash2(int key) { return 1 + (key % (TABLE_SIZE - 1)); }   /* never 0, so it always makes progress */
+
+int insert(int key)
+{
+    int home = hash1(key);
+    int step = hash2(key);
+    int i = 0;
+
+    while (i < TABLE_SIZE)
+    {
+        int idx = (home + i * step) % TABLE_SIZE;
+        if (table[idx] == EMPTY)
+        {
+            table[idx] = key;
+            printf("insert(%d) -> h1=%d, h2(step)=%d, i=%d, placed at index %d\n", key, home, step, i, idx);
+            return idx;
+        }
+        i++;
+    }
+    printf("insert(%d) -> FAILED\n", key);
+    return -1;
+}
+
+int search(int key)
+{
+    int home = hash1(key);
+    int step = hash2(key);
+    int i = 0;
+    while (i < TABLE_SIZE)
+    {
+        int idx = (home + i * step) % TABLE_SIZE;
+        if (table[idx] == key) return i + 1;
+        if (table[idx] == EMPTY) return -1;
+        i++;
+    }
+    return -1;
+}
+
+void display(void)
+{
+    printf("  index: ");
+    for (int i = 0; i < TABLE_SIZE; i++) printf("%3d", i);
+    printf("\n  value: ");
+    for (int i = 0; i < TABLE_SIZE; i++)
+    {
+        if (table[i] == EMPTY) printf("  .");
+        else printf("%3d", table[i]);
+    }
+    printf("\n");
+}
+
+int main(void)
+{
+    for (int i = 0; i < TABLE_SIZE; i++) table[i] = EMPTY;
+
+    int keys[] = {23, 12, 17, 9, 24, 15};
+    int n = 6;
+
+    for (int i = 0; i < n; i++) insert(keys[i]);
+
+    printf("\nTable after all inserts:\n");
+    display();
+
+    printf("\nSearch results:\n");
+    printf("  search(9)  -> %d probes\n", search(9));
+    printf("  search(24) -> %d probes\n", search(24));
+    printf("  search(15) -> %d probes\n", search(15));
+
+    return 0;
+}
+
+------------------------------------------------------------
+Expected output:
+------------------------------------------------------------
+
+insert(23) -> h1=2, h2(step)=6, i=0, placed at index 2
+insert(12) -> h1=5, h2(step)=1, i=0, placed at index 5
+insert(17) -> h1=3, h2(step)=6, i=0, placed at index 3
+insert(9) -> h1=2, h2(step)=4, i=1, placed at index 6
+insert(24) -> h1=3, h2(step)=1, i=1, placed at index 4
+insert(15) -> h1=1, h2(step)=4, i=0, placed at index 1
+
+Table after all inserts:
+  index:   0  1  2  3  4  5  6
+  value:   . 15 23 17 24 12  9
+
+Search results:
+  search(9)  -> 2 probes
+  search(24) -> 2 probes
+  search(15) -> 1 probes
+
+Probe count summary across all three methods on this key set:
+  search(9):  linear=3, quadratic=3, double hashing=2
+  search(24): linear=4, quadratic=2, double hashing=2
+
+
+============================================================
+PART C : Quadratic probing's failure mode (non-prime tableSize)
+============================================================
+
+#include <stdio.h>
+
+#define TABLE_SIZE 8
+#define EMPTY -1
+
+int table[TABLE_SIZE];
+
+int hashFunc(int key) { return key % TABLE_SIZE; }
+
+int insert(int key)
+{
+    int home = hashFunc(key);
+    int i = 0;
+    while (i < TABLE_SIZE)
+    {
+        int idx = (home + i * i) % TABLE_SIZE;
+        if (table[idx] == EMPTY)
+        {
+            table[idx] = key;
+            printf("insert(%d) -> home %d, i=%d, placed at index %d\n", key, home, i, idx);
+            return idx;
+        }
+        i++;
+    }
+    printf("insert(%d) -> FAILED: no empty slot found, even though table is not full!\n", key);
+    return -1;
+}
+
+void display(void)
+{
+    printf("  index: ");
+    for (int i = 0; i < TABLE_SIZE; i++) printf("%3d", i);
+    printf("\n  value: ");
+    for (int i = 0; i < TABLE_SIZE; i++)
+    {
+        if (table[i] == EMPTY) printf("  .");
+        else printf("%3d", table[i]);
+    }
+    printf("\n");
+    int empties = 0;
+    for (int i = 0; i < TABLE_SIZE; i++) if (table[i] == EMPTY) empties++;
+    printf("  (%d empty slots remain out of %d)\n", empties, TABLE_SIZE);
+}
+
+int main(void)
+{
+    for (int i = 0; i < TABLE_SIZE; i++) table[i] = EMPTY;
+
+    /* Four keys that all hash to the SAME home index (0), with tableSize = 8 (not prime) */
+    int keys[] = {8, 16, 24, 32};
+    int n = 4;
+
+    for (int i = 0; i < n; i++) insert(keys[i]);
+
+    printf("\nFinal table:\n");
+    display();
+
+    return 0;
+}
+
+------------------------------------------------------------
+Expected output:
+------------------------------------------------------------
+
+insert(8) -> home 0, i=0, placed at index 0
+insert(16) -> home 0, i=1, placed at index 1
+insert(24) -> home 0, i=2, placed at index 4
+insert(32) -> FAILED: no empty slot found, even though table is not full!
+
+Final table:
+  index:   0  1  2  3  4  5  6  7
+  value:   8 16  .  . 24  .  .  .
+  (5 empty slots remain out of 8)
+
+
+
+
+
+

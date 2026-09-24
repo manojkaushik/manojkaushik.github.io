@@ -1,0 +1,158 @@
+============================================================
+Huffman Coding
+============================================================
+
+Builds a Huffman tree from a frequency table using a simple
+priority queue (smallest frequency extracted first), then
+generates the code for every symbol by walking root-to-leaf.
+------------------------------------------------------------
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    char ch;
+    int freq;
+    struct Node *left;
+    struct Node *right;
+};
+
+struct Node *newNode(char ch, int freq, struct Node *l, struct Node *r)
+{
+    struct Node *n = malloc(sizeof(struct Node));
+    if (n == NULL) { printf("Allocation failed\n"); exit(1); }
+    n->ch = ch; n->freq = freq; n->left = l; n->right = r;
+    return n;
+}
+
+
+
+/* A simple priority queue: unsorted array, scan for the
+   minimum on each extraction - same design as Lecture 14. */
+
+#define MAXQ 50
+struct Node *pq[MAXQ];
+int pqCount = 0;
+
+void pqInsert(struct Node *n)
+{
+    pq[pqCount++] = n;
+}
+
+int pqRemoveMinIndex(void)
+{
+    int min = 0;
+    for (int i = 1; i < pqCount; i++)
+        if (pq[i]->freq < pq[min]->freq) min = i;
+    return min;
+}
+
+struct Node *pqExtractMin(void)
+{
+    int idx = pqRemoveMinIndex();
+    struct Node *n = pq[idx];
+    for (int i = idx; i < pqCount - 1; i++) pq[i] = pq[i + 1];
+    pqCount--;
+    return n;
+}
+
+
+
+/* Build the tree: repeatedly merge the two smallest until one remains. */
+
+struct Node *buildHuffmanTree(char chars[], int freqs[], int n)
+{
+    pqCount = 0;
+    for (int i = 0; i < n; i++)
+        pqInsert(newNode(chars[i], freqs[i], NULL, NULL));
+
+    while (pqCount > 1)
+    {
+        struct Node *a = pqExtractMin();   /* smallest */
+        struct Node *b = pqExtractMin();   /* second smallest */
+        struct Node *merged = newNode('\0', a->freq + b->freq, a, b);
+        pqInsert(merged);
+    }
+    return pq[0];
+}
+
+
+
+/* Walk root to leaf, printing "0" for every left turn and
+   "1" for every right turn. Only leaves carry a real symbol. */
+
+void printCodes(struct Node *root, char code[], int depth)
+{
+    if (root == NULL) return;
+    if (root->left == NULL && root->right == NULL)
+    {
+        code[depth] = '\0';
+        printf("  %c : freq %2d : code %s\n", root->ch, root->freq, code);
+        return;
+    }
+    code[depth] = '0'; printCodes(root->left, code, depth + 1);
+    code[depth] = '1'; printCodes(root->right, code, depth + 1);
+}
+
+
+
+/* Total encoded bits = sum over all leaves of (frequency x depth). */
+int weightedLength(struct Node *root, int depth)
+{
+    if (root == NULL) return 0;
+    if (root->left == NULL && root->right == NULL)
+        return root->freq * depth;
+    return weightedLength(root->left, depth + 1) + weightedLength(root->right, depth + 1);
+}
+
+
+
+void freeTree(struct Node *n)
+{
+    if (n == NULL) return;
+    freeTree(n->left);
+    freeTree(n->right);
+    free(n);
+}
+
+
+
+int main(void)
+{
+    char chars[] = {'a', 'b', 'c', 'd', 'e', 'f'};
+    int freqs[]  = {5, 9, 12, 13, 16, 45};
+    int n = 6;
+
+    struct Node *root = buildHuffmanTree(chars, freqs, n);
+
+    printf("Huffman codes:\n");
+    char code[50];
+    printCodes(root, code, 0);
+
+    int total = 0;
+    for (int i = 0; i < n; i++) total += freqs[i];
+    printf("\nTotal characters: %d\n", total);
+    printf("Total bits (Huffman): %d\n", weightedLength(root, 0));
+    printf("Total bits (fixed 3-bit code, since 6 symbols need ceil(log2(6))=3 bits): %d\n", total * 3);
+
+    freeTree(root);
+    return 0;
+}
+
+------------------------------------------------------------
+Expected output:
+------------------------------------------------------------
+
+Huffman codes:
+  f : freq 45 : code 0
+  c : freq 12 : code 100
+  d : freq 13 : code 101
+  a : freq  5 : code 1100
+  b : freq  9 : code 1101
+  e : freq 16 : code 111
+
+Total characters: 100
+Total bits (Huffman): 224
+Total bits (fixed 3-bit code, since 6 symbols need ceil(log2(6))=3 bits): 300
+
+

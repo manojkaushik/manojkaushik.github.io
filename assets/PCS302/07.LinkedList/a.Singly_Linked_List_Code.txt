@@ -1,0 +1,199 @@
+Singly Linked List - Create, InsertFront, InsertEnd, InsertAnywhere, DeleteEnd, DeleteAnywhere, Size, IsEmpty, FindMiddle
+
+========================================
+ C Program
+========================================
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *next;
+};
+
+struct Node *head = NULL;
+
+void create(int k) {
+    head = NULL;
+    struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
+    newNode->data = k;
+    newNode->next = NULL;
+    head = newNode;
+    printf("List created with first element %d.\n", k);
+}
+
+int isEmpty() {
+    if (head == NULL)
+        return 1;
+    else
+        return 0;
+}
+
+int size() {
+    int count = 0;
+    struct Node *temp = head;
+    while (temp != NULL) {
+        count++;
+        temp = temp->next;
+    }
+    return count;
+}
+
+void insertFront(int k) {
+    struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
+    newNode->data = k;
+    newNode->next = head;
+    head = newNode;
+    printf("%d inserted at front.\n", k);
+}
+
+void insertEnd(int k) {
+    struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
+    newNode->data = k;
+    newNode->next = NULL;
+
+    if (isEmpty() == 1) {
+        head = newNode;
+    } else {
+        struct Node *temp = head;
+        while (temp->next != NULL) {
+            temp = temp->next;
+        }
+        temp->next = newNode;
+    }
+    printf("%d inserted at end.\n", k);
+}
+
+void insertAnywhere(int k, int p) {
+    // p is the position (1-based) where k should be inserted
+    if (p <= 1 || isEmpty() == 1) {
+        insertFront(k);
+        return;
+    }
+
+    struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
+    newNode->data = k;
+
+    struct Node *temp = head;
+    int i;
+    for (i = 1; i < p - 1 && temp->next != NULL; i++) {
+        temp = temp->next;
+    }
+
+    newNode->next = temp->next;
+    temp->next = newNode;
+    printf("%d inserted at position %d.\n", k, p);
+}
+
+void deleteEnd() {
+    if (isEmpty() == 1) {
+        printf("List is empty. Cannot delete.\n");
+        return;
+    }
+
+    if (head->next == NULL) {
+        printf("%d deleted from end.\n", head->data);
+        free(head);
+        head = NULL;
+        return;
+    }
+
+    struct Node *temp = head;
+    while (temp->next->next != NULL) {
+        temp = temp->next;
+    }
+    printf("%d deleted from end.\n", temp->next->data);
+    free(temp->next);
+    temp->next = NULL;
+}
+
+void deleteAnywhere(int p) {
+    if (isEmpty() == 1) {
+        printf("List is empty. Cannot delete.\n");
+        return;
+    }
+
+    if (p <= 1) {
+        struct Node *toDelete = head;
+        printf("%d deleted from position %d.\n", head->data, p);
+        head = head->next;
+        free(toDelete);
+        return;
+    }
+
+    struct Node *temp = head;
+    int i;
+    for (i = 1; i < p - 1 && temp->next != NULL; i++) {
+        temp = temp->next;
+    }
+
+    if (temp->next == NULL) {
+        printf("Position %d does not exist.\n", p);
+        return;
+    }
+
+    struct Node *toDelete = temp->next;
+    printf("%d deleted from position %d.\n", toDelete->data, p);
+    temp->next = toDelete->next;
+    free(toDelete);
+}
+
+void findMiddle() {
+    if (isEmpty() == 1) {
+        printf("List is empty.\n");
+        return;
+    }
+
+    struct Node *slow = head;
+    struct Node *fast = head;
+
+    while (fast != NULL && fast->next != NULL) {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    printf("Middle element = %d\n", slow->data);
+}
+
+void printList() {
+    struct Node *temp = head;
+    if (isEmpty() == 1) {
+        printf("List is empty.\n");
+        return;
+    }
+    printf("List: ");
+    while (temp != NULL) {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    }
+    printf("\n");
+}
+
+int main() {
+    create(10);
+    insertEnd(20);
+    insertEnd(30);
+    insertFront(5);
+    printList();
+
+    insertAnywhere(15, 3);
+    printList();
+
+    printf("Size = %d\n", size());
+
+    findMiddle();
+
+    deleteEnd();
+    printList();
+
+    deleteAnywhere(2);
+    printList();
+
+    if (isEmpty() == 1)
+        printf("List is empty.\n");
+    else
+        printf("List is not empty.\n");
+
+    return 0;
+}

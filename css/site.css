@@ -219,6 +219,20 @@ a {
   text-decoration: none;
 }
 
+.weather-ai-section h3,
+.weather-ai-section a {
+  color: blue;
+}
+
+.weather-ai-section a:hover {
+  color: blue;
+  text-decoration: underline;
+}
+
+.student-projects-section h3 {
+  color: blue;
+}
+
 a:hover {
   text-decoration: underline dotted;
   color: #444;

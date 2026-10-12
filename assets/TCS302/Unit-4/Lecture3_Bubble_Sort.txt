@@ -1,0 +1,62 @@
+============================================================
+Bubble Sort
+============================================================
+
+#include <stdio.h>
+
+/* Bubble sort with the swapped flag. */
+void bubbleSort(int a[], int n)
+{
+    for (int i = 0; i < n - 1; i++)
+    {
+        int swapped = 0;
+
+        for (int j = 0; j < n - 1 - i; j++)
+        {
+            if (a[j] > a[j + 1])
+            {
+                int t = a[j];          /* swap neighbours */
+                a[j] = a[j + 1];
+                a[j + 1] = t;
+                swapped = 1;
+            }
+        }
+
+        if (swapped == 0)              /* no swap in this pass: sorted */
+            break;
+    }
+}
+
+void printArray(int a[], int n)
+{
+    for (int i = 0; i < n; i++)
+        printf("%d ", a[i]);
+    printf("\n");
+}
+
+int main(void)
+{
+    int a[] = {7, 3, 5, 2, 9, 1};
+    int n = sizeof(a) / sizeof(a[0]);
+
+    printf("Before: ");
+    printArray(a, n);
+
+    bubbleSort(a, n);
+
+    printf("After:  ");
+    printArray(a, n);
+
+    return 0;
+}
+
+------------------------------------------------------------
+Expected output:
+------------------------------------------------------------
+
+Before: 7 3 5 2 9 1 
+After:  1 2 3 5 7 9 
+
+============================================================
+End of file.
+============================================================

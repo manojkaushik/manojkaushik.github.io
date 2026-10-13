@@ -1,0 +1,83 @@
+============================================================
+Merge Sort
+============================================================
+
+#include <stdio.h>
+
+#define MAX 100                        /* n must not exceed MAX */
+
+/* Merge the sorted halves a[lo..mid] and a[mid+1..hi]. */
+void merge(int a[], int lo, int mid, int hi)
+{
+    int tmp[MAX];                      /* helper array */
+    int i = lo, j = mid + 1, k = 0;
+
+    while (i <= mid && j <= hi)
+    {
+        if (a[i] <= a[j]) 
+	   { tmp[k] = a[i]; i++; }  
+        else              
+	   { tmp[k] = a[j]; j++; }
+        k++;
+    }
+
+    while (i <= mid)               /* leftover left  */
+	{ 
+	  tmp[k] = a[i]; 
+	  i++; 
+	  k++; 
+	}  
+ 
+    while (j <= hi)               /* leftover right */
+	{ 
+	  tmp[k] = a[j]; 
+	  j++; 
+	  k++; 
+	}   
+
+    for (k = 0; k < hi - lo + 1; k++)               /* copy back */
+        a[lo + k] = tmp[k];
+}
+
+void mergeSort(int a[], int lo, int hi)
+{
+    if (lo < hi)
+    {
+        int mid = lo + (hi - lo) / 2;  //Equivalent to floor( (lo + hi) / 2);
+        mergeSort(a, lo, mid);         /* sort left half  */
+        mergeSort(a, mid + 1, hi);     /* sort right half */
+        merge(a, lo, mid, hi);         /* combine         */
+    }
+}
+
+void printArray(int a[], int n)
+{
+    for (int i = 0; i < n; i++)
+        printf("%d ", a[i]);
+    printf("\n");
+}
+
+int main(void)
+{
+    int a[] = {7, 3, 9, 1, 5, 8, 4, 2};
+    int n = sizeof(a) / sizeof(a[0]);
+
+    printf("Before: ");
+    printArray(a, n);
+
+    mergeSort(a, 0, n - 1);
+
+    printf("After:  ");
+    printArray(a, n);
+
+    return 0;
+}
+
+------------------------------------------------------------
+Expected output:
+------------------------------------------------------------
+
+Before: 7 3 9 1 5 8 4 2 
+After:  1 2 3 4 5 7 8 9 
+
+

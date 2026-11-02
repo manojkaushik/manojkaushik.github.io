@@ -1,0 +1,195 @@
+"""
+LIME and SHAP: complete Python example
+Dataset : Breast Cancer Wisconsin (built into scikit-learn)
+Model   : Random forest, 200 trees
+Install : pip install scikit-learn lime shap matplotlib pandas
+"""
+
+
+# ======================================================================
+# Step 1: Install and import libraries
+# ======================================================================
+# pip install scikit-learn lime shap matplotlib pandas
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+from lime.lime_tabular import LimeTabularExplainer
+import shap
+
+
+# ======================================================================
+# Step 2: Load the data and split it
+# ======================================================================
+# Load as a DataFrame so feature names are kept
+data = load_breast_cancer(as_frame=True)
+X, y = data.data, data.target
+feature_names = list(X.columns)
+class_names = data.target_names.tolist()   # class 0 and class 1
+print("Data shape:", X.shape, "| classes:", class_names)
+
+# Hold out 20 percent of the data for testing
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, stratify=y, random_state=42)
+
+
+# ======================================================================
+# Step 3: Train the black-box model
+# ======================================================================
+# A random forest acts as the black-box model
+model = RandomForestClassifier(
+    n_estimators=200, random_state=42)
+model.fit(X_train, y_train)
+
+# Check accuracy before explaining anything
+acc = accuracy_score(y_test, model.predict(X_test))
+print(f"Test accuracy: {acc:.3f}")
+
+
+# ======================================================================
+# LIME Step 1: Create the explainer
+# ======================================================================
+# LIME passes NumPy arrays, so restore the column names
+def predict_fn(a):
+    return model.predict_proba(
+        pd.DataFrame(a, columns=feature_names))
+
+lime_explainer = LimeTabularExplainer(
+    training_data=X_train.values,    # used for sampling statistics
+    feature_names=feature_names,
+    class_names=class_names,
+    mode="classification",
+    random_state=42)                 # repeatable explanations
+
+
+# ======================================================================
+# LIME Step 2: Explain one prediction
+# ======================================================================
+i = 0                                # test instance to explain
+x = X_test.iloc[i].values
+proba = predict_fn([x])[0]
+print("Model says:", class_names[proba.argmax()], proba.round(3))
+
+exp = lime_explainer.explain_instance(
+    x, predict_fn,
+    num_features=6,                  # top K features to report
+    num_samples=5000)                # perturbed samples
+
+
+# ======================================================================
+# LIME Step 3: Read the feature weights
+# ======================================================================
+# Feature rule and its local weight for class 1 (benign)
+for rule, weight in exp.as_list():
+    print(f"{rule:38s} {weight:+.3f}")
+
+# How well does the local linear model fit?
+print("Local R^2:", round(exp.score, 3))
+
+
+# ======================================================================
+# LIME Step 4: Plot the explanation
+# ======================================================================
+plt.rc("font", size=14)
+fig = exp.as_pyplot_figure()
+fig.set_size_inches(8, 4.5)
+plt.tight_layout()
+plt.show()
+
+
+# ======================================================================
+# LIME Step 5: Explain more instances
+# ======================================================================
+# Explain the first three test instances
+for j in range(3):
+    xj = X_test.iloc[j].values
+    e = lime_explainer.explain_instance(
+        xj, predict_fn, num_features=3)
+    pred = class_names[predict_fn([xj])[0].argmax()]
+    rule, w = e.as_list()[0]         # strongest feature
+    print(j, pred, rule, round(w, 3))
+
+
+
+
+
+
+
+
+
+# ======================================================================
+# SHAP Step 1: Create the explainer
+# ======================================================================
+# TreeExplainer is exact and fast for tree ensembles
+shap_explainer = shap.TreeExplainer(model)
+sv = shap_explainer(X_test)          # Explanation object
+print("Raw shape:", sv.shape)        # samples, features, classes
+
+# Keep the explanation for class 1 (benign)
+sv = sv[:, :, 1]
+print("Class 1 shape:", sv.shape)
+
+
+# ======================================================================
+# SHAP Step 2: Check local accuracy
+# ======================================================================
+# Local accuracy: base value + SHAP values = prediction
+pred = model.predict_proba(X_test)[:, 1]
+recon = sv.base_values + sv.values.sum(axis=1)
+print("Max difference:", abs(recon - pred).max())
+print("Base value:", sv.base_values[0].round(3))
+
+
+# ======================================================================
+# SHAP Step 3: Local contributions
+# ======================================================================
+# Top 5 contributions for test instance 0
+top = np.argsort(-np.abs(sv.values[0]))[:5]
+for k in top:
+    print(f"{feature_names[k]:22s} value={X_test.iloc[0, k]:9.3f}"
+          f"  SHAP={sv.values[0, k]:+.3f}")
+
+
+# ======================================================================
+# SHAP Step 4: Waterfall plot
+# ======================================================================
+shap.plots.waterfall(sv[0], max_display=8)
+
+
+# ======================================================================
+# SHAP Step 5: Global importance
+# ======================================================================
+# Global importance: mean absolute SHAP value
+shap.plots.bar(sv, max_display=10)
+
+mean_abs = np.abs(sv.values).mean(axis=0)
+for k in np.argsort(-mean_abs)[:5]:
+    print(f"{feature_names[k]:22s} mean |SHAP| = {mean_abs[k]:.3f}")
+
+
+# ======================================================================
+# SHAP Step 6: Beeswarm plot
+# ======================================================================
+shap.plots.beeswarm(
+    sv, max_display=10)
+
+
+# ======================================================================
+# SHAP Step 7: Dependence plot
+# ======================================================================
+feat = "worst concave points"
+shap.plots.scatter(
+    sv[:, feat], color=sv)
+
+
+# ======================================================================
+# Comparing LIME and SHAP on one instance
+# ======================================================================
+# Top 5 features for instance 0 from each method
+lime_top = [feature_names[k] for k, w in exp.as_map()[1][:5]]
+shap_top = [feature_names[k] for k in top]
+for n, (a, b) in enumerate(zip(lime_top, shap_top), 1):
+    print(n, "LIME:", a, "| SHAP:", b)

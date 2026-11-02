@@ -1,0 +1,86 @@
+Tree Traversals - Inorder, Preorder, Postorder
+========================================
+ C Program
+========================================
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *left;
+    struct Node *right;
+};
+
+struct Node *root = NULL;
+
+struct Node *newNode(int k) {
+    struct Node *n = (struct Node *)malloc(sizeof(struct Node));
+    n->data = k;
+    n->left = NULL;
+    n->right = NULL;
+    return n;
+}
+
+// builds the tree for node i of the array (children are at 2i+1 and 2i+2)
+// -1 means NULL, so no node is created for it
+struct Node *buildFromArray(int arr[], int n, int i) {
+    if (i >= n || arr[i] == -1) {
+        return NULL;
+    }
+    struct Node *node = newNode(arr[i]);
+    node->left = buildFromArray(arr, n, 2 * i + 1);
+    node->right = buildFromArray(arr, n, 2 * i + 2);
+    return node;
+}
+
+// left, root, right
+void inorder(struct Node *node) {
+    if (node == NULL) {
+        return;
+    }
+    inorder(node->left);
+    printf("%d ", node->data);
+    inorder(node->right);
+}
+
+// root, left, right
+void preorder(struct Node *node) {
+    if (node == NULL) {
+        return;
+    }
+    printf("%d ", node->data);
+    preorder(node->left);
+    preorder(node->right);
+}
+
+// left, right, root
+void postorder(struct Node *node) {
+    if (node == NULL) {
+        return;
+    }
+    postorder(node->left);
+    postorder(node->right);
+    printf("%d ", node->data);
+}
+
+int main() {
+    int arr[] = {1, 2, 3, 4, -1, 5, 6, 7, 8, -1, -1, 9, -1, -1, -1};
+    int n = 15;
+
+    root = buildFromArray(arr, n, 0);
+
+    printf("Inorder   (left, root, right) : ");
+    inorder(root);
+    printf("\n");
+
+    printf("Preorder  (root, left, right) : ");
+    preorder(root);
+    printf("\n");
+
+    printf("Postorder (left, right, root) : ");
+    postorder(root);
+    printf("\n");
+
+    return 0;
+}

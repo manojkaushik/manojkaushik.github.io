@@ -1,0 +1,112 @@
+Split a Circular Linked List into Two Circular Linked Lists
+========================================
+ C Program
+========================================
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *next;
+};
+
+struct Node *head1 = NULL;         // first list after splitting
+struct Node *head2 = NULL;         // second list after splitting
+
+// inserts k at the end of the circular list starting at head
+// returns the (possibly new) head of that list
+struct Node *insertEnd(struct Node *head, int k) {
+    struct Node *n = (struct Node *)malloc(sizeof(struct Node));
+    n->data = k;
+
+    if (head == NULL) {
+        n->next = n;               // single node points to itself
+        return n;
+    }
+
+    struct Node *last = head;
+    while (last->next != head) {
+        last = last->next;
+    }
+    last->next = n;
+    n->next = head;
+    return head;
+}
+
+int size(struct Node *head) {
+    if (head == NULL) {
+        return 0;
+    }
+    int count = 0;
+    struct Node *temp = head;
+    do {
+        count++;
+        temp = temp->next;
+    } while (temp != head);
+    return count;
+}
+
+void printList(struct Node *head) {
+    if (head == NULL) {
+        printf("List is empty.\n");
+        return;
+    }
+    struct Node *temp = head;
+    do {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    } while (temp != head);
+    printf("(back to head)\n");
+}
+
+void splitList(int p) {
+    int n = size(head1);
+
+    if (p < 1 || p >= n) {
+        printf("Invalid position %d. Cannot split a list of size %d.\n", p, n);
+        return;
+    }
+
+    // move temp to the node at position p
+    struct Node *temp = head1;
+    int i;
+    for (i = 1; i < p; i++) {
+        temp = temp->next;
+    }
+
+    head2 = temp->next;            // first node of the second list
+
+    // find the old last node
+    struct Node *last = head2;
+    while (last->next != head1) {
+        last = last->next;
+    }
+
+    temp->next = head1;            // close the first list
+    last->next = head2;            // close the second list
+}
+
+int main() {
+    int p = 3;
+
+    head1 = insertEnd(head1, 10);
+    head1 = insertEnd(head1, 20);
+    head1 = insertEnd(head1, 30);
+    head1 = insertEnd(head1, 40);
+    head1 = insertEnd(head1, 50);
+    head1 = insertEnd(head1, 60);
+
+    printf("Original list: ");
+    printList(head1);
+
+    printf("Splitting at position %d\n", p);
+    splitList(p);
+
+    printf("List 1: ");
+    printList(head1);
+    printf("List 2: ");
+    printList(head2);
+
+    return 0;
+}

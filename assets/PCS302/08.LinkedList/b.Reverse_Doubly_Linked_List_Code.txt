@@ -1,0 +1,97 @@
+Reverse a Doubly Linked List - Without Extra Space
+
+========================================
+ C Program
+========================================
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *prev;
+    struct Node *next;
+};
+
+struct Node *head = NULL;
+
+void insertEnd(int k) {
+    struct Node *n = (struct Node *)malloc(sizeof(struct Node));
+    n->data = k;
+    n->prev = NULL;
+    n->next = NULL;
+
+    if (head == NULL) {
+        head = n;
+    } else {
+        struct Node *temp = head;
+        while (temp->next != NULL) {
+            temp = temp->next;
+        }
+        temp->next = n;
+        n->prev = temp;
+    }
+}
+
+void printForward() {
+    struct Node *temp = head;
+    printf("List (forward): ");
+    while (temp != NULL) {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    }
+    printf("\n");
+}
+
+void printBackward() {
+    struct Node *temp = head;
+    if (temp == NULL) {
+        printf("List is empty.\n");
+        return;
+    }
+    while (temp->next != NULL) {
+        temp = temp->next;         // go to the last node
+    }
+    printf("List (backward): ");
+    while (temp != NULL) {
+        printf("%d ", temp->data);
+        temp = temp->prev;
+    }
+    printf("\n");
+}
+
+void reverseList() {
+    struct Node *temp = NULL;
+    struct Node *curr = head;
+
+    // swap prev and next of every node
+    while (curr != NULL) {
+        temp = curr->prev;
+        curr->prev = curr->next;
+        curr->next = temp;
+        curr = curr->prev;         // old next node
+    }
+
+    // temp is the old second-last node, so temp->prev is the old last node
+    if (temp != NULL) {
+        head = temp->prev;
+    }
+}
+
+int main() {
+    insertEnd(10);
+    insertEnd(20);
+    insertEnd(30);
+    insertEnd(40);
+
+    printf("Before reversing:\n");
+    printForward();
+
+    reverseList();
+
+    printf("After reversing:\n");
+    printForward();
+    printBackward();
+
+    return 0;
+}

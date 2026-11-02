@@ -1,0 +1,104 @@
+Remove Duplicates from a Sorted Doubly Linked List
+========================================
+ C Program
+========================================
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *prev;
+    struct Node *next;
+};
+
+struct Node *head = NULL;
+
+void insertEnd(int k) {
+    struct Node *n = (struct Node *)malloc(sizeof(struct Node));
+    n->data = k;
+    n->prev = NULL;
+    n->next = NULL;
+
+    if (head == NULL) {
+        head = n;
+    } else {
+        struct Node *temp = head;
+        while (temp->next != NULL) {
+            temp = temp->next;
+        }
+        temp->next = n;
+        n->prev = temp;
+    }
+}
+
+void printForward() {
+    struct Node *temp = head;
+    if (temp == NULL) {
+        printf("List is empty.\n");
+        return;
+    }
+    printf("List (forward): ");
+    while (temp != NULL) {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    }
+    printf("\n");
+}
+
+void printBackward() {
+    struct Node *temp = head;
+    if (temp == NULL) {
+        printf("List is empty.\n");
+        return;
+    }
+    while (temp->next != NULL) {
+        temp = temp->next;         // go to the last node
+    }
+    printf("List (backward): ");
+    while (temp != NULL) {
+        printf("%d ", temp->data);
+        temp = temp->prev;
+    }
+    printf("\n");
+}
+
+void removeDuplicates() {
+    struct Node *curr = head;
+
+    while (curr != NULL && curr->next != NULL) {
+        if (curr->data == curr->next->data) {
+            struct Node *dup = curr->next;     // duplicate node
+            curr->next = dup->next;            // skip over it
+            if (dup->next != NULL) {
+                dup->next->prev = curr;        // fix the back link
+            }
+            free(dup);
+            // do not move curr, the next node may also be a duplicate
+        } else {
+            curr = curr->next;
+        }
+    }
+}
+
+int main() {
+    insertEnd(10);
+    insertEnd(10);
+    insertEnd(20);
+    insertEnd(20);
+    insertEnd(20);
+    insertEnd(30);
+    insertEnd(40);
+    insertEnd(40);
+
+    printf("Before removing duplicates:\n");
+    printForward();
+
+    removeDuplicates();
+
+    printf("After removing duplicates:\n");
+    printForward();
+    printBackward();
+
+    return 0;
+}

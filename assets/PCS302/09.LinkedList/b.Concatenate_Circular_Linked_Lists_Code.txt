@@ -1,0 +1,95 @@
+Concatenate Two Circular Linked Lists
+========================================
+ C Program
+========================================
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *next;
+};
+
+struct Node *head1 = NULL;
+struct Node *head2 = NULL;
+
+// inserts k at the end of the circular list starting at head
+// returns the (possibly new) head of that list
+struct Node *insertEnd(struct Node *head, int k) {
+    struct Node *n = (struct Node *)malloc(sizeof(struct Node));
+    n->data = k;
+
+    if (head == NULL) {
+        n->next = n;               // single node points to itself
+        return n;
+    }
+
+    struct Node *last = head;
+    while (last->next != head) {
+        last = last->next;
+    }
+    last->next = n;
+    n->next = head;
+    return head;
+}
+
+void printList(struct Node *head) {
+    if (head == NULL) {
+        printf("List is empty.\n");
+        return;
+    }
+    struct Node *temp = head;
+    do {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    } while (temp != head);
+    printf("(back to head)\n");
+}
+
+struct Node *concatenate(struct Node *h1, struct Node *h2) {
+    if (h1 == NULL) {
+        return h2;
+    }
+    if (h2 == NULL) {
+        return h1;
+    }
+
+    // find last node of list 1
+    struct Node *last1 = h1;
+    while (last1->next != h1) {
+        last1 = last1->next;
+    }
+
+    // find last node of list 2
+    struct Node *last2 = h2;
+    while (last2->next != h2) {
+        last2 = last2->next;
+    }
+
+    last1->next = h2;              // end of list 1 -> start of list 2
+    last2->next = h1;              // end of list 2 -> start of list 1
+    return h1;
+}
+
+int main() {
+    head1 = insertEnd(head1, 10);
+    head1 = insertEnd(head1, 20);
+    head1 = insertEnd(head1, 30);
+
+    head2 = insertEnd(head2, 40);
+    head2 = insertEnd(head2, 50);
+
+    printf("List 1: ");
+    printList(head1);
+    printf("List 2: ");
+    printList(head2);
+
+    head1 = concatenate(head1, head2);
+    head2 = NULL;                  // list 2 is now part of list 1
+
+    printf("Concatenated list: ");
+    printList(head1);
+
+    return 0;
+}

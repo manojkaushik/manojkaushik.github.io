@@ -1,0 +1,100 @@
+BST Level with Maximum Number of Nodes
+
+========================================
+ C Program
+========================================
+
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 100
+
+struct Node {
+    int data;
+    struct Node *left;
+    struct Node *right;
+};
+
+struct Node *root = NULL;
+
+struct Node *newNode(int k) {
+    struct Node *n = (struct Node *)malloc(sizeof(struct Node));
+    n->data = k;
+    n->left = NULL;
+    n->right = NULL;
+    return n;
+}
+
+// normal BST insertion (same as the previous questions)
+struct Node *insertNode(struct Node *node, int k) {
+    if (node == NULL) {
+        return newNode(k);
+    }
+    if (k < node->data) {
+        node->left = insertNode(node->left, k);
+    } else if (k > node->data) {
+        node->right = insertNode(node->right, k);
+    }
+    return node;
+}
+
+// level order traversal (using a queue), counting the nodes of each level
+void maxNodesLevel() {
+    struct Node *queue[MAX];
+    int front = 0, rear = 0;
+    int level = 0;                  // root is at level 0
+    int maxCount = 0;               // maximum number of nodes found so far
+    int maxLevel = 0;               // level having that maximum
+    int i;
+
+    if (root == NULL) {
+        printf("Tree is empty.\n");
+        return;
+    }
+
+    queue[rear] = root;
+    rear++;
+
+    while (front < rear) {
+        int levelSize = rear - front;       // nodes present on this level
+
+        printf("Level %d : %d node(s)\n", level, levelSize);
+
+        if (levelSize > maxCount) {         // > keeps the first (top-most) level on a tie
+            maxCount = levelSize;
+            maxLevel = level;
+        }
+
+        // remove all nodes of this level, add their children (next level)
+        for (i = 0; i < levelSize; i++) {
+            struct Node *temp = queue[front];
+            front++;
+
+            if (temp->left != NULL) {
+                queue[rear] = temp->left;
+                rear++;
+            }
+            if (temp->right != NULL) {
+                queue[rear] = temp->right;
+                rear++;
+            }
+        }
+        level++;
+    }
+
+    printf("Level with maximum nodes = %d\n", maxLevel);
+    printf("Maximum number of nodes  = %d\n", maxCount);
+}
+
+int main() {
+    int keys[] = {50, 30, 70, 20, 40, 60, 80, 65, 45, 35};
+    int n = 10;
+    int i;
+
+    for (i = 0; i < n; i++) {
+        root = insertNode(root, keys[i]);
+    }
+
+    maxNodesLevel();
+
+    return 0;
+}

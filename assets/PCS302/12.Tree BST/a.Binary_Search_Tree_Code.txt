@@ -1,0 +1,223 @@
+Binary Search Tree - Create, Insert, Delete, FindHeight, FindDepth, Search
+
+========================================
+ C Program
+========================================
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *left;
+    struct Node *right;
+};
+
+struct Node *root = NULL;
+
+struct Node *newNode(int k) {
+    struct Node *n = (struct Node *)malloc(sizeof(struct Node));
+    n->data = k;
+    n->left = NULL;
+    n->right = NULL;
+    return n;
+}
+
+
+// creates the root node
+void create(int k) {
+    root = newNode(k);
+    printf("BST created with root %d.\n", k);
+}
+
+
+// returns 1 if key is present, otherwise 0
+int search(struct Node *node, int key) {
+    if (node == NULL) {
+        return 0;
+    }
+    if (key == node->data) {
+        return 1;
+    }
+    if (key < node->data)
+        return search(node->left, key);     // smaller keys are on the left
+    else
+        return search(node->right, key);    // bigger keys are on the right
+}
+
+
+struct Node *insertNode(struct Node *node, int k) {
+    if (node == NULL) {
+        return newNode(k);                  // empty place found
+    }
+    if (k < node->data) {
+        node->left = insertNode(node->left, k);
+    } else {
+        node->right = insertNode(node->right, k);
+    }
+    return node;
+}
+
+
+
+void insert(int k) {
+    if (search(root, k) == 1) {
+        printf("%d is already present. Not inserted.\n", k);
+        return;
+    }
+    root = insertNode(root, k);
+    printf("%d inserted.\n", k);
+}
+
+
+
+// smallest key of a subtree = go left as far as possible
+struct Node *findMin(struct Node *node) {
+    while (node->left != NULL) {
+        node = node->left;
+    }
+    return node;
+}
+
+
+
+struct Node *deleteNode(struct Node *node, int k) {
+    if (node == NULL) {
+        return NULL;
+    }
+
+    if (k < node->data) {
+        node->left = deleteNode(node->left, k);
+    }
+    else if (k > node->data) {
+        node->right = deleteNode(node->right, k);
+    }
+    else {
+        // this is the node to delete
+
+        // Case 1 and 2: no left child (leaf, or only a right child)
+        if (node->left == NULL) {
+            struct Node *temp = node->right;
+            free(node);
+            return temp;
+        }
+        // Case 2: only a left child
+        if (node->right == NULL) {
+            struct Node *temp = node->left;
+            free(node);
+            return temp;
+        }
+
+        // Case 3: two children
+        // copy the inorder successor (smallest key of right subtree)
+        // here, then delete that successor from the right subtree
+        struct Node *succ = findMin(node->right);
+        node->data = succ->data;
+        node->right = deleteNode(node->right, succ->data);
+    }
+    return node;
+}
+
+
+
+void deleteKey(int k) {
+    if (search(root, k) == 0) {
+        printf("%d not found. Cannot delete.\n", k);
+        return;
+    }
+    root = deleteNode(root, k);
+    printf("%d deleted.\n", k);
+}
+
+
+
+// height = number of nodes on the longest path from root to a leaf
+int findHeight(struct Node *node) {
+    if (node == NULL) {
+        return 0;
+    }
+    int lh = findHeight(node->left);
+    int rh = findHeight(node->right);
+    if (lh > rh)
+        return lh + 1;
+    else
+        return rh + 1;
+}
+
+
+
+// depth of a node = number of edges from the root to that node
+// returns -1 if the key is not present
+int findDepth(int key) {
+    struct Node *temp = root;
+    int depth = 0;
+
+    while (temp != NULL) {
+        if (key == temp->data) {
+            return depth;
+        }
+        if (key < temp->data)
+            temp = temp->left;
+        else
+            temp = temp->right;
+        depth++;
+    }
+    return -1;
+}
+
+
+
+// inorder traversal of a BST always prints the keys in sorted order
+void printInorder(struct Node *node) {
+    if (node == NULL) {
+        return;
+    }
+    printInorder(node->left);
+    printf("%d ", node->data);
+    printInorder(node->right);
+}
+
+
+
+int main() {
+    create(50);
+    insert(30);
+    insert(70);
+    insert(20);
+    insert(40);
+    insert(60);
+    insert(80);
+    insert(65);
+    insert(40);                             // duplicate
+
+    printf("Inorder  : ");
+    printInorder(root);
+    printf("\n");
+
+    printf("Height of tree = %d\n", findHeight(root));
+    printf("Depth of node 65 = %d\n", findDepth(65));
+    printf("Depth of the tree (deepest node) = %d\n", findHeight(root) - 1);
+
+    if (search(root, 60) == 1)
+        printf("60 is present in the tree.\n");
+    else
+        printf("60 is not present in the tree.\n");
+
+    if (search(root, 99) == 1)
+        printf("99 is present in the tree.\n");
+    else
+        printf("99 is not present in the tree.\n");
+
+    deleteKey(20);                          // leaf node
+    deleteKey(30);                          // node with one child
+    deleteKey(70);                          // node with two children
+    deleteKey(99);                          // key not present
+
+    printf("Inorder  : ");
+    printInorder(root);
+    printf("\n");
+
+    printf("Height of tree = %d\n", findHeight(root));
+
+    return 0;
+}
